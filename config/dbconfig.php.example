@@ -1,0 +1,10 @@
+<?php
+
+// Database credentials
+const SERVERNAME = "******";
+const USERNAME = "******";
+const PASSWORD = "******";
+const DBNAME = "******";
+
+
+?>

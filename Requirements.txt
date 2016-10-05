@@ -1,0 +1,1 @@
+We use Simplepie for arxiv parsing. (Created two folders 'php' and cache - see partent folder - and copied files to 'php'. Thats it)
