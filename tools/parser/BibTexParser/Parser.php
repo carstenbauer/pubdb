@@ -1,4 +1,4 @@
-<?php declare (strict_types = 1);
+<?php
 
 /*
  * This file is part of the BibTex Parser.
@@ -405,7 +405,7 @@ class Parser
         $this->buffer = '';
     }
 
-    private function isWhitespace(string $char): bool
+    private function isWhitespace(string $char)
     {
         return ' ' == $char || "\t" == $char || "\n" == $char || "\r" == $char;
     }

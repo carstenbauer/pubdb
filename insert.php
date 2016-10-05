@@ -4,6 +4,7 @@
 
 <?php
 
+include_once('config/config.php');
 include_once('tools/db.php');
 include_once('tools/parser/arxiv.php');
 include_once('tools/parser/aps.php');
@@ -98,7 +99,7 @@ if (isset($_POST["insertForm"])) {
 # Paper has been confirmed for insertion
 if (isset($_POST["confirm"])){
     
-    if ($_POST["pw"]!=="Superposition") {
+    if ($_POST["pw"]!==INSERTPASSWORD) {
         echo "<b>Oops, the password is not correct!</b>";
         exit();
     }

@@ -1,4 +1,4 @@
-<?php declare (strict_types = 1);
+<?php 
 
 /*
  * This file is part of the BibTex Parser.
@@ -31,7 +31,7 @@ class Listener implements ListenerInterface
      */
     private $processed = false;
 
-    public function export(): array
+    public function export()
     {
         if (!$this->processed) {
             $this->processCitationKey();
