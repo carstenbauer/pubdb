@@ -89,12 +89,12 @@ function identifierToPaper($pubidstr){
 # Insert form has been submitted
 if (isset($_POST["insertForm"])) {
     
-
-    # TODO User must select at least one project. Maybe possible to enforce in html form?
     $paper = identifierToPaper($_POST["pubidstr"]);
 
     if ($paper === false || $paper["title"]==""){
         echo "<b>No paper is matching the given identifier.</b><br><br>";
+    } elseif(!isset($_POST["projects"])||empty($_POST["projects"])) {
+        echo "<b>You have to specify at least one project.</b><br><br>";
     } else {
         echo "<b>We found the following paper:</b><br><br>";
         echo Output::PaperToHTMLString($paper);
@@ -124,20 +124,23 @@ if (isset($_POST["insertForm"])) {
 
 # Paper has been confirmed for insertion
 if (isset($_POST["confirm"])){
-    
-    if ($_POST["pw"]!==INSERTPASSWORD) {
-        echo "<b>Oops, the password is not correct!</b>";
-        exit();
-    }
-
 
     $paper = identifierToPaper($_POST["pubidstr"]);
-    $paper["projects"] = $_POST["projects"];
-    $succ = $db->insertPaper($paper);
-    if ($succ) {
-        echo "The paper has been successfully added to our database. Thank you for taking the time!";
+
+    if ($paper === false || $paper["title"]==""){
+        echo "<b>No paper is matching the given identifier.</b><br><br>";
+    } elseif(!isset($_POST["projects"])||empty($_POST["projects"])) {
+        echo "<b>You have to specify at least one project.</b><br><br>";
+    } elseif ($_POST["pw"]!==INSERTPASSWORD) {
+        echo "<b>Oops, the password is not correct!</b>";
     } else {
-        echo "There was a problem with our database. Please try again.";
+        $paper["projects"] = $_POST["projects"];
+        $succ = $db->insertPaper($paper);
+        if ($succ) {
+            echo "The paper has been successfully added to our database. Thank you for taking the time!";
+        } else {
+            echo "There was a problem with our database. Please try again.";
+        }
     }
 }
 
