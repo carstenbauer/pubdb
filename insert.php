@@ -8,6 +8,7 @@ include_once('config/config.php');
 include_once('tools/db.php');
 include_once('tools/parser/arxiv.php');
 include_once('tools/parser/aps.php');
+include_once('tools/parser/nature.php');
 include_once('tools/io.php');
 
 $db = new db();
@@ -22,11 +23,20 @@ function contains($string, $array, $caseSensitive = false)
 
 
 function checkAPS($pubidstr){
-    $apsarray = array("PRL","PRB","PRE", "PRA", "PRC", "PRD", "RMP", "Rev", "Phys");
+    $apsarray = array("PRL","PRB","PRE", "PRA", "PRC", "PRD", "RMP", "Rev", "Physical", "10.1103/");
     if (contains($pubidstr,$apsarray))
         return True;
     
     return False;
+}
+
+function checkNature($pubidstr){
+    $naturearray = array("Nature", "10.1038/");
+    if (contains($pubidstr,$naturearray))
+        return True;
+    
+    return False;
+
 }
 
 function identifierToPaper($pubidstr){
@@ -35,6 +45,8 @@ function identifierToPaper($pubidstr){
     if (checkAPS($pubidstr)){
         // Assume aps identifier
         $paper = apsParser::parse($pubidstr);
+    } elseif (checkNature($pubidstr)) {
+        $paper = natureParser::parse($pubidstr);
     } else {
         // Assume arxiv
         $paper = arxivParser::parse($pubidstr);

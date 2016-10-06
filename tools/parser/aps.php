@@ -16,7 +16,7 @@ class apsParser {
 
     private static function extractPureID($apsStr){
         # Allow for whole aps.org URL
-        if (strpos($apsStr,"aps.org") !== false) {
+        if (strpos($apsStr,"aps.org") !== False || strpos($apsStr,"10.1103/") !== False) {
             $apsStr = substr(strrchr($apsStr,'/'),1);
         }
 
