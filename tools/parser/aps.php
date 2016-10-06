@@ -90,6 +90,7 @@ class apsParser {
             $name = explode(", ",$author);
             array_push($paper["authors"],$name[1]." ".$name[0]);
         }
+        $paper["year"] = $entries[0]["year"];
         $paper["url"] = str_replace("export","abstract",$bibtex_url);
         $paper["bibtex"] = $bibtex;
         $paper["identifier"] = $id;

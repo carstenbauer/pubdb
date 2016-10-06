@@ -12,7 +12,7 @@ class Output {
         if (isset($paper["projects"])) {
             $project_str = "(".join(", ",$paper["projects"]).")";
         }
-        $paper_str = $project_str." ".$authors_str.", <a href=".$paper["url"]."><i>".Output::LaTeX2MathJax($paper["title"])."</i></a>, ".$paper["journal"].", ".$paper["identifier"];
+        $paper_str = $project_str." ".$authors_str.", <a href=".$paper["url"]."><i>".Output::LaTeX2MathJax($paper["title"])."</i></a>, ".$paper["journal"].", ".$paper["identifier"].", ".$paper["year"];
         return $paper_str;
     }
 

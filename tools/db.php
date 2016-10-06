@@ -166,7 +166,7 @@ function getProjectsOfPublication($pub){
 function insertPaper($paper){
     # Insert publication into db
     $authors_str = $this->escape(join(", ", $paper["authors"]));
-    $sql = "INSERT INTO Publications (authors, title, url, journal, identifier, bibtex) VALUES ('".$authors_str."', '".$this->escape($paper["title"])."', '".$paper["url"]."', '".$paper["journal"]."', '".$paper["identifier"]."', '".$this->escape($paper["bibtex"])."')";
+    $sql = "INSERT INTO Publications (authors, title, year, url, journal, identifier, bibtex) VALUES ('".$authors_str."', '".$this->escape($paper["title"])."', '".$paper["year"]."', '".$paper["url"]."', '".$paper["journal"]."', '".$paper["identifier"]."', '".$this->escape($paper["bibtex"])."')";
     $result = $this->conn->query($sql);
     if (!$result) {
         return False;
