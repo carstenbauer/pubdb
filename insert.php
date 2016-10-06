@@ -22,7 +22,7 @@ function contains($string, $array, $caseSensitive = false)
 
 
 function checkAPS($pubidstr){
-    $apsarray = array("PRL","PRB","PRE", "PRA", "PRC", "PRD", "Rev", "Phys");
+    $apsarray = array("PRL","PRB","PRE", "PRA", "PRC", "PRD", "RMP", "Rev", "Phys");
     if (contains($pubidstr,$apsarray))
         return True;
     

@@ -23,7 +23,7 @@ class apsParser {
 
         $journal = apsParser::extractJournal($apsStr);
         $numbers = apsParser::extractNumbers($apsStr);
-        if (count($numbers)<=2 || $journal===False){
+        if (count($numbers)<2 || $journal===False){
             return False;
         }
 
@@ -55,7 +55,7 @@ class apsParser {
             return "pre";
         } elseif (strpos($apsStr, 'C') !== False){
             return "pre";
-        } elseif (strpos($apsStr, 'Mod') !== False){
+        } elseif (strpos($apsStr, 'Mod') !== False || strpos($apsStr, 'M') !== False){
             return "rmp";
         } else {
             return False;
@@ -68,7 +68,7 @@ class apsParser {
 
         $journal = apsParser::extractJournal($apsStr);
         $id = apsParser::extractPureID($apsStr);
-
+        
         # Get url to bibtex
         $bibtex_url = "http://journals.aps.org/".$journal."/export/10.1103/".$id;
 
