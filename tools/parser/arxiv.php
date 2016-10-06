@@ -27,18 +27,11 @@ class arxivParser {
         
         # Should contain exactly two numbers
         $numbers = arxivParser::extractNumbers($str);
-        if (count($numbers) != 2) {
+        if (count($numbers) < 2) {
             return False;
         }
 
-        # Should contain exactly one dot
-        if (substr_count($str,'.') != 1) {
-            return False;
-        }
-        
-        # TODO Use regexp to ensure "12093.120930123" format
-
-        return $str;
+        return $numbers[0].".".$numbers[1];
     }
 
     
