@@ -185,6 +185,7 @@ function insertPaper($paper){
 
 function escape($str){
     $strr = str_replace("'","''",$str);
+    $strr = str_replace("\\","\\\\",$strr);
     return $strr;
 }
 

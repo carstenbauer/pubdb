@@ -97,7 +97,7 @@ if (isset($_POST["insertForm"])) {
 ?>
 
     <label> <small>Please confirm that this paper should be added to project(s) <?php echo join(', ', $_POST["projects"]); ?></small></label><br>
-    Password: <input type="text" name="pw" >
+    Password: <input type="password" name="pw" >
 
             <input type="submit" name="confirm" value="Confirm">
         </form>
