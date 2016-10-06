@@ -14,11 +14,25 @@ $db = new db();
 $db->connect();
 $projects = $db->getProjects();
 
+function contains($string, $array, $caseSensitive = false)
+{
+    $stripedString = $caseSensitive ? str_replace($array, '', $string) : str_ireplace($array, '', $string);
+    return strlen($stripedString) !== strlen($string);
+}
+
+
+function checkAPS($pubidstr){
+    $apsarray = array("PRL","PRB","PRE", "PRA", "PRC", "PRD", "Rev", "Phys");
+    if (contains($pubidstr,$apsarray))
+        return True;
+    
+    return False;
+}
 
 function identifierToPaper($pubidstr){
     # Check if we have arxiv or aps identifier
     # TODO Make "waterproof"!
-    if (strpos($pubidstr,"Phys") !== False) {
+    if (checkAPS($pubidstr)){
         // Assume aps identifier
         $paper = apsParser::parse($pubidstr);
     } else {
@@ -67,7 +81,7 @@ if (isset($_POST["insertForm"])) {
     # TODO User must select at least one project. Maybe possible to enforce in html form?
     $paper = identifierToPaper($_POST["pubidstr"]);
 
-    if ($paper === false){
+    if ($paper === false || $paper["title"]==""){
         echo "<b>No paper is matching the given identifier.</b><br><br>";
     } else {
         echo "<b>We found the following paper:</b><br><br>";

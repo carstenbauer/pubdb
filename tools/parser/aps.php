@@ -23,7 +23,7 @@ class apsParser {
 
         $journal = apsParser::extractJournal($apsStr);
         $numbers = apsParser::extractNumbers($apsStr);
-        if (count($numbers)!=2 || $journal===False){
+        if (count($numbers)<=2 || $journal===False){
             return False;
         }
 
@@ -45,7 +45,7 @@ class apsParser {
     private static function extractJournal($apsStr){
         if (strpos($apsStr, 'B') !== False){
             return "prb";
-        } elseif (strpos($apsStr, 'Lett') !== False) {
+        } elseif (strpos($apsStr, 'Lett') !== False || strpos($apsStr, 'L') !== False) {
             return "prl";
         } elseif (strpos($apsStr, 'A') !== False){
             return "pra";
