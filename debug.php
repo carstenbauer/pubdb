@@ -1,7 +1,11 @@
 <?php
 
-include_once('tools/parser/aps.php');
+include_once('tools/db.php');
 
-$paper = apsParser::parse("Phys. Rev. B 94, 125409");
+$db = new db();
+$db->connect(); 
+$paper["id"] = 29;
+$db->removePaper($paper);
+$db->close();
 
 ?>

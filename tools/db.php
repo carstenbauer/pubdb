@@ -183,6 +183,21 @@ function insertPaper($paper){
     return True;
 }
 
+function removePaper($paper){
+    if (!isset($paper["id"])) return False;
+
+    $sql = "DELETE FROM Publications WHERE id='".$paper["id"]."'";
+    $result = $this->conn->query($sql);
+    if (!$result) return False;
+
+    # Remove links to corresponding projects
+    $sql = "DELETE FROM LinkPublicationsProjects WHERE pubid='".$paper["id"]."'";
+    $result = $this->conn->query($sql);
+    #if (!$result) return False;
+
+    return True;
+}
+
 function escape($str){
     $strr = str_replace("'","''",$str);
     $strr = str_replace("\\","\\\\",$strr);
