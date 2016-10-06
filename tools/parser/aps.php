@@ -73,7 +73,7 @@ class apsParser {
         $bibtex_url = "http://journals.aps.org/".$journal."/export/10.1103/".$id;
 
         $bibtex = file_get_contents($bibtex_url);
-
+        
         $listener = new RenanBr\BibTexParser\Listener;
         $parser = new RenanBr\BibTexParser\Parser;
         $parser->addListener($listener);

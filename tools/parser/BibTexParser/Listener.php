@@ -40,7 +40,7 @@ class Listener implements ListenerInterface
         return $this->entries;
     }
 
-    public function bibTexUnitFound(string $text, array $context)
+    public function bibTexUnitFound($text, array $context)
     {
         switch ($context['state']) {
             case Parser::TYPE:
@@ -88,7 +88,7 @@ class Listener implements ListenerInterface
         }
     }
 
-    private function processRawValue(string $value)
+    private function processRawValue($value)
     {
         // find for an abbreviation
         foreach ($this->entries as $entry) {

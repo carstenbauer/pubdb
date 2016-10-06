@@ -1,6 +1,6 @@
 <h2>Insert publication</h2>
 
-<p><small>Supported sources: Phsical Review A-E, Physical Review Letters, Review of Modern Physics, arXiv</small></p>
+<p><small>Supported sources: Physical Review A-E, Physical Review Letters, Review of Modern Physics, arXiv</small></p>
 
 <?php
 
@@ -65,7 +65,6 @@ if (isset($_POST["insertForm"])) {
     
 
     # TODO User must select at least one project. Maybe possible to enforce in html form?
-    
     $paper = identifierToPaper($_POST["pubidstr"]);
 
     if ($paper === false){
@@ -82,10 +81,11 @@ if (isset($_POST["insertForm"])) {
                 echo "<input type=hidden name='projects[]' value='".$project."' >";
             }
 ?>
-  Password: <input type="text" name="pw" >
+
+    <label> <small>Please confirm that this paper should be added to project(s) <?php echo join(', ', $_POST["projects"]); ?></small></label><br>
+    Password: <input type="text" name="pw" >
 
             <input type="submit" name="confirm" value="Confirm">
-            <label> <small>(Please confirm that this paper should be added to project(s) <?php echo join(', ', $_POST["projects"]); ?>)</small></label>
         </form>
         <?php
 
