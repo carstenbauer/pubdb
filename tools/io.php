@@ -21,6 +21,11 @@ class Output {
         return $numbers[0].".".$numbers[1];
     }
 
+    private static function idToStringNcomms($identifier){
+        $numbers = Output::extractNumbers($identifier); 
+        return $numbers[0];
+    }
+
     public static function journalToString($journal, $identifier){
         switch($journal){
             case "pra": return "Phys. Rev. A. ".Output::idToStringAPS($identifier);
@@ -31,6 +36,7 @@ class Output {
             case "prl": return "Phys. Rev. Lett. ".Output::idToStringAPS($identifier);
             case "rmp": return "Rev. Mod. Phys. ".Output::idToStringAPS($identifier);
             case "arxiv": return "arXiv e-print ".Output::idToStringArxiv($identifier);
+            case "ncomms": return "Nature Comm. ".Output::idToStringNcomms($identifier);
             default: return $journal;
         }
     }
