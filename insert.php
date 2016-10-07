@@ -31,7 +31,7 @@ function checkAPS($pubidstr){
 }
 
 function checkNature($pubidstr){
-    $naturearray = array("Nature", "10.1038/", "ncomms", "nphys");
+    $naturearray = array("Nature", "10.1038/", "ncomms", "nphys", "Nat");
     if (contains($pubidstr,$naturearray))
         return True;
     

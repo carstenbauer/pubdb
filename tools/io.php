@@ -21,7 +21,7 @@ class Output {
         return $numbers[0].".".$numbers[1];
     }
 
-    private static function idToStringNcomms($identifier){
+    private static function idToStringNature($identifier){
         $numbers = Output::extractNumbers($identifier); 
         return $numbers[0];
     }
@@ -36,7 +36,9 @@ class Output {
             case "prl": return "Phys. Rev. Lett. ".Output::idToStringAPS($identifier);
             case "rmp": return "Rev. Mod. Phys. ".Output::idToStringAPS($identifier);
             case "arxiv": return "arXiv e-print ".Output::idToStringArxiv($identifier);
-            case "ncomms": return "Nature Comm. ".Output::idToStringNcomms($identifier);
+            case "ncomms": return "Nature Comm. ".Output::idToStringNature($identifier);
+            case "nphys": return "Nature Phys. ".Output::idToStringNature($identifier);
+            case "nature": return "Nature ".Output::idToStringNature($identifier);
             default: return $journal;
         }
     }
