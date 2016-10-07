@@ -1,6 +1,6 @@
 <h2>Insert publication</h2>
 
-<p><small>Supported sources: Physical Review A-E, Physical Review Letters, Review of Modern Physics, arXiv</small></p>
+<p><small>Supported sources: arXiv, Physical Review A-E, Physical Review Letters, Review of Modern Physics, Nature Communications</small></p>
 
 <?php
 
