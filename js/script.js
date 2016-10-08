@@ -47,7 +47,10 @@ function journalToString(journal, id){
 
 function PublicationToHTMLString(pub){
     var authors_str = pub.authors.join(", ");
-    var project_str = "(".concat(pub.projects.join(", ")).concat(")");
+    if ("projects" in pub)
+    	var project_str = "(".concat(pub.projects.join(", ")).concat(")");
+    else
+    	var project_str = "";
     var paper_str = project_str.concat(" ").concat(authors_str).concat(", <a href=").concat(pub.url.toString()).concat("><i>").concat(LaTeX2MathJax(pub.title.toString())).concat("</i></a>, ").concat(journalToString(pub.journal.toString(),pub.identifier.toString())).concat(", ").concat(pub.year.toString());
     return paper_str;
 }

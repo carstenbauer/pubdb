@@ -1,11 +1,7 @@
 <?php
 
-include_once('tools/db.php');
+include_once('tools/parser/arxiv.php');
 
-$db = new db();
-$db->connect(); 
-$paper["id"] = 29;
-$db->removePaper($paper);
-$db->close();
+echo arxivParser::parse("1609.08620");
 
 ?>
