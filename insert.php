@@ -1,7 +1,3 @@
-<h2>Insert publication</h2>
-
-<p><small>Supported sources: arXiv, Physical Review A-E, Physical Review Letters, Review of Modern Physics, Nature, Nature Physics, Nature Communications</small></p>
-
 <?php
 
 include_once('config/config.php');
@@ -55,8 +51,33 @@ function identifierToPaper($pubidstr){
     return isset($paper)?$paper:False;
 }
 
+if (!empty($_POST) && isset($_POST["pubidstr"]))
+    $publ = identifierToPaper($_POST["pubidstr"]);
+else
+    $publ = False;
+
 ?>
 
+<html>
+<head>
+    <script type="text/javascript" src="js/script.js"></script>
+    <script type="text/javascript">
+        function printPublication(){
+            var pub = <?php echo ($publ===False)?"none":json_encode($publ); ?>;
+            if (pub != "none") {
+                var pubstr = PublicationToHTMLString(pub);
+                pubp.innerHTML = pubstr;
+                // foundbox.style.display = 'inline';
+            }
+        }
+    </script>
+</head>
+
+<body onload='printPublication();'>
+
+<h2>Insert publication</h2>
+
+<p><small>Supported sources: arXiv, Physical Review A-E, Physical Review Letters, Review of Modern Physics, Nature, Nature Physics, Nature Communications</small></p>
 
 <form action="index.php?sec=insert" method="post">
   Publication Identifier:<br>
@@ -96,10 +117,11 @@ if (isset($_POST["insertForm"])) {
     } elseif(!isset($_POST["projects"])||empty($_POST["projects"])) {
         echo "<b>You have to specify at least one project.</b><br><br>";
     } else {
-        echo "<b>We found the following paper:</b><br><br>";
-        echo Output::PaperToHTMLString($paper);
-        echo "<br><br>";
+        echo "<div><b>We found the following paper:</b><br><br>";
         ?>
+
+        <p id="pubp"></p>
+        <br>
         <form action="index.php?sec=insert" method="post">
             <input type=hidden name="pubidstr" value="<?php echo $_POST["pubidstr"]; ?>" >
             <?php
@@ -113,6 +135,7 @@ if (isset($_POST["insertForm"])) {
 
             <input type="submit" name="confirm" value="Confirm">
         </form>
+        </div>
         <?php
 
     }
@@ -146,8 +169,9 @@ if (isset($_POST["confirm"])){
 
 ?>
 
+
+</body>
+
 <?php
-
 $db->close();
-
 ?>
