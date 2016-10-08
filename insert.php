@@ -5,7 +5,6 @@ include_once('tools/db.php');
 include_once('tools/parser/arxiv.php');
 include_once('tools/parser/aps.php');
 include_once('tools/parser/nature.php');
-include_once('tools/io.php');
 
 $db = new db();
 $db->connect();

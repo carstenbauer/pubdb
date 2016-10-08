@@ -4,7 +4,6 @@
 	<?php
 
 	include_once('tools/db.php');
-	include_once('tools/io.php');
 
 	$db = new db();
 
