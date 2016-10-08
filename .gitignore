@@ -1,3 +1,4 @@
 config/dbconfig.php
 config/config.php
 debug.php
+.DS_Store

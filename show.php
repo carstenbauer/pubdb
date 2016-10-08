@@ -1,77 +1,77 @@
-<?php
+<html>
+<head>
 
-include_once('tools/db.php');
-include_once('tools/io.php');
+	<?php
 
-$db = new db();
+	include_once('tools/db.php');
+	include_once('tools/io.php');
 
-$db->connect();
+	$db = new db();
 
-$publications = $db->getPublications();
-?>
+	$db->connect();
 
+	$publications = $db->getPublications();
+	?>
 
-<script type="text/javascript">
-	function byProject(pub_obj){
-		if (pub_obj.projects.toString().includes(this.toString()))
-			return true;
-		else
-			return false;
-	}
+	<script type="text/javascript" src="js/script.js"></script>
 
-	function MyFilter(project) {
-		var pubs = <?php echo json_encode($publications); ?>;
-		// alert(pubs[3].projects);
-		// alert(project);
-		var publications = pubs.filter(byProject, project);
-		// JSON.stringify(publications);
-		// $publications=json_decode($_POST['publications']);
-	}
-</script>
-
-
-<div id="container">	
-
-	<div id="main">
-		<br>
-		<h2>Publications</h2>
-		<br>
-
-		<p>
-		<?php
-
-		if ($publication===false){
-		    echo "Error reading publications.";
-		} else if (!empty($publications)) {
-		    foreach($publications as $pub){
-		        echo Output::PaperToHTMLString($pub)."<br><br>";
-		    }
-		} else {
-		    echo "0 results";
+	<script type="text/javascript">
+		function byProject(pub_obj){
+			if (pub_obj.projects.toString().includes(this.toString()))
+				return true;
+			else
+				return false;
 		}
 
-		?>
-		</p>
+		function printPublication(pub) {
+	    	pubp.innerHTML = pubp.innerHTML + PublicationToHTMLString(pub) + "<br><br>"; 
+		}
+
+		function DoFilter(project) {
+			var pubs = <?php echo json_encode($publications); ?>;
+			if (project != "all")
+				pubs = pubs.filter(byProject, project);
+
+			pubp.innerHTML = "";
+			pubs.forEach(printPublication);
+			MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+		}
+	</script>
+
+</head>
+<body onload='DoFilter("all");'>
+
+	<div id="container">	
+
+		<div id="main">
+			<br>
+			<h2>Publications</h2>
+			<br>
+
+			<p id="pubp">
+			</p>
+		</div>
+
+		<div id="filter">
+			<br>
+			<a href='javascript:DoFilter("all")' class="small">Show All</a>
+			<br>
+
+			<p class="small">
+				<?php
+
+				$projects = $db->getProjects();
+				foreach($projects as $project){
+				    echo "<a href='javascript:DoFilter(\"".$project["abbrev"]."\");'>".$project["abbrev"]. "</a>: " . $project["title"]. " <br>";
+				}
+
+
+				?>
+			</p>
+		</div>
+
 	</div>
 
-	<div id="filter">
-		<br>
-		<a href="?" class="small">Show All</a>
-		<br>
-
-		<p class="small">
-			<?php
-
-			$projects = $db->getProjects();
-			foreach($projects as $project){
-			    echo "<a href='javascript:MyFilter(\"".$project["abbrev"]."\");'>".$project["abbrev"]. "</a>: " . $project["title"]. " <br>";
-			}
-
-
-			?>
-		</p>
-	</div>
-
-</div>
+</body>
 
 <?php $db->close(); ?>
