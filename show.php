@@ -8,10 +8,27 @@ $db = new db();
 $db->connect();
 
 $publications = $db->getPublications();
-
 ?>
 
-<h2>Projects</h2>
+
+<script type="text/javascript">
+	function byProject(pub_obj){
+		if (pub_obj.projects.toString().includes(this.toString()))
+			return true;
+		else
+			return false;
+	}
+
+	function MyFilter(project) {
+		var pubs = <?php echo json_encode($publications); ?>;
+		// alert(pubs[3].projects);
+		// alert(project);
+		var publications = pubs.filter(byProject, project);
+		// JSON.stringify(publications);
+		// $publications=json_decode($_POST['publications']);
+	}
+</script>
+
 
 <div id="container">	
 
@@ -47,7 +64,7 @@ $publications = $db->getPublications();
 
 			$projects = $db->getProjects();
 			foreach($projects as $project){
-			    echo "<a href='?project=".$project["abbrev"]."'>".$project["abbrev"]. "</a>: " . $project["title"]. " <br>";
+			    echo "<a href='javascript:MyFilter(\"".$project["abbrev"]."\");'>".$project["abbrev"]. "</a>: " . $project["title"]. " <br>";
 			}
 
 
