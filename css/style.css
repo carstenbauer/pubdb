@@ -1,4 +1,28 @@
-.container {
+#container {
+	/*display: flex;*/
+}
+
+#filter {
+	float: right;
+	width: 400px;
+	/*background: lightblue;*/
+	margin-left: 20px;
+	padding: 10px;
+	border: thin solid gray;
+	/*-webkit-border-radius: 20px;-moz-border-radius: 20px;border-radius: 20px;*/
+}
+
+#main {
+	float: left;
+	width: calc(100% - 500px);
+	/*flex: 1;*/
+	/* Grow to rest of container */
+	/*background: lightgreen;*/
+	/* Just so it's visible */
+}
+
+.small {
+	font-size: 15px;
 }
 
 .navbar-static-top {

@@ -7,58 +7,54 @@ $db = new db();
 
 $db->connect();
 
-$publications = false;
-
-if(isset($_GET["project"])){
-
-    $publications = $db->getPublicationsOfProject($_GET["project"]);
-
-    if ($publications===false){
-        echo "No valid project specified. Showing all publications.";
-        $publications = $db->getPublications();
-    } 
-} else {
-    $publications = $db->getPublications();
-}
+$publications = $db->getPublications();
 
 ?>
 
 <h2>Projects</h2>
 
-<br>
-<a href="?">Show All</a>
-<br>
+<div id="container">	
 
-<p>
-<?php
+	<div id="main">
+		<br>
+		<h2>Publications</h2>
+		<br>
 
-$projects = $db->getProjects();
-foreach($projects as $project){
-    echo "<a href='?project=".$project["abbrev"]."'>".$project["abbrev"]. "</a>: " . $project["title"]. " <br>";
-}
+		<p>
+		<?php
+
+		if ($publication===false){
+		    echo "Error reading publications.";
+		} else if (!empty($publications)) {
+		    foreach($publications as $pub){
+		        echo Output::PaperToHTMLString($pub)."<br><br>";
+		    }
+		} else {
+		    echo "0 results";
+		}
+
+		?>
+		</p>
+	</div>
+
+	<div id="filter">
+		<br>
+		<a href="?" class="small">Show All</a>
+		<br>
+
+		<p class="small">
+			<?php
+
+			$projects = $db->getProjects();
+			foreach($projects as $project){
+			    echo "<a href='?project=".$project["abbrev"]."'>".$project["abbrev"]. "</a>: " . $project["title"]. " <br>";
+			}
 
 
-?>
-</p>
+			?>
+		</p>
+	</div>
 
-<br>
-<h2>Publications</h2>
-<br>
+</div>
 
-<p>
-<?php
-
-if ($publication===false){
-    echo "Error reading publications.";
-} else if (!empty($publications)) {
-    foreach($publications as $pub){
-        echo Output::PaperToHTMLString($pub)."<br><br>";
-    }
-} else {
-    echo "0 results";
-}
-
-
-$db->close();
-?>
-</p>
+<?php $db->close(); ?>
