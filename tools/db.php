@@ -16,7 +16,7 @@ function close() {
 }
 
 function getPublications() {
-    $sql = "SELECT * FROM Publications";
+    $sql = "SELECT * FROM Publications ORDER BY year DESC";
     $result = $this->conn->query($sql);
     if ($result->num_rows <= 0) {
         return false;
