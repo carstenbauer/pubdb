@@ -1,2 +1,3 @@
 config/dbconfig.php
+config/config.php
 debug.php
