@@ -22,6 +22,15 @@
 	/* Just so it's visible */
 }
 
+.publication {
+	display: block;
+}
+
+.publication-options {
+	font-size: 13px;
+	margin-left: 10px;
+}
+
 .small {
 	font-size: 15px;
 }
