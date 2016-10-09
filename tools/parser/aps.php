@@ -43,19 +43,19 @@ class apsParser {
 
 
     private static function extractJournal($apsStr){
-        if (strpos($apsStr, 'B') !== False){
+        if (strpos($apsStr, 'B') !== False || strpos($apsStr, 'prb') !== False){
             return "prb";
-        } elseif (strpos($apsStr, 'Lett') !== False || strpos($apsStr, 'L') !== False) {
+        } elseif (strpos($apsStr, 'Lett') !== False || strpos($apsStr, 'L') !== False || strpos($apsStr, 'prl') !== False) {
             return "prl";
-        } elseif (strpos($apsStr, 'A') !== False){
+        } elseif (strpos($apsStr, 'A') !== False || strpos($apsStr, 'pra') !== False){
             return "pra";
-        } elseif (strpos($apsStr, 'D') !== False){
+        } elseif (strpos($apsStr, 'D') !== False || strpos($apsStr, 'prd') !== False){
             return "prd";
-        } elseif (strpos($apsStr, 'E') !== False){
+        } elseif (strpos($apsStr, 'E') !== False || strpos($apsStr, 'pre') !== False){
             return "pre";
-        } elseif (strpos($apsStr, 'C') !== False){
+        } elseif (strpos($apsStr, 'C') !== False || strpos($apsStr, 'prc') !== False){
             return "pre";
-        } elseif (strpos($apsStr, 'Mod') !== False || strpos($apsStr, 'M') !== False){
+        } elseif (strpos($apsStr, 'Mod') !== False || strpos($apsStr, 'M') !== False || strpos($apsStr, 'rmp') !== False){
             return "rmp";
         } else {
             return False;
