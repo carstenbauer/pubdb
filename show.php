@@ -31,9 +31,13 @@
 			if (project != "all")
 				pubs = pubs.filter(byProject, project);
 
-			pubp.innerHTML = "";
-			pubs.forEach(printPublication);
-			MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+			if (Object.keys(pubs).length > 0) {
+				pubp.innerHTML = "";
+				pubs.forEach(printPublication);
+				MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+			} else {
+				pubp.innerHTML = "0 results.";
+			}
 		}
 	</script>
 
