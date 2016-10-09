@@ -55,13 +55,40 @@ if (!empty($_POST) && isset($_POST["pubidstr"]))
 else
     $publ = False;
 
+$publications = $db->getPublications();
+$validID = false;
+$oldpaper = false;
+$id = isset($_GET['id'])?$_GET['id']:-1;
+foreach ($publications as $p) {
+    if ($p["id"]==$id) {
+        $validID = true;
+        $oldpaper = $p;
+    }
+}
+
 ?>
 
 <html>
 <head>
     <script type="text/javascript" src="js/script.js"></script>
     <script type="text/javascript">
+
+        function getUrlVars() {
+            var vars = {};
+            var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+            vars[key] = value;
+            });
+            return vars;
+        }
+
         function printPublication(){
+            if(<?php echo $validID; ?>){
+                var id = getUrlVars()["id"].toString();
+                var pubs = <?php echo json_encode($publications); ?>;
+                var pubselected = pubs.filter(function(x) { return x.id.toString()==id; })[0];
+                updatepubp.innerHTML = PublicationToHTMLString(pubselected);
+            }
+
             var pub = <?php echo ($publ===False)?"none":json_encode($publ); ?>;
             if (pub != "none") {
                 var pubstr = PublicationToHTMLString(pub);
@@ -74,32 +101,29 @@ else
 
 <body onload='printPublication();'>
 
-<h2>Insert publication</h2>
+<h2>Update publication</h2>
 
+Selected publication: <br>
+
+<?php 
+
+if (!$validID){
+    echo '<p id="updatepubp" style="color:red;">Invalid publication identifier!</p>';
+    exit();
+} else 
+    echo '<p id="updatepubp"></p>';
+?>
+
+<div id="insertformdiv">
+Please specify a newer version of the publication:
 <p class="small">Supported sources: arXiv, Physical Review A-E, Physical Review Letters, Review of Modern Physics, Nature, Nature Physics, Nature Communications</p>
 
-<form action="index.php?sec=insert" method="post">
+<form action="index.php?sec=update&id=<?php echo $oldpaper["id"]; ?>" method="post">
   Publication Identifier:<br>
   <input type="text" name="pubidstr" value="<?php echo (!empty($_POST))?$_POST["pubidstr"]:""; ?>" required><br><br>
-  Associated project(s):<br>
-  <select class="selectpicker" name="projects[]" multiple required>
-	<?php
-        if (!empty($projects)) {
-            foreach($projects as $project){
-                if (!empty($_POST["projects"]) && in_array($project["abbrev"],$_POST["projects"])){
-                    echo "<option value=".$project["abbrev"]." selected>".$project["abbrev"]."</option>";
-                } else {
-                    echo "<option value=".$project["abbrev"].">".$project["abbrev"]."</option>";
-                }
-            }
-	} else {
-	    echo "0 results";
-	}
-	?>
-  </select>
-  <br><br>
   <input type="submit" name="insertForm" value="Submit">
 </form>
+</div>
 
 
 <br><br>
@@ -110,26 +134,20 @@ else
 if (isset($_POST["insertForm"])) {
     
     $paper = identifierToPaper($_POST["pubidstr"]);
+    $paper["projects"] = $oldpaper["projects"];
 
     if ($paper === false || $paper["title"]==""){
         echo "<b>No paper is matching the given identifier.</b><br><br>";
-    } elseif(!isset($_POST["projects"])||empty($_POST["projects"])) {
-        echo "<b>You have to specify at least one project.</b><br><br>";
     } else {
         echo "<div><b>We found the following paper:</b><br><br>";
         ?>
 
         <p id="pubp"></p>
         <br>
-        <form action="index.php?sec=insert" method="post">
+        <form action="index.php?sec=update&id=<?php echo $oldpaper["id"]; ?>" method="post">
             <input type=hidden name="pubidstr" value="<?php echo $_POST["pubidstr"]; ?>" >
-            <?php
-            foreach($_POST["projects"] as $project){
-                echo "<input type=hidden name='projects[]' value='".$project."' >";
-            }
-?>
 
-    <label> <small>Please confirm that this paper should be added to project(s) <?php echo join(', ', $_POST["projects"]); ?>.</small></label><br>
+    <label> <small>Please confirm that this paper should replace the old one.</small></label><br>
     Password: <input type="password" name="pw" >
 
             <input type="submit" name="confirm" value="Confirm">
@@ -148,20 +166,25 @@ if (isset($_POST["insertForm"])) {
 if (isset($_POST["confirm"])){
 
     $paper = identifierToPaper($_POST["pubidstr"]);
+    $paper['projects'] = $oldpaper['projects'];
 
     if ($paper === false || $paper["title"]==""){
         echo "<b>No paper is matching the given identifier.</b><br><br>";
-    } elseif(!isset($_POST["projects"])||empty($_POST["projects"])) {
-        echo "<b>You have to specify at least one project.</b><br><br>";
     } elseif ($_POST["pw"]!==INSERTPASSWORD) {
         echo "<b>Oops, the password is not correct!</b>";
     } else {
-        $paper["projects"] = $_POST["projects"];
+        $succ = $db->removePaper($oldpaper);
+        if ($succ) {
+            echo "The old paper has been successfully removed from our database.<br><br>";
+        } else {
+            echo "There was a problem with our database during removal process. Please try again.";
+            exit();
+        }
         $succ = $db->insertPaper($paper);
         if ($succ) {
-            echo "The paper has been successfully added to our database. Thank you for taking the time!";
+            echo "The paper has been successfully added to our database. <br><br><b>Thank you for taking the time!</b>";
         } else {
-            echo "There was a problem with our database. Please try again.";
+            echo "There was a problem with our database during insertion process. Please try again.";
         }
     }
 }
