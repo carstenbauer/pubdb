@@ -41,12 +41,24 @@ function journalToString(journal, id){
 	    case "ncomms": return "Nature Comm. ".concat(natureIdToString(id));
 	    case "nphys": return "Nature Phys. ".concat(natureIdToString(id));
 	    case "nature": return "Nature ".concat(natureIdToString(id));
-	    default: return journal;
+	    default: return journal.concat(" ").concat(id.toString());
 	}
 }
 
+function isManualEntry(pub){
+	var journals = ["pra", "prb", "prc", "prd", "pre", "prl", "rmp", "arxiv", "ncomms", "nphys", "nature"];
+	if (journals.indexOf(pub.journal.toString()) > -1)
+		return false;
+	else
+		return true;
+}
+
 function PublicationToHTMLString(pub){
-    var authors_str = pub.authors.join(", ");
+	if (!isManualEntry(pub))
+	    var authors_str = pub.authors.join(", ");
+	else
+		var authors_str = pub.authors.toString();
+
     if ("projects" in pub)
     	var project_str = "(".concat(pub.projects.join(", ")).concat(")");
     else

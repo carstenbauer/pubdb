@@ -76,7 +76,7 @@ else
 
 <h2>Insert publication</h2>
 
-<p class="small">Supported sources: arXiv, Physical Review A-E, Physical Review Letters, Review of Modern Physics, Nature, Nature Physics, Nature Communications</p>
+<p class="small">Supported sources: arXiv, Physical Review A-E, Physical Review Letters, Review of Modern Physics, Nature, Nature Physics, Nature Communications (<a href='index.php?sec=insert_manual'>Missing a journal?</a>)</p>
 
 <form action="index.php?sec=insert" method="post">
   Publication Identifier:<br>
