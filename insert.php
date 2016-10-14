@@ -76,6 +76,8 @@ else
 
 <h2>Insert publication</h2>
 
+<p class="small"><b> Please note that if you register your publication in the publication system of the Institute of Physics II, it is soon going to be added to the CRC database automatically.</b></p>
+
 <p class="small">Supported sources: arXiv, Physical Review A-E, Physical Review Letters, Review of Modern Physics, Nature, Nature Physics, Nature Communications (<a href='index.php?sec=insert_manual'>Missing a journal?</a>)</p>
 
 <form action="index.php?sec=insert" method="post">

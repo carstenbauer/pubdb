@@ -69,8 +69,8 @@ if (isset($_POST["insertForm"])||isset($_POST["confirm"])) {
 
 <h2>Insert publication (manual)</h2>
 
-<p><b>Please use the manual insertion only for unsupported journals to avoid messiness!</b> <br>
-If you think that your publication is no exception and the corresponding journal should be admitted to the automatic insertion system, please write an email to <a href="mailto:bauer@thp.uni-koeln.de">bauer@thp.uni-koeln.de</a>.</p>
+<p class="small">
+Please use the manual insertion <b>only for unsupported journals</b>. If you think that your publication is no exception and the corresponding journal should be admitted to the automatic insertion system, please write an email to <a href="mailto:bauer@thp.uni-koeln.de">bauer@thp.uni-koeln.de</a>.</p>
 
 <form action="index.php?sec=insert_manual" method="post">
   Authors <small class="small">(Given name first, comma-separated, e.g. 'Max Mustermann, John Doe')</small><br>
