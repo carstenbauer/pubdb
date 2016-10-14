@@ -104,7 +104,7 @@ Please use the manual insertion <b>only for unsupported journals</b>. If you thi
 	?>
   </select>
   <br><br>
-  <input type="submit" name="insertForm" value="Submit">
+  <input type="submit" name="insertForm" value="Submit"> <span class="small" style='margin-left: 10px;'>(You will be able to verify your publication entry before final submission.)</span>
 </form>
 
 
