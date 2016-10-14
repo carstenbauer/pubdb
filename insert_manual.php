@@ -85,7 +85,7 @@ Please use the manual insertion <b>only for unsupported journals</b>. If you thi
   <input type="text" name="puburl" value="<?php echo (!empty($_POST))?$_POST["puburl"]:""; ?>" required><br>
   Year<br>
   <input type="text" name="pubyear" value="<?php echo (!empty($_POST))?$_POST["pubyear"]:""; ?>" required><br>
-  BibTex (optional)<br>
+  BibTeX (optional)<br>
   <textarea rows="7" cols="40" name="pubbibtex" value="<?php echo (!empty($_POST))?$_POST["pubbibtex"]:""; ?>"></textarea><br>
   Associated project(s):<br>
   <select class="selectpicker" name="projects[]" multiple required>
