@@ -19,6 +19,16 @@ function contains($string, $array, $caseSensitive = false)
 function checkUserInput(){
     // Check that Authors are comma-separated, URL is real URL etc.
     // Check that journal is none of the known journals, or redirect to usual insert page
+    if (empty($_POST['puburl'])||empty($_POST['pubyear'])||empty($_POST['pubtitle'])||empty($_POST['pubjournal'])||empty($_POST['pubidentifier'])||empty($_POST['pubauthors'])) {
+        return 'Please fill out all fields.';
+    } 
+    if (filter_var($_POST['puburl'], FILTER_VALIDATE_URL) === FALSE) {
+        return 'Not a valid URL.';
+    }
+    if (!is_numeric($_POST['pubyear'])) {
+        return 'Year is not a number.';
+    }
+
     return true;
 }
 
@@ -106,7 +116,7 @@ If you think that your publication is no exception and the corresponding journal
 if (isset($_POST["insertForm"])) {
     
     if ($validInput !== true){
-        echo "<b>Please fill out the fields correctly.</b><br><br>";
+        echo "<b>".$inputCheckMsg."</b><br><br>";
     } elseif(!isset($_POST["projects"])||empty($_POST["projects"])) {
         echo "<b>You have to specify at least one project.</b><br><br>";
     } else {
@@ -147,8 +157,8 @@ if (isset($_POST["insertForm"])) {
 # Paper has been confirmed for insertion
 if (isset($_POST["confirm"])){
 
-    if (!$validInput){
-        echo "<b>Please fill out the fields correctly.</b><br><br>";
+    if ($validInput !== true){
+        echo "<b>".$inputCheckMsg."</b><br><br>";
     } elseif(!isset($_POST["projects"])||empty($_POST["projects"])) {
         echo "<b>You have to specify at least one project.</b><br><br>";
     } elseif ($_POST["pw"]!==INSERTPASSWORD) {
