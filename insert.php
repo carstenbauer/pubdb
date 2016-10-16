@@ -63,7 +63,8 @@ function generateArXivBibTeX($paper){
     return "@article{".$lastname.$paper["year"].",
   title                    = {{".$paper["title"]."}},
   author                = {".$authorstring."},
-  eprint                 = {arXiv:".$paper["identifier"]."}
+  eprint                 = {arXiv:".$paper["identifier"]."},
+  year                 = {".$paper["year"]."}
 }";
 // archivePrefix = \"arXiv\"
 }
