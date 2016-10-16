@@ -50,6 +50,23 @@ function identifierToPaper($pubidstr){
     return isset($paper)?$paper:False;
 }
 
+
+
+function generateArXivBibTeX($paper){
+    // $arr = explode("/", $paper["authors"], 2);
+    // $first = $arr[0];
+    $firstauthor = $paper["authors"][0];
+    $lastname = explode(' ', $firstauthor)[1];
+    $authorstring = join(' and ',$paper["authors"]);
+
+    return "@article{".$lastname.$paper["year"].",
+  title                    = {{".$paper["title"]."}},
+  author                = {".$authorstring."},
+  eprint                 = {arXiv:".$paper["identifier"]."}
+}";
+// archivePrefix = \"arXiv\"
+}
+
 if (!empty($_POST) && isset($_POST["pubidstr"]))
     $publ = identifierToPaper($_POST["pubidstr"]);
 else
@@ -159,6 +176,11 @@ if (isset($_POST["confirm"])){
         echo "<b>Oops, the password is not correct!</b>";
     } else {
         $paper["projects"] = $_POST["projects"];
+
+        if($paper["journal"]=="arxiv"){
+            $paper["bibtex"] = generateArXivBibTeX($paper);
+        }
+
         $succ = $db->insertPaper($paper);
         if ($succ) {
             echo "The paper has been successfully added to our database. Thank you for taking the time!";
