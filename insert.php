@@ -56,7 +56,8 @@ function generateArXivBibTeX($paper){
     // $arr = explode("/", $paper["authors"], 2);
     // $first = $arr[0];
     $firstauthor = $paper["authors"][0];
-    $lastname = explode(' ', $firstauthor)[1];
+    $names = explode(' ', $firstauthor);
+    $lastname = end($names);
     $authorstring = join(' and ',$paper["authors"]);
 
     return "@article{".$lastname.$paper["year"].",
