@@ -83,34 +83,28 @@ class natureParser {
                 $volume = $obj["prism:volume"];
                 $number = $obj["prism:number"];
                 $url = "http://www.nature.com/nphys/journal/v".$volume."/n".$number."/ris/".$id.".ris";
-                $ris = PROJECT_ROOT."/tmp/".$id.".ris";
-                file_put_contents($ris, file_get_contents($url));
-                $cmd = "cat ".$ris." | ".BIBUTILS_BIN_FOLDER."/ris2xml | ".BIBUTILS_BIN_FOLDER."/xml2bib";
-                $bib = shell_exec($cmd);
-                unlink($ris);
-                return $bib;
+                break;
             
             case "ncomms":
                 $url = "http://www.nature.com/articles/".$id.".ris";
-                $ris = PROJECT_ROOT."/tmp/".$id.".ris";
-                file_put_contents($ris, file_get_contents($url));
-                $cmd = "cat ".$ris." | ".BIBUTILS_BIN_FOLDER."/ris2xml | ".BIBUTILS_BIN_FOLDER."/xml2bib";
-                $bib = shell_exec($cmd);
-                unlink($ris);
-                return $bib;
+                break;
 
             case "nature":
                 $volume = $obj["prism:volume"];
                 $number = $obj["prism:number"];
                 $url = "http://www.nature.com/nature/journal/v".$volume."/n".$number."/ris/".$id.".ris";
-                $ris = "tmp/".$id.".ris";
-                file_put_contents($ris, file_get_contents($url));
-                $cmd = "cat ".$ris." | ".BIBUTILS_BIN_FOLDER."/ris2xml | ".BIBUTILS_BIN_FOLDER."/xml2bib";
-                $bib = shell_exec($cmd);
-                unlink($ris);
-                return $bib;
+                break;
         }
-        return "";
+        
+        $ris = PROJECT_ROOT."/tmp/".$id.".ris";
+        $res = @file_put_contents($ris, file_get_contents($url));
+        if ($res !== False) {
+            $cmd = "cat ".$ris." | ".BIBUTILS_BIN_FOLDER."/ris2xml | ".BIBUTILS_BIN_FOLDER."/xml2bib";
+            $bib = shell_exec($cmd);
+            unlink($ris);
+        } else
+            $bib = "";
+        return $bib;
     }
 
     
@@ -132,6 +126,13 @@ class natureParser {
         $paper["authors"] = $obj["dc:creator"];
         $paper["year"] = substr($obj["prism:publicationDate"],0,4);
         $paper["bibtex"] = natureParser::RIStoBibTeX($paper["journal"],$id,$obj);
+        $paper["volume"] = $obj["prism:volume"];
+        if ($paper["journal"]=="nphys")
+            $paper["number"] = $obj["prism:startingPage"];
+        else if ($paper["journal"]=="ncomms")
+            $paper["number"] = natureParser::extractNumbers($id)[0];
+        else // journal is nature
+            $paper["number"] = $obj["prism:startingPage"];
 
         return $paper;
     }

@@ -169,7 +169,13 @@ function insertPaper($paper){
         $authors_str = $this->escape(join(", ", $paper["authors"]));
     else
         $authors_str = $this->escape($paper["authors"]);
-    $sql = "INSERT INTO Publications (authors, title, year, url, journal, identifier, bibtex) VALUES ('".$authors_str."', '".$this->escape($paper["title"])."', '".$paper["year"]."', '".$paper["url"]."', '".$paper["journal"]."', '".$paper["identifier"]."', '".$this->escape($paper["bibtex"])."')";
+
+    if (!isset($paper["volume"]))
+        $paper["volume"] = "";
+    if (!isset($paper["number"]))
+        $paper["number"] = "";
+    
+    $sql = "INSERT INTO Publications (authors, title, year, url, journal, volume, number, identifier, bibtex) VALUES ('".$authors_str."', '".$this->escape($paper["title"])."', '".$paper["year"]."', '".$paper["url"]."', '".$paper["journal"]."', '".$paper["volume"]."', '".$paper["number"]."', '".$paper["identifier"]."', '".$this->escape($paper["bibtex"])."')";
     $result = $this->conn->query($sql);
     if (!$result) {
         return False;

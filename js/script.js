@@ -28,7 +28,18 @@ function natureIdToString(id){
 	return numbers[0].toString();
 }
 
-function journalToString(journal, id){
+function journalToString(pub){
+	var journal = pub.journal.toString();
+	var id = pub.identifier.toString();
+	if (pub.hasOwnProperty('volume') && pub.volume != null && pub.volume.toString()!=0) {
+		var volume = pub.volume.toString();	
+	} else 
+		var volume = "";
+	if (pub.hasOwnProperty('number') && pub.volume != null && pub.volume.toString()!=0) {
+		var number = pub.number.toString();
+	} else 
+		var number = "";
+
 	switch(journal){
 	    case "pra": return "Phys. Rev. A. ".concat(apsIdToString(id));
 	    case "prb": return "Phys. Rev. B. ".concat(apsIdToString(id));
@@ -38,9 +49,21 @@ function journalToString(journal, id){
 	    case "prl": return "Phys. Rev. Lett. ".concat(apsIdToString(id));
 	    case "rmp": return "Rev. Mod. Phys. ".concat(apsIdToString(id));
 	    case "arxiv": return "arXiv:".concat(arxivIdToString(id));
-	    case "ncomms": return "Nature Comm. ".concat(natureIdToString(id));
-	    case "nphys": return "Nature Phys. ".concat(natureIdToString(id));
-	    case "nature": return "Nature ".concat(natureIdToString(id));
+	    case "ncomms": 
+	    	if (volume!="" && number !="")
+	    		return "Nature Comm. ".concat("<b>"+volume+"</b>").concat(", ").concat(number);
+	    	else
+	    		return "Nature Comm. ".concat(natureIdToString(id));
+	    case "nphys":
+	    	if (volume!="" && number !="")
+	    		return "Nature Phys. ".concat("<b>"+volume+"</b>").concat(", ").concat(number);
+	    	else
+	    		return "Nature Phys. ".concat(natureIdToString(id));
+	    case "nature":
+	    	if (volume!="" && number !="")
+	    		return "Nature ".concat("<b>"+volume+"</b>").concat(", ").concat(number);
+	    	else
+	    		return "Nature ".concat(natureIdToString(id));
 	    default: return journal.concat(" ").concat(id.toString());
 	}
 }
@@ -63,7 +86,8 @@ function PublicationToHTMLString(pub){
     	var project_str = "(".concat(pub.projects.join(", ")).concat(")");
     else
     	var project_str = "";
-    var paper_str = project_str.concat(" ").concat(authors_str).concat(", <a href=").concat(pub.url.toString()).concat("><i>").concat(LaTeX2MathJax(pub.title.toString())).concat("</i></a>, ").concat(journalToString(pub.journal.toString(),pub.identifier.toString())).concat(" (").concat(pub.year.toString()).concat(")");
+
+    var paper_str = project_str.concat(" ").concat(authors_str).concat(", <a href=").concat(pub.url.toString()).concat("><i>").concat(LaTeX2MathJax(pub.title.toString())).concat("</i></a>, ").concat(journalToString(pub)).concat(" (").concat(pub.year.toString()).concat(")");
     return paper_str;
 }
 

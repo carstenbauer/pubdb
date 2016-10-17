@@ -73,7 +73,6 @@ if (!empty($_POST) && isset($_POST["pubidstr"]))
     $publ = identifierToPaper($_POST["pubidstr"]);
 else
     $publ = False;
-
 ?>
 
 <html>

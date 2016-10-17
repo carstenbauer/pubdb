@@ -104,6 +104,8 @@ class apsParser {
 
         $paper["title"] = $entries[0]["title"];
         $paper["journal"] = $journal;
+        $paper["volume"] = $entries[0]["volume"];
+        $paper["number"] = $entries[0]["pages"];
         // Change "Name, Prename" to "Prename Name"
         $bibtexauthorstring = $entries[0]["author"];
         $authors = explode(" and ",apsParser::handleBibTeXSpecialSymbols($bibtexauthorstring));
