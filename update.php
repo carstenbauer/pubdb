@@ -67,7 +67,12 @@ function generateArXivBibTeX($paper){
 // archivePrefix = \"arXiv\"
 }
 
-if (!empty($_POST) && isset($_POST["pubidstr"]))
+if (isset($_POST["delete"]) || isset($_POST["confirmdelete"]))
+    $deleteMode = true;
+else
+    $deleteMode = false;
+
+if (!$deleteMode && !empty($_POST) && isset($_POST["pubidstr"]))
     $publ = identifierToPaper($_POST["pubidstr"]);
 else
     $publ = False;
@@ -104,10 +109,12 @@ foreach ($publications as $p) {
                 var pubs = <?php echo json_encode($publications); ?>;
                 var pubselected = pubs.filter(function(x) { return x.id.toString()==id; })[0];
                 updatepubp.innerHTML = PublicationToHTMLString(pubselected);
+                updatepubp.innerHTML = updatepubp.innerHTML + "<span id=deletespan><a href='javascript:document.forms[\"deleteform\"].submit();'>[Delete]</a></span>";
             }
-
-            var pub = <?php echo ($publ===False)?"none":json_encode($publ); ?>;
-            if (pub != "none") {
+            var pub = <?php echo ($publ===False)?"\"none\"":json_encode($publ); ?>;
+            if (<?php echo $deleteMode?"true":"false"; ?>) {
+                pubp.innerHTML = PublicationToHTMLString(pubselected);
+            } else if (pub != "none") {
                 var pubstr = PublicationToHTMLString(pub);
                 pubp.innerHTML = pubstr;
                 // foundbox.style.display = 'inline';
@@ -117,7 +124,6 @@ foreach ($publications as $p) {
 </head>
 
 <body onload='printPublication();'>
-
 <h2>Update publication</h2>
 
 Selected publication: <br>
@@ -131,7 +137,7 @@ if (!$validID){
     echo '<p id="updatepubp"></p>';
 ?>
 
-<div id="insertformdiv">
+<div id="insertformdiv" <?php echo $deleteMode?"hidden":""; ?>>
 <br>
 Please specify a newer version of the publication:
 <p class="small">Automatic lookup supported for arXiv, APS journals, Nature journals. Elsewise, perform a <a href='index.php?sec=update_manual&id=<?php echo $oldpaper["id"]; ?>'>manual update</a>.</p>
@@ -162,8 +168,43 @@ Please specify a newer version of the publication:
 </form>
 </div>
 
+<form id="deleteform" action="index.php?sec=update&id=<?php echo $oldpaper["id"]; ?>" method="post">
+    <input type=hidden name="delete" value="delete">
+</form>
 
 <br><br>
+
+<?php
+
+# Delete paper has been requested
+if ($deleteMode && !isset($_POST["confirmdelete"])) {
+
+    echo "<div><b>Do you really want to <span style='color: red;'>delete</span> the following publication entry:</b><br><br>";
+?>
+
+        <p id="pubp"></p>
+        <br>
+        <form action="index.php?sec=update&id=<?php echo $oldpaper["id"]; ?>" method="post">
+
+    <label> <small>Please confirm that this entry should be deleted.</small></label><br>
+    Password: <input type="password" name="pw" >
+
+            <input type="submit" name="confirmdelete" value="Confirm">
+        </form>
+        </div>
+        <?php
+} else if ($deleteMode && isset($_POST["confirmdelete"]) && $_POST["pw"]==INSERTPASSWORD) {
+    $succ = $db->removePaper($oldpaper);
+    if ($succ) {
+        echo "The selected paper has been successfully removed from our database.<br><br>";
+    } else {
+        echo "There was a problem with our database during removal process. Please try again.";
+        exit();
+    }
+} else if ($deleteMode && isset($_POST["confirmdelete"])) 
+    echo "<b>Oops, the password is not correct!</b>";
+
+?>
 
 <?php
 
