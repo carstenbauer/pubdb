@@ -97,7 +97,7 @@ else
 
 <p class="small"><b> Please note that if you register your publication in the publication system of the Institute of Physics II, it is soon going to be added to the CRC database automatically.</b></p>
 
-<p class="small">Supported sources: arXiv, Physical Review A-E, Physical Review Letters, Review of Modern Physics, Nature, Nature Physics, Nature Communications (<a href='index.php?sec=insert_manual'>Missing a journal?</a>)</p>
+<p class="small">Automatic lookup supported for arXiv, APS journals, Nature journals. Elsewise, create a <a href='index.php?sec=insert_manual'>manual entry</a>.</p>
 
 <form action="index.php?sec=insert" method="post">
   Publication Identifier:<br>

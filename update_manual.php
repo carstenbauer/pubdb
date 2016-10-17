@@ -99,7 +99,7 @@ if (isset($_POST["insertForm"])||isset($_POST["confirm"])) {
 <h2>Update publication (manual)</h2>
 
 <p class="small">
-Please use the manual update <b>only for unsupported journals</b>. If you think that your publication is no exception and the corresponding journal should be admitted to the automatic insertion system, please write an email to <a href="mailto:bauer@thp.uni-koeln.de">bauer@thp.uni-koeln.de</a>.</p> 
+Please use the manual update <b>only for unsupported journals</b>. If you think that your publication is no exception and the corresponding journal should be admitted to the automatic insertion system, please write an email to <a href="javascript:linkTo_UnCryptMailto('nbjmup;cbvfsAuiq/voj.lpfmo/ef');">bauer [at] thp.uni-koeln.de</a>.</p> 
 
 Selected publication: <br>
 
@@ -113,6 +113,7 @@ if (!$validID){
 ?>
 
 <div id="insertformdiv">
+<br>
 Please enter the details of the publication that should replace the selected publication:
 
 <form action="index.php?sec=update_manual&id=<?php echo $oldpaper["id"]; ?>" method="post">

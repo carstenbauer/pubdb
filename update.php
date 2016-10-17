@@ -132,8 +132,9 @@ if (!$validID){
 ?>
 
 <div id="insertformdiv">
+<br>
 Please specify a newer version of the publication:
-<p class="small">Supported sources: arXiv, Physical Review A-E, Physical Review Letters, Review of Modern Physics, Nature, Nature Physics, Nature Communications (<a href='index.php?sec=update_manual&id=<?php echo $oldpaper["id"]; ?>'>Missing a journal?</a>)</p>
+<p class="small">Automatic lookup supported for arXiv, APS journals, Nature journals. Elsewise, perform a <a href='index.php?sec=update_manual&id=<?php echo $oldpaper["id"]; ?>'>manual update</a>.</p>
 
 <form action="index.php?sec=update&id=<?php echo $oldpaper["id"]; ?>" method="post">
   Publication Identifier:<br>

@@ -66,3 +66,25 @@ function PublicationToHTMLString(pub){
     var paper_str = project_str.concat(" ").concat(authors_str).concat(", <a href=").concat(pub.url.toString()).concat("><i>").concat(LaTeX2MathJax(pub.title.toString())).concat("</i></a>, ").concat(journalToString(pub.journal.toString(),pub.identifier.toString())).concat(" (").concat(pub.year.toString()).concat(")");
     return paper_str;
 }
+
+
+function UnCryptMailto( s )
+{
+    var n = 0;
+    var r = "";
+    for( var i = 0; i < s.length; i++)
+    {
+        n = s.charCodeAt( i );
+        if( n >= 8364 )
+        {
+            n = 128;
+        }
+        r += String.fromCharCode( n - 1 );
+    }
+    return r;
+}
+
+function linkTo_UnCryptMailto( s )
+{
+    location.href=UnCryptMailto( s );
+}
