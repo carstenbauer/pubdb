@@ -72,8 +72,9 @@
                 switch($_GET["sec"]) {
                     case "show": include("show.php"); break;
                     case "insert": include("insert.php"); break;
-                    case "update": include("update.php"); break;
                     case "insert_manual": include("insert_manual.php"); break;
+                    case "update": include("update.php"); break;
+                    case "update_manual": include("update_manual.php"); break;
                     default: include("show.php"); break;
                 }
             } else {

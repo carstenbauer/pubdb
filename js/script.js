@@ -37,7 +37,7 @@ function journalToString(journal, id){
 	    case "pre": return "Phys. Rev. E. ".concat(apsIdToString(id));
 	    case "prl": return "Phys. Rev. Lett. ".concat(apsIdToString(id));
 	    case "rmp": return "Rev. Mod. Phys. ".concat(apsIdToString(id));
-	    case "arxiv": return "arXiv e-print ".concat(arxivIdToString(id));
+	    case "arxiv": return "arXiv:".concat(arxivIdToString(id));
 	    case "ncomms": return "Nature Comm. ".concat(natureIdToString(id));
 	    case "nphys": return "Nature Phys. ".concat(natureIdToString(id));
 	    case "nature": return "Nature ".concat(natureIdToString(id));
@@ -54,7 +54,7 @@ function isManualEntry(pub){
 }
 
 function PublicationToHTMLString(pub){
-	if (!isManualEntry(pub))
+	if (Array.isArray(pub.authors))
 	    var authors_str = pub.authors.join(", ");
 	else
 		var authors_str = pub.authors.toString();

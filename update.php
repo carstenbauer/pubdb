@@ -50,6 +50,23 @@ function identifierToPaper($pubidstr){
     return isset($paper)?$paper:False;
 }
 
+function generateArXivBibTeX($paper){
+    // $arr = explode("/", $paper["authors"], 2);
+    // $first = $arr[0];
+    $firstauthor = $paper["authors"][0];
+    $names = explode(' ', $firstauthor);
+    $lastname = end($names);
+    $authorstring = join(' and ',$paper["authors"]);
+
+    return "@article{".$lastname.$paper["year"].",
+  title                    = {{".$paper["title"]."}},
+  author                = {".$authorstring."},
+  eprint                 = {arXiv:".$paper["identifier"]."},
+  year                 = {".$paper["year"]."}
+}";
+// archivePrefix = \"arXiv\"
+}
+
 if (!empty($_POST) && isset($_POST["pubidstr"]))
     $publ = identifierToPaper($_POST["pubidstr"]);
 else
@@ -116,11 +133,30 @@ if (!$validID){
 
 <div id="insertformdiv">
 Please specify a newer version of the publication:
-<p class="small">Supported sources: arXiv, Physical Review A-E, Physical Review Letters, Review of Modern Physics, Nature, Nature Physics, Nature Communications</p>
+<p class="small">Supported sources: arXiv, Physical Review A-E, Physical Review Letters, Review of Modern Physics, Nature, Nature Physics, Nature Communications (<a href='index.php?sec=update_manual&id=<?php echo $oldpaper["id"]; ?>'>Missing a journal?</a>)</p>
 
 <form action="index.php?sec=update&id=<?php echo $oldpaper["id"]; ?>" method="post">
   Publication Identifier:<br>
   <input type="text" name="pubidstr" value="<?php echo (!empty($_POST))?$_POST["pubidstr"]:""; ?>" required><br><br>
+  Associated project(s):<br>
+  <select class="selectpicker" name="projects[]" multiple required>
+    <?php
+        if (!empty($projects)) {
+            foreach($projects as $project){
+                if (!empty($_POST["projects"]) && in_array($project["abbrev"],$_POST["projects"])){
+                    echo "<option value=".$project["abbrev"]." selected>".$project["abbrev"]."</option>";
+                } else if (empty($_POST["projects"]) && in_array($project["abbrev"],$oldpaper["projects"])) {
+                    echo "<option value=".$project["abbrev"]." selected>".$project["abbrev"]."</option>";
+                } else {
+                    echo "<option value=".$project["abbrev"].">".$project["abbrev"]."</option>";
+                }
+            }
+    } else {
+        echo "0 results";
+    }
+    ?>
+  </select>
+  <br><br>
   <input type="submit" name="insertForm" value="Submit">
 </form>
 </div>
@@ -150,8 +186,13 @@ if (isset($_POST["insertForm"])) {
         <br>
         <form action="index.php?sec=update&id=<?php echo $oldpaper["id"]; ?>" method="post">
             <input type=hidden name="pubidstr" value="<?php echo $_POST["pubidstr"]; ?>" >
+            <?php
+            foreach($_POST["projects"] as $project){
+                echo "<input type=hidden name='projects[]' value='".$project."' >";
+            }
+?>
 
-    <label> <small>Please confirm that this paper should replace the old one.</small></label><br>
+    <label> <small>Please confirm that this paper should replace the selected one with assignment to project(s) <?php echo join(', ', $_POST["projects"]); ?>.</small></label><br>
     Password: <input type="password" name="pw" >
 
             <input type="submit" name="confirm" value="Confirm">
@@ -170,7 +211,7 @@ if (isset($_POST["insertForm"])) {
 if (isset($_POST["confirm"])){
 
     $paper = identifierToPaper($_POST["pubidstr"]);
-    $paper['projects'] = $oldpaper['projects'];
+    $paper['projects'] = $_POST['projects'];
 
     if ($paper === false || $paper["title"]==""){
         echo "<b>No paper is matching the given identifier.</b><br><br>";
@@ -183,6 +224,10 @@ if (isset($_POST["confirm"])){
         } else {
             echo "There was a problem with our database during removal process. Please try again.";
             exit();
+        }
+
+        if($paper["journal"]=="arxiv"){
+            $paper["bibtex"] = generateArXivBibTeX($paper);
         }
         $succ = $db->insertPaper($paper);
         if ($succ) {
