@@ -182,7 +182,7 @@ if (isset($_POST["confirm"])){
         if($paper["journal"]=="arxiv"){
             $paper["bibtex"] = generateArXivBibTeX($paper);
         }
-
+        
         $succ = $db->insertPaper($paper);
         if ($succ) {
             echo "The paper has been successfully added to our database. Thank you for taking the time!";
