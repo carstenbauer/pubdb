@@ -62,6 +62,27 @@ class apsParser {
         }
     }
 
+    private static function handleBibTeXSpecialSymbols($bibtexstr){
+        $str = str_replace("\\\"a", "ä", $bibtexstr);
+        $str = str_replace("\\\"A", "Ä", $str);
+        $str = str_replace("\\\"o", "ö", $str);
+        $str = str_replace("\\\"u", "ü", $str);
+        $str = str_replace("\\\"O", "Ö", $str);
+        $str = str_replace("\\\"U", "Ü", $str);
+        $str = str_replace("\\ss", "ß", $str);
+        $str = str_replace("\\^e", "ê", $str);
+        $str = str_replace("\\'e", "é", $str);
+        $str = str_replace("\\`e", "è", $str);
+        $str = str_replace("\\`i", "ì", $str);
+        $str = str_replace("\\o", "ø", $str);
+        $str = str_replace("\\'u", "ú", $str);
+        $str = str_replace("\\aa", "å", $str);
+        $str = str_replace("\\c", "ç", $str);
+        $str = str_replace("\\~n", "ñ", $str);
+
+        return $str;
+    }
+
 
     public static function parse($apsStr){
         // TODO catch ParseException
@@ -84,7 +105,8 @@ class apsParser {
         $paper["title"] = $entries[0]["title"];
         $paper["journal"] = $journal;
         // Change "Name, Prename" to "Prename Name"
-        $authors = explode(" and ",$entries[0]["author"]);
+        $bibtexauthorstring = $entries[0]["author"];
+        $authors = explode(" and ",apsParser::handleBibTeXSpecialSymbols($bibtexauthorstring));
         $paper["authors"] = array();
         foreach($authors as $author){
             $name = explode(", ",$author);
