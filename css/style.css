@@ -101,7 +101,7 @@ div.panel.show {
 	/*color: #13265D;*/
 	color: black;
 	font-family: source-sans-pro, sans-serif;
-	text-decoration: underline;
+	text-decoration: none;
 	font-weight: bold;
 }
 
