@@ -127,6 +127,11 @@ foreach ($publications as $p) {
 </head>
 
 <body onload='printPublication();'>
+
+<span id="filter">
+        &nbsp;<span id="navigation"><a href="?sec=show">Back to publications</a></span>
+</span>
+
 <h2>Update publication</h2>
 
 Selected publication: <br>

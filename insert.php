@@ -95,15 +95,9 @@ else
 
 <body onload='printPublication();'>
 
-    <div id="container">    
-            <span id="filter">
-                    &nbsp;<span id="navigation"><a href="?sec=show">Back to publication list</a></span>
-            </span>
-
-            <p id="pubp">
-            </p>
-
-    </div>
+<span id="filter">
+        &nbsp;<span id="navigation"><a href="?sec=show">Back to publications</a></span>
+</span>
 
 <h2>Insert publication</h2>
 
