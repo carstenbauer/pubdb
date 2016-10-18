@@ -33,7 +33,7 @@
 
 
 					?>
-					<span id="navigation"><a href="?sec=insert">Insert publication</a></span>
+					
 			</span>
 
 			<p id="pubp">
@@ -131,7 +131,7 @@
     <script type="text/javascript" async
       src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
     </script>
-
+<span id="navigation"><a href="?sec=insert">Insert publication</a></span>
 </body>
 
 
