@@ -87,3 +87,29 @@ div.panel {
 div.panel.show {
     display: block;
 }
+
+a {
+	/*color: #13265D;*/
+	color: #3C5499;
+	font-family: source-sans-pro, sans-serif;
+	text-decoration: inherit;
+}
+
+a:hover {
+    /*color: #344B8E;*/
+    color: #13265D;
+    text-decoration: inherit;
+}
+
+a:active {
+    color: #13265D;
+    text-decoration: inherit;
+}
+
+body {
+    font-family: source-sans-pro, sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.2;
+    font-feature-settings: 'liga';
+}

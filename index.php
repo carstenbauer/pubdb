@@ -32,7 +32,7 @@
 
 
     <div class="mycontainer">
-      <div class="lead">
+     
         <?php
             if(isset($_GET["sec"])) {
                 switch($_GET["sec"]) {
@@ -50,7 +50,7 @@
 
 
         ?>
-      </div>
+      
     </div>
 
 
