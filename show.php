@@ -20,13 +20,10 @@
 <body onload='DoFilter("all");'>
 
 	<div id="container">	
-			<br>
-			<h2>Publications</h2>
-
 			<span id="filter">
-				<a id=showall class=projectfilter href='javascript:DoFilter("all")' class="small">Show All</a> or 
+				<a id=showall class=projectfilter href='javascript:DoFilter("all")' class="small">Show all</a> or 
 				
-					Filter by project: 
+					filter by project: 
 					<?php
 					$projects = $db->getProjects();
 					foreach($projects as $project){
@@ -35,6 +32,7 @@
 
 
 					?>
+					<span id="navigation"><a href="?sec=insert">Insert publication</a></span>
 			</span>
 
 			<p id="pubp">
