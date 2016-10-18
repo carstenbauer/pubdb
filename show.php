@@ -22,7 +22,7 @@
 
 	<div id="container">	
 			<span id="filter">
-				<a id=showall class=projectfilter href='javascript:DoFilter("all")' class="small">Show all</a> or 
+				<a id=showall class=projectfilter href='javascript:DoFilter("all")'>Show all</a> or 
 				
 					filter by project: 
 					<?php

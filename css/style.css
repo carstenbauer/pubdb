@@ -13,7 +13,7 @@
 	-webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;
 	display: block;
 	/*width: 100%;*/
-	font-size: 15px;
+	/*font-size: 15px;*/
 	/*text-align: center;*/
 	position: relative;
 }
@@ -119,9 +119,9 @@ a:hover {
     text-decoration: inherit;
 }
 
-a:active {
-    color: #13265D;
-    text-decoration: inherit;
+a:active, a:focus {
+    color: #3C5499;
+    text-decoration: none;
 }
 
 body {
