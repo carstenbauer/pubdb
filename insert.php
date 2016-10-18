@@ -95,10 +95,6 @@ else
 
 <body onload='printPublication();'>
 
-<span id="filter">
-        &nbsp;<span id="navigation"><a href="?sec=show">Back to publications</a></span>
-</span>
-
 <h2>Insert publication</h2>
 
 <p class="small"><b> Please note that if you register your publication in the publication system of the Institute of Physics II, it is soon going to be added to the CRC database automatically.</b></p>
@@ -125,7 +121,7 @@ else
 	?>
   </select>
   <br><br>
-  <input type="submit" name="insertForm" value="Submit">
+  <input type="submit" name="insertForm" value="Submit"> &nbsp; <input type="submit" name="abort" value="Abort">
 </form>
 
 
