@@ -72,7 +72,9 @@ class arxivParser {
         $paper["identifier"] = $arxivID;
         $paper["title"] = $entry->get_title();
         $paper["timestamp"] = $entry->get_item_tags($atom_ns,'published')[0]['data'];
-        $paper["year"] = substr($paper["timestamp"],0,4);
+        $numbers = arxivParser::extractNumbers($paper["timestamp"]);
+        $paper["year"] = $numbers[0];
+        $paper["month"] = intval($numbers[1]);
         
         # Gather list of authors (without affiliation!)
         $authors = array();

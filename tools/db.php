@@ -16,7 +16,7 @@ function close() {
 }
 
 function getPublications() {
-    $sql = "SELECT * FROM Publications ORDER BY year DESC, id DESC";
+    $sql = "SELECT * FROM Publications ORDER BY year DESC, month DESC, id DESC";
     $result = $this->conn->query($sql);
     if ($result->num_rows <= 0) {
         return false;
@@ -174,8 +174,10 @@ function insertPaper($paper){
         $paper["volume"] = "";
     if (!isset($paper["number"]))
         $paper["number"] = "";
-    
-    $sql = "INSERT INTO Publications (authors, title, year, url, journal, volume, number, identifier, bibtex) VALUES ('".$authors_str."', '".$this->escape($paper["title"])."', '".$paper["year"]."', '".$paper["url"]."', '".$paper["journal"]."', '".$paper["volume"]."', '".$paper["number"]."', '".$paper["identifier"]."', '".$this->escape($paper["bibtex"])."')";
+    if (!isset($paper["month"]))
+        $paper["month"] = "0";
+
+    $sql = "INSERT INTO Publications (authors, title, year, month, url, journal, volume, number, identifier, bibtex) VALUES ('".$authors_str."', '".$this->escape($paper["title"])."', '".$paper["year"]."', '".$paper["month"]."', '".$paper["url"]."', '".$paper["journal"]."', '".$paper["volume"]."', '".$paper["number"]."', '".$paper["identifier"]."', '".$this->escape($paper["bibtex"])."')";
     $result = $this->conn->query($sql);
     if (!$result) {
         return False;
@@ -210,6 +212,7 @@ function removePaper($paper){
 function escape($str){
     $strr = str_replace("'","''",$str);
     $strr = str_replace("\\","\\\\",$strr);
+    // $strr = str_replace("\"","\\\"",$strr);
     return $strr;
 }
 

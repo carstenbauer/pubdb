@@ -124,7 +124,9 @@ class natureParser {
         $paper["title"] = $obj["dc:title"];
         $paper["url"] = $obj["prism:url"];
         $paper["authors"] = $obj["dc:creator"];
-        $paper["year"] = substr($obj["prism:publicationDate"],0,4);
+        $numbers = natureParser::extractNumbers($obj["prism:publicationDate"]);
+        $paper["year"] = $numbers[0];
+        $paper["month"] = intval($numbers[1]);
         $paper["bibtex"] = natureParser::RIStoBibTeX($paper["journal"],$id,$obj);
         $paper["volume"] = $obj["prism:volume"];
         if ($paper["journal"]=="nphys")

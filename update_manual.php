@@ -2,6 +2,7 @@
 
 include_once('config/config.php');
 include_once('tools/db.php');
+include_once('tools/generic_functions.php');
 include_once('tools/parser/arxiv.php');
 include_once('tools/parser/aps.php');
 include_once('tools/parser/nature.php');
@@ -19,7 +20,7 @@ function contains($string, $array, $caseSensitive = false)
 function checkUserInput(){
     // Check that Authors are comma-separated, URL is real URL etc.
     // Check that journal is none of the known journals, or redirect to usual insert page
-    if (empty($_POST['puburl'])||empty($_POST['pubyear'])||empty($_POST['pubtitle'])||empty($_POST['pubjournal'])||empty($_POST['pubauthors'])) {
+    if (empty($_POST['puburl'])||empty($_POST['pubyear'])||empty($_POST['pubmonth'])||empty($_POST['pubtitle'])||empty($_POST['pubjournal'])||empty($_POST['pubauthors'])) {
         return 'Please fill out all fields.';
     } 
     if (empty($_POST['pubidentifier']))
@@ -55,7 +56,9 @@ if (isset($_POST["insertForm"])||isset($_POST["confirm"])) {
         $paper["journal"] = $_POST['pubjournal'];
         $paper["url"] = $_POST['puburl'];
         $paper["year"] = $_POST['pubyear'];
+        $paper["month"] = monthStrToInt($_POST['pubmonth']);
         $paper["bibtex"] = $_POST['pubbibtex'];
+        echo $paper['bibtex'];
         $paper["identifier"] = $_POST['pubidentifier'];
         $paper["volume"] = $_POST['pubvolume'];
         $paper["number"] = $_POST['pubnumber'];
@@ -140,6 +143,8 @@ Please enter the details of the publication that should replace the selected pub
   <input type="text" name="puburl" value="<?php echo (!empty($_POST))?$_POST["puburl"]:$oldpaper["url"]; ?>" required><br>
   Year<br>
   <input type="text" name="pubyear" value="<?php echo (!empty($_POST))?$_POST["pubyear"]:$oldpaper["year"]; ?>" required><br>
+  Month<br>
+  <input type="text" name="pubmonth" value="<?php echo (!empty($_POST))?$_POST["pubmonth"]:$oldpaper["month"]; ?>" required><br>
   BibTeX (optional)<br>
   <textarea rows="7" cols="40" name="pubbibtex"><?php echo (!empty($_POST))?$_POST["pubbibtex"]:$oldpaper["bibtex"]; ?></textarea><br>
   Associated project(s):<br>
@@ -187,15 +192,16 @@ if (isset($_POST["insertForm"])) {
         <p id="pubp"></p>
         <br>
         <form action="index.php?sec=update_manual&id=<?php echo $oldpaper["id"]; ?>" method="post">
-            <input type=hidden name="pubtitle" value="<?php echo $_POST["pubtitle"]; ?>" >
-            <input type=hidden name="pubauthors" value="<?php echo $_POST["pubauthors"]; ?>" >
-            <input type=hidden name="pubjournal" value="<?php echo $_POST["pubjournal"]; ?>" >
-            <input type=hidden name="pubidentifier" value="<?php echo $_POST["pubidentifier"]; ?>" >
-            <input type=hidden name="puburl" value="<?php echo $_POST["puburl"]; ?>" >
-            <input type=hidden name="pubyear" value="<?php echo $_POST["pubyear"]; ?>" >
-            <input type=hidden name="pubbibtex" value="<?php echo $_POST["pubbibtex"]; ?>" >
-            <input type=hidden name="pubvolume" value="<?php echo $_POST["pubvolume"]; ?>" >
-            <input type=hidden name="pubnumber" value="<?php echo $_POST["pubnumber"]; ?>" >
+            <input type=hidden name="pubtitle" value='<?php echo $_POST["pubtitle"]; ?>' >
+            <input type=hidden name="pubauthors" value='<?php echo $_POST["pubauthors"]; ?>' >
+            <input type=hidden name="pubjournal" value='<?php echo $_POST["pubjournal"]; ?>' >
+            <input type=hidden name="pubidentifier" value='<?php echo $_POST["pubidentifier"]; ?>' >
+            <input type=hidden name="puburl" value='<?php echo $_POST["puburl"]; ?>' >
+            <input type=hidden name="pubmonth" value='<?php echo $_POST["pubmonth"]; ?>' >
+            <input type=hidden name="pubyear" value='<?php echo $_POST["pubyear"]; ?>' >
+            <input type=hidden name="pubbibtex" value='<?php echo $_POST["pubbibtex"]; ?>' >
+            <input type=hidden name="pubvolume" value='<?php echo $_POST["pubvolume"]; ?>' >
+            <input type=hidden name="pubnumber" value='<?php echo $_POST["pubnumber"]; ?>' >
             <?php
             foreach($_POST["projects"] as $project){
                 echo "<input type=hidden name='projects[]' value='".$project."' >";
