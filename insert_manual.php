@@ -19,9 +19,12 @@ function contains($string, $array, $caseSensitive = false)
 function checkUserInput(){
     // Check that Authors are comma-separated, URL is real URL etc.
     // Check that journal is none of the known journals, or redirect to usual insert page
-    if (empty($_POST['puburl'])||empty($_POST['pubyear'])||empty($_POST['pubtitle'])||empty($_POST['pubjournal'])||empty($_POST['pubidentifier'])||empty($_POST['pubauthors'])) {
+    if (empty($_POST['puburl'])||empty($_POST['pubyear'])||empty($_POST['pubtitle'])||empty($_POST['pubjournal'])||empty($_POST['pubauthors'])) {
         return 'Please fill out all fields.';
     } 
+    if (empty($_POST['pubidentifier']))
+        if (empty($_POST['pubvolume']) || empty($_POST['pubnumber']))
+            return 'You must either fill out BOTH the fields \'Volume\' and \'Article or page number\' or the single field \'Identifier\'';
     if (filter_var($_POST['puburl'], FILTER_VALIDATE_URL) === FALSE) {
         return 'Not a valid URL.';
     }
@@ -43,6 +46,8 @@ if (isset($_POST["insertForm"])||isset($_POST["confirm"])) {
         $paper["year"] = $_POST['pubyear'];
         $paper["bibtex"] = $_POST['pubbibtex'];
         $paper["identifier"] = $_POST['pubidentifier'];
+        $paper["volume"] = $_POST['pubvolume'];
+        $paper["number"] = $_POST['pubnumber'];
     }
     else
         $validInput = false;
@@ -77,16 +82,22 @@ Please use the manual insertion <b>only for unsupported journals</b>. If you thi
   <input type="text" name="pubauthors" value="<?php echo (!empty($_POST))?$_POST["pubauthors"]:""; ?>" required><br>
   Title<br>
   <input type="text" name="pubtitle" value="<?php echo (!empty($_POST))?$_POST["pubtitle"]:""; ?>" required><br>
-  Journal <small class="small">(How it should be displayed)</small><br>
-  <input type="text" name="pubjournal" value="<?php echo (!empty($_POST))?$_POST["pubjournal"]:""; ?>" required><br>
-  Identifier <small class="small">(Depending on the journal, this could be 'Volume, Pages')</small><br>
-  <input type="text" name="pubidentifier" value="<?php echo (!empty($_POST))?$_POST["pubidentifier"]:""; ?>" required><br>
+  Journal<br>
+  <input type="text" name="pubjournal" value="<?php echo (!empty($_POST))?$_POST["pubjournal"]:""; ?>" required><br><br>
+  Volume <small class="small">(will be displayed in bold)</small><br>
+  <input type="text" name="pubvolume" value="<?php echo (!empty($_POST))?$_POST["pubvolume"]:""; ?>"><br>
+  Article or page number <small class="small"></small><br>
+  <input type="text" name="pubnumber" value="<?php echo (!empty($_POST))?$_POST["pubnumber"]:""; ?>"><br>
+  or
+  <br>
+  Identifier <small class="small">(In case the journal is not organized in a "volume, article/page number" structure)</small><br>
+  <input type="text" name="pubidentifier" value="<?php echo (!empty($_POST))?$_POST["pubidentifier"]:""; ?>"><br><br>
   URL<br>
   <input type="text" name="puburl" value="<?php echo (!empty($_POST))?$_POST["puburl"]:""; ?>" required><br>
   Year<br>
   <input type="text" name="pubyear" value="<?php echo (!empty($_POST))?$_POST["pubyear"]:""; ?>" required><br>
   BibTeX (optional)<br>
-  <textarea rows="7" cols="40" name="pubbibtex" value="<?php echo (!empty($_POST))?$_POST["pubbibtex"]:""; ?>"></textarea><br>
+  <textarea rows="7" cols="40" name="pubbibtex"><?php echo (!empty($_POST))?$_POST["pubbibtex"]:""; ?></textarea><br>
   Associated project(s):<br>
   <select class="selectpicker" name="projects[]" multiple required>
 	<?php
@@ -133,6 +144,8 @@ if (isset($_POST["insertForm"])) {
             <input type=hidden name="puburl" value="<?php echo $_POST["puburl"]; ?>" >
             <input type=hidden name="pubyear" value="<?php echo $_POST["pubyear"]; ?>" >
             <input type=hidden name="pubbibtex" value="<?php echo $_POST["pubbibtex"]; ?>" >
+            <input type=hidden name="pubvolume" value="<?php echo $_POST["pubvolume"]; ?>" >
+            <input type=hidden name="pubnumber" value="<?php echo $_POST["pubnumber"]; ?>" >
             <?php
             foreach($_POST["projects"] as $project){
                 echo "<input type=hidden name='projects[]' value='".$project."' >";

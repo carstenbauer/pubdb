@@ -35,7 +35,7 @@ function journalToString(pub){
 		var volume = pub.volume.toString();	
 	} else 
 		var volume = "";
-	if (pub.hasOwnProperty('number') && pub.volume != null && pub.volume.toString()!=0) {
+	if (pub.hasOwnProperty('number') && pub.number != null && pub.number.toString()!=0) {
 		var number = pub.number.toString();
 	} else 
 		var number = "";
@@ -64,7 +64,11 @@ function journalToString(pub){
 	    		return "Nature ".concat("<b>"+volume+"</b>").concat(", ").concat(number);
 	    	else
 	    		return "Nature ".concat(natureIdToString(id));
-	    default: return journal.concat(" ").concat(id.toString());
+	    default:
+	    	if (volume!="" && number !="")
+	    		return journal.concat(" <b>"+volume+"</b>").concat(", ").concat(number);
+	    	else
+	    		return journal.concat(" ").concat(id.toString());
 	}
 }
 
