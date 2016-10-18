@@ -169,7 +169,7 @@ Please enter the details of the publication that should replace the selected pub
     ?>
   </select>
   <br><br>
-  <input type="submit" name="insertForm" value="Submit"> <span class="small" style='margin-left: 10px;'>(You will be able to verify your publication entry before final update.)</span>
+  <input type="submit" name="insertForm" value="Submit"> &nbsp; <input type="button" name="abort" value="Abort" onClick="window.location='index.php?sec=show';" /><span class="small" style='margin-left: 10px;'>(You will be able to verify your publication entry before final update.)</span>
 </form>
 
 </div>
@@ -214,7 +214,7 @@ if (isset($_POST["insertForm"])) {
     <label> <small>Please confirm that this paper should replace the selected one with assignment to project(s) <?php echo join(', ', $_POST["projects"]); ?>.</small></label><br>
     Password: <input type="password" name="pw" >
 
-            <input type="submit" name="confirm" value="Confirm">
+            <input type="submit" name="confirm" value="Confirm">&nbsp; <input type="button" name="abort" value="Abort" onClick="window.location='index.php?sec=show';" />
         </form>
         </div>
         <?php

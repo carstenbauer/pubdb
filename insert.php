@@ -155,7 +155,7 @@ if (isset($_POST["insertForm"])) {
     <label> <small>Please confirm that this paper should be added to project(s) <?php echo join(', ', $_POST["projects"]); ?>.</small></label><br>
     Password: <input type="password" name="pw" >
 
-            <input type="submit" name="confirm" value="Confirm">
+            <input type="submit" name="confirm" value="Confirm"> &nbsp; <input type="button" name="abort" value="Abort" onClick="window.location='index.php?sec=show';" />
         </form>
         </div>
         <?php
