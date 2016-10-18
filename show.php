@@ -28,7 +28,7 @@
 					<?php
 					$projects = $db->getProjects();
 					foreach($projects as $project){
-					    echo "<a id=".$project["abbrev"]." class=projectfilter href='javascript:DoFilter(\"".$project["abbrev"]."\");'>".$project["abbrev"]. "</a> ";
+					    echo "<a id=".$project["abbrev"]." class='projectfilter ".substr($project["abbrev"], 0, 1)."' href='javascript:DoFilter(\"".$project["abbrev"]."\");'>".$project["abbrev"]. "</a> ";
 					}
 
 
@@ -87,13 +87,13 @@
 				pubsf = pubs.filter(byProject, project);
 				var elements = document.getElementsByClassName("projectfilter");
 			    for (var i = 0; i < elements.length; i++) {
- 			   		elements[i].style.fontWeight = "300";
+ 			   		elements[i].style.fontWeight = "400";
    				}
 				document.getElementById(project).style.fontWeight = "bold";
 			} else {
 				var elements = document.getElementsByClassName("projectfilter");
 			    for (var i = 0; i < elements.length; i++) {
- 			   		elements[i].style.fontWeight = "300";
+ 			   		elements[i].style.fontWeight = "400";
    				}
    				document.getElementById("showall").style.fontWeight = "bold";
 			}

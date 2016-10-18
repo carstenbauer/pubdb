@@ -88,6 +88,7 @@ div.panel.show {
     display: block;
 }
 
+/* Publication links */
 
 #pubp a {
 	/*color: #13265D;*/
@@ -105,6 +106,51 @@ div.panel.show {
 	font-weight: bold;
 }
 
+/* Project links */
+
+a.A, a.A:active, a.A:focus {
+	/*color: #13265D;*/
+	color: #13265D;
+	font-family: source-sans-pro, sans-serif;
+	font-weight: 400;
+}
+
+a.A:hover {
+	/*color: #13265D;*/
+	color: #344B8E;
+	font-family: source-sans-pro, sans-serif;
+	font-weight: 400;
+}
+
+a.B, a.B:active, a.B:focus {
+	/*color: #13265D;*/
+	color: #178A7D;
+	font-family: source-sans-pro, sans-serif;
+	font-weight: 400;
+}
+
+a.B:hover {
+	/*color: #13265D;*/
+	color: #17C2A9;
+	font-family: source-sans-pro, sans-serif;
+	font-weight: 400;
+}
+
+a.C, a.C:active, a.C:focus {
+	/*color: #13265D;*/
+	color: #D20C0C;
+	font-family: source-sans-pro, sans-serif;
+	font-weight: 400;
+}
+
+a.C:hover {
+	/*color: #13265D;*/
+	color: #D74680;
+	font-family: source-sans-pro, sans-serif;
+	font-weight: 400;
+}
+
+/* Usual links */
 
 a {
 	/*color: #13265D;*/
