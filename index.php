@@ -31,7 +31,7 @@
   <body>
 
 
-    <div class="container">
+    <div class="mycontainer">
       <div class="lead">
         <?php
             if(isset($_GET["sec"])) {

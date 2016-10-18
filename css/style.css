@@ -1,5 +1,5 @@
-#container {
-	/*display: flex;*/
+.mycontainer {
+	margin: 10px;
 }
 
 #filter {
@@ -16,13 +16,6 @@
 	font-size: 15px;
 	text-align: center;
 	position: relative;
-}
-
-#main {
-	/*flex: 1;*/
-	/* Grow to rest of container */
-	/*background: lightgreen;*/
-	/* Just so it's visible */
 }
 
 #deletespan {
