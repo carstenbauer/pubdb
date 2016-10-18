@@ -150,6 +150,14 @@ a.C:hover {
 	font-weight: 400;
 }
 
+a#showall, a#showall:active, a#showall:focus {
+	color: #ce9e0c;
+}
+
+a#showall:hover {
+	color: #dda90d;
+}
+
 /* Usual links */
 
 a {
