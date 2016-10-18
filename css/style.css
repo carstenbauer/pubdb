@@ -113,3 +113,15 @@ body {
     line-height: 1.2;
     font-feature-settings: 'liga';
 }
+
+h2 {
+	font-weight: 600;
+	font-family: source-sans-pro, sans-serif;
+}
+
+p {
+	font-family: source-sans-pro, sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.2;
+}
