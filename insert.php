@@ -95,6 +95,16 @@ else
 
 <body onload='printPublication();'>
 
+    <div id="container">    
+            <span id="filter">
+                    &nbsp;<span id="navigation"><a href="?sec=show">Back to publication list</a></span>
+            </span>
+
+            <p id="pubp">
+            </p>
+
+    </div>
+
 <h2>Insert publication</h2>
 
 <p class="small"><b> Please note that if you register your publication in the publication system of the Institute of Physics II, it is soon going to be added to the CRC database automatically.</b></p>

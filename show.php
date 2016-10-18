@@ -32,7 +32,7 @@
 
 
 					?>
-					<span id="navigation"><a href="insert.php">Insert publication</a> <a href="show.php">Plain</a></span>
+					<span id="navigation"><a href="?sec=insert">Insert publication</a></span>
 			</span>
 
 			<p id="pubp">
