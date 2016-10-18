@@ -1,6 +1,6 @@
 <html>
 <head>
-
+	<base target="_parent" />
 	<link href="css/style.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
 
