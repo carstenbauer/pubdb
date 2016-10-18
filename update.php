@@ -143,7 +143,7 @@ if (!$validID){
 <div id="insertformdiv" <?php echo $deleteMode?"hidden":""; ?>>
 <br>
 Please specify a newer version of the publication:
-<p class="small">Automatic lookup supported for arXiv, APS journals, Nature journals. Elsewise, perform a <a href='index.php?sec=update_manual&id=<?php echo $oldpaper["id"]; ?>'>manual update</a>.</p>
+<p class="small"><b>Automatic lookup</b> supported for arXiv, APS journals, Nature journals. Elsewise, perform a <b><a href='index.php?sec=update_manual&id=<?php echo $oldpaper["id"]; ?>'>manual update</a></b>.</p>
 
 <form action="index.php?sec=update&id=<?php echo $oldpaper["id"]; ?>" method="post">
   Publication Identifier:<br>

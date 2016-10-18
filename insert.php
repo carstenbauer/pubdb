@@ -99,7 +99,7 @@ else
 
 <p class="small"><b> Please note that if you register your publication in the publication system of the Institute of Physics II, it is soon going to be added to the CRC database automatically.</b></p>
 
-<p class="small">Automatic lookup supported for arXiv, APS journals, Nature journals. Elsewise, create a <a href='index.php?sec=insert_manual'>manual entry</a>.</p>
+<p class="small"><b>Automatic lookup</b> supported for arXiv, APS journals, Nature journals. Elsewise, perform a <b><a href='index.php?sec=insert_manual'>manual entry</a></b>.</p>
 
 <form action="index.php?sec=insert" method="post">
   Publication Identifier:<br>
