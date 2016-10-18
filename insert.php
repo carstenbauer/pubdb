@@ -121,7 +121,7 @@ else
 	?>
   </select>
   <br><br>
-  <input type="submit" name="insertForm" value="Submit"> &nbsp; <input type="submit" name="abort" value="Abort">
+  <input type="submit" name="insertForm" value="Submit"> &nbsp; <input type="button" name="abort" value="Abort" onClick="window.location='index.php?sec=show';" />
 </form>
 
 
