@@ -108,7 +108,7 @@
 					var year = pubsf[index].year.toString();
 					if (year!=lastyear){
 						pubp.innerHTML = pubp.innerHTML + "</p></div>";
-						pubp.innerHTML = pubp.innerHTML + "<button class='accordion' onclick='javascript:this.nextElementSibling.classList.toggle(\"show\");javascript:this.classList.toggle(\"active\");'>"+year+"</button><div id='"+year+"' class='panel'><p>";
+						pubp.innerHTML = pubp.innerHTML + "<button class='accordion active' onclick='javascript:this.nextElementSibling.classList.toggle(\"show\");javascript:this.classList.toggle(\"active\");'>"+year+"</button><div id='"+year+"' class='panel'><p>";
 						lastyear = year;
 					}
 
