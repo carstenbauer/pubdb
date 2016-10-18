@@ -1,6 +1,8 @@
 <html>
 <head>
 
+	<link href="css/style.css" rel="stylesheet">
+
 	<?php
 
 	include_once('tools/db.php');
@@ -73,10 +75,11 @@
 		}
 
 		function printPublication(pub) {
+			var panel = document.getElementById(pub.year.toString());
 			if (pub.bibtex.toString()!="")
-				pubp.innerHTML = pubp.innerHTML + "<span id='pub" + pub.id.toString() + "' class=publication onmouseover='showOptions(".concat(pub.id.toString()).concat(")' onmouseout='hideOptions(").concat(pub.id.toString()).concat(")'>") + PublicationToHTMLString(pub) + "<span id='pub" + pub.id.toString() + "options' class=publication-options style=\"visibility: hidden;\">[<a href=?sec=update&id=".concat(pub.id.toString()) + ">Update</a>, <a href='javascript:openBibTexModal(".concat(pub.id.toString()) + ")'>BibTeX</a>]</span></span>" + "<br>";
+				panel.innerHTML = panel.innerHTML + "<span id='pub" + pub.id.toString() + "' class=publication onmouseover='showOptions(".concat(pub.id.toString()).concat(")' onmouseout='hideOptions(").concat(pub.id.toString()).concat(")'>") + PublicationToHTMLString(pub) + "<span id='pub" + pub.id.toString() + "options' class=publication-options style=\"visibility: hidden;\">[<a href=?sec=update&id=".concat(pub.id.toString()) + ">Update</a>, <a href='javascript:openBibTexModal(".concat(pub.id.toString()) + ")'>BibTeX</a>]</span></span>" + "<br>";
 			else 
-				pubp.innerHTML = pubp.innerHTML + "<span id='pub" + pub.id.toString() + "' class=publication onmouseover='showOptions(".concat(pub.id.toString()).concat(")' onmouseout='hideOptions(").concat(pub.id.toString()).concat(")'>") + PublicationToHTMLString(pub) + "<span id='pub" + pub.id.toString() + "options' class=publication-options style=\"visibility: hidden;\">[<a href=?sec=update&id=".concat(pub.id.toString()) + ">Update</a>]</span></span>" + "<br>";
+				panel.innerHTML = panel.innerHTML + "<span id='pub" + pub.id.toString() + "' class=publication onmouseover='showOptions(".concat(pub.id.toString()).concat(")' onmouseout='hideOptions(").concat(pub.id.toString()).concat(")'>") + PublicationToHTMLString(pub) + "<span id='pub" + pub.id.toString() + "options' class=publication-options style=\"visibility: hidden;\">[<a href=?sec=update&id=".concat(pub.id.toString()) + ">Update</a>]</span></span>" + "<br>";
 		}
 
 		function DoFilter(project) {
@@ -98,7 +101,21 @@
 
 			if (Object.keys(pubsf).length > 0) {
 				pubp.innerHTML = "";
-				pubsf.forEach(printPublication);
+				// pubsf.forEach(printPublication);
+				var index, len;
+				var lastyear = pubsf[0].year.toString();
+				pubp.innerHTML = pubp.innerHTML + "<button class='accordion active' onclick='javascript:this.nextElementSibling.classList.toggle(\"show\");javascript:this.classList.toggle(\"active\");'>"+lastyear+"</button><div id='"+lastyear+"' class='panel show'><p>";
+				for (index = 0, len = pubsf.length; index < len; ++index) {
+					var year = pubsf[index].year.toString();
+					if (year!=lastyear){
+						pubp.innerHTML = pubp.innerHTML + "</p></div>";
+						pubp.innerHTML = pubp.innerHTML + "<button class='accordion' onclick='javascript:this.nextElementSibling.classList.toggle(\"show\");javascript:this.classList.toggle(\"active\");'>"+year+"</button><div id='"+year+"' class='panel'><p>";
+						lastyear = year;
+					}
+
+				    printPublication(pubsf[index]);
+				}
+				pubp.innerHTML = pubp.innerHTML + "</p></div>";
 				MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 			} else {
 				pubp.innerHTML = "0 results.";
@@ -106,6 +123,17 @@
 		}
 	</script>
 
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {inlineMath: [['%!','%!']]}
+          });
+    </script>
+    <script type="text/javascript" async
+      src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
 </body>
+
 
 <?php $db->close(); ?>

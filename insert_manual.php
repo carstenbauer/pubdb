@@ -59,6 +59,9 @@ if (isset($_POST["insertForm"])||isset($_POST["confirm"])) {
 
 <html>
 <head>
+
+    <link href="css/style.css" rel="stylesheet">
+
     <script type="text/javascript" src="js/script.js"></script>
     <script type="text/javascript">
         function printPublication(){
@@ -194,6 +197,15 @@ if (isset($_POST["confirm"])){
 
 ?>
 
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {inlineMath: [['%!','%!']]}
+          });
+    </script>
+    <script type="text/javascript" async
+      src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
 
 </body>
 
