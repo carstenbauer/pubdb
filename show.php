@@ -117,7 +117,7 @@
 				pubp.innerHTML = pubp.innerHTML + "</p></div>";
 				MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 			} else {
-				pubp.innerHTML = "0 results.";
+				pubp.innerHTML = "<button class='accordion active' onclick='javascript:this.nextElementSibling.classList.toggle(\"show\");javascript:this.classList.toggle(\"active\");'>2016</button><div id='2016' class='panel show'><p><span class=publication>0 results.</span></p></div>";
 			}
 		}
 	</script>
