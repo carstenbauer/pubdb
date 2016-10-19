@@ -162,6 +162,8 @@ function getProjectsOfPublication($pub){
 }
 
 function paperExists($paper){
+    if ($paper['identifier']=="") return false;
+    
     $sql = "SELECT * FROM Publications WHERE identifier='".$paper["identifier"]."'";
     $result = $this->conn->query($sql);
     if(mysqli_num_rows($result)!=0)
@@ -172,7 +174,7 @@ function paperExists($paper){
 
 function paperExistsApartFromOldPaper($paper,$oldpaper){
     if ($paper['identifier']=="") return false;
-    
+
     $sql = "SELECT * FROM Publications WHERE identifier='".$paper["identifier"]."' AND id<>'".$oldpaper["id"]."'";
     $result = $this->conn->query($sql);
     if(mysqli_num_rows($result)!=0)
