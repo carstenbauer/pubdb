@@ -216,9 +216,9 @@ p {
 	color: #ed2a2a;
 }
 
-input { font-size: 14px; width: 300px; }
-textarea { font-size: 14px; width: 300px; }
-input[type="button"], input[type="submit"] { font-size: 14px; width: 100px; height: 35px; }
+input { font-size: 16px; width: 300px; }
+textarea { font-size: 16px; width: 300px; }
+input[type="button"], input[type="submit"] { font-size: 16px; width: 100px; height: 35px; }
 input[name="back"] {
 	width: 200px;
 }
