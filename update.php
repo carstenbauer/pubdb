@@ -200,9 +200,13 @@ if ($deleteMode && !isset($_POST["confirmdelete"])) {
 } else if ($deleteMode && isset($_POST["confirmdelete"]) && $_POST["pw"]==INSERTPASSWORD) {
     $succ = $db->removePaper($oldpaper);
     if ($succ) {
-        echo "The selected paper has been successfully removed from our database.<br><br>";
+        echo "The selected paper has been successfully removed from our database.";
+        echo "<br><br>";
+        echo "<input type=\"button\" name=\"back\" value=\"Back to publications\" onClick=\"window.location='index.php?sec=show';\" />";
     } else {
         echo "There was a problem with our database during removal process. Please try again.";
+        echo "<br><br>";
+        echo "<input type=\"button\" name=\"back\" value=\"Back to publications\" onClick=\"window.location='index.php?sec=show';\" />";
         exit();
     }
 } else if ($deleteMode && isset($_POST["confirmdelete"])) 
@@ -274,8 +278,12 @@ if (isset($_POST["confirm"])){
         $succ = $db->insertPaper($paper);
         if ($succ) {
             echo "The paper has been successfully added to our database. <br><br><b>Thank you for taking the time!</b>";
+            echo "<br><br>";
+            echo "<input type=\"button\" name=\"back\" value=\"Back to publications\" onClick=\"window.location='index.php?sec=show';\" />";
         } else {
             echo "There was a problem with our database during insertion process. Please try again.";
+            echo "<br><br>";
+            echo "<input type=\"button\" name=\"back\" value=\"Back to publications\" onClick=\"window.location='index.php?sec=show';\" />";
         }
     }
 }

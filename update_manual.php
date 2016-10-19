@@ -243,13 +243,19 @@ if (isset($_POST["confirm"])){
             echo "The old paper has been successfully removed from our database.<br><br>";
         } else {
             echo "There was a problem with our database during removal process. Please try again.";
+            echo "<br><br>";
+            echo "<input type=\"button\" name=\"back\" value=\"Back to publications\" onClick=\"window.location='index.php?sec=show';\" />";
             exit();
         }
         $succ = $db->insertPaper($paper);
         if ($succ) {
             echo "The new paper has been successfully added to our database. <br><br><b>Thank you for taking the time!</b>";
+            echo "<br><br>";
+            echo "<input type=\"button\" name=\"back\" value=\"Back to publications\" onClick=\"window.location='index.php?sec=show';\" />";
         } else {
             echo "There was a problem with our database during insertion process. Please try again.";
+            echo "<br><br>";
+            echo "<input type=\"button\" name=\"back\" value=\"Back to publications\" onClick=\"window.location='index.php?sec=show';\" />";
         }
     }
 }
