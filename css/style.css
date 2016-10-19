@@ -210,3 +210,7 @@ p {
 #deletespan a {
 	color: #B22222;
 }
+
+input { font-size: 14px; width: 300px; }
+textarea { font-size: 14px; width: 300px; }
+input[type="button"], input[type="submit"] { font-size: 14px; width: 100px; height: 35px; }
