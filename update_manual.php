@@ -189,7 +189,7 @@ if (isset($_POST["insertForm"])) {
         echo "<b>You have to specify at least one project.</b><br><br>";
     } else {
         echo "<div><b>Your updated publication list entry will look as follows:</b><br><br>";
-        ?>
+        ?>  
 
         <p id="pubp"></p>
         <br>
