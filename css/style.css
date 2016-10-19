@@ -46,7 +46,7 @@
 }
 
 .small {
-	font-size: 15px;
+	font-size: 16px;
 }
 
 .navbar-static-top {
@@ -193,9 +193,11 @@ body {
 }
 
 h2 {
+	text-align: center;
 	font-weight: 600;
 	font-family: source-sans-pro, sans-serif;
 	font-size: 24px;
+	margin-bottom: 30px;
 }
 
 p {

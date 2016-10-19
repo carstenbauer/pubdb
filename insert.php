@@ -97,9 +97,7 @@ else
 
 <h2>Insert publication</h2>
 
-<p class="small"><b> Please note that if you register your publication in the publication system of the Institute of Physics II, it is soon going to be added to the CRC database automatically.</b></p>
-
-<p class="small"><b>Automatic lookup</b> supported for arXiv, APS journals, Nature journals. Elsewise, perform a <b><a href='index.php?sec=insert_manual'>manual entry</a></b>.</p>
+<p><b>Automatic lookup</b> supported for arXiv, APS journals, Nature journals. Elsewise, perform a <b><a href='index.php?sec=insert_manual'>manual entry</a></b>.</p>
 
 <form action="index.php?sec=insert" method="post">
   Publication Identifier:<br>
@@ -124,6 +122,8 @@ else
   <input type="submit" name="insertForm" value="Submit"> &nbsp; <input type="button" name="abort" value="Abort" onClick="window.location='index.php?sec=show';" />
 </form>
 
+<br><br>
+<p class="small"><b> Please note that if you register your publication in the publication system of the Institute of Physics II, it is soon going to be added to the CRC database automatically.</b></p>
 
 <br><br>
 
