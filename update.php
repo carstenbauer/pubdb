@@ -144,7 +144,8 @@ if (!$validID){
 <div id="insertformdiv" <?php echo $deleteMode?"hidden":""; ?>>
 <br>
 Please specify a newer version of the publication:
-<p class="small"><b>Automatic lookup</b> supported for arXiv, APS journals, Nature journals. Elsewise, perform a <b><a href='index.php?sec=update_manual&id=<?php echo $oldpaper["id"]; ?>'>manual update</a></b>.</p>
+
+<p>Use <b>automatic lookup</b> for arXiv, APS journals, Nature journals or perform <b><a href='index.php?sec=update_manual&id=<?php echo $oldpaper["id"]; ?>'>manual update</a></b>.</p>
 
 <form action="index.php?sec=update&id=<?php echo $oldpaper["id"]; ?>" method="post">
   Publication identifier:<br>
@@ -176,7 +177,7 @@ Please specify a newer version of the publication:
     <input type=hidden name="delete" value="delete">
 </form>
 
-<br><br>
+<br><br><br>
 
 <?php
 
@@ -189,8 +190,8 @@ if ($deleteMode && !isset($_POST["confirmdelete"])) {
         <p id="pubp"></p>
         <br>
         <form action="index.php?sec=update&id=<?php echo $oldpaper["id"]; ?>" method="post">
-
-    <label> <small>Please confirm that this entry should be deleted.</small></label><br>
+        <br>
+    <label>Please confirm that this entry should be deleted.</label><br><br>
     Password: <input type="password" name="pw" >
 
             <input type="submit" name="confirmdelete" value="Confirm">&nbsp; <input type="button" name="abort" value="Abort" onClick="window.location='index.php?sec=show';" />
@@ -237,8 +238,8 @@ if (isset($_POST["insertForm"])) {
                 echo "<input type=hidden name='projects[]' value='".$project."' >";
             }
 ?>
-
-    <label> <small>Please confirm that this paper should replace the selected one with assignment to project(s) <?php echo join(', ', $_POST["projects"]); ?>.</small></label><br>
+    <br>
+    <label>Please confirm that this paper should replace the selected one with assignment to project(s) <?php echo join(', ', $_POST["projects"]); ?>.</label><br><br>
     Password: <input type="password" name="pw" >
 
             <input type="submit" name="confirm" value="Confirm"> &nbsp; <input type="button" name="abort" value="Abort" onClick="window.location='index.php?sec=show';" />
