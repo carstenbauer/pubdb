@@ -33,8 +33,9 @@
 
 
 					?>
-					
 			</span>
+
+                        <span id="navigation"><a href="?sec=insert">&#43 Insert publication</a></span>
 
 			<p id="pubp">
 			</p>
@@ -131,7 +132,6 @@
     <script type="text/javascript" async
       src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
     </script>
-<span id="navigation"><a href="?sec=insert">Insert publication</a></span>
 </body>
 
 

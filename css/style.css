@@ -8,7 +8,7 @@
 	padding-left: 10px;
 	padding-top: 5px;
 	padding-bottom: 5px;
-	margin-bottom: 15px;
+	margin-bottom: 5px;
 	margin-top: 20px;
 	/*border: thin solid #CCC;*/
 	-webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;
@@ -25,9 +25,15 @@
 }
 
 #navigation {
-	/*margin-right: 100px;*/
-	position:absolute;
-	right:15px;
+        display: block;
+	margin-bottom: 20px;
+        font-size: 16px ;
+        text-align: right;
+	padding-left: 15px;
+}
+
+#navigation a {
+        color: black;
 }
 
 .publication {
@@ -51,7 +57,7 @@
 /* Style the buttons that are used to open and close the accordion panel */
 button.accordion {
     background-color: #dedede;
-    color: #000;
+    color: #1B1464;
     cursor: pointer;
     padding: 5px;
     width: 100%;
@@ -183,6 +189,7 @@ body {
     font-size: 18px;
     line-height: 1.2;
     font-feature-settings: 'liga';
+    color: black;
 }
 
 h2 {
