@@ -100,7 +100,7 @@ else
 <p>Use <b>automatic lookup</b> for arXiv, APS journals, Nature journals or insert <b><a href='index.php?sec=insert_manual'>manual entry</a></b>.</p>
 
 <form action="index.php?sec=insert" method="post">
-  Publication Identifier:<br>
+  Publication identifier:<br>
   <input type="text" name="pubidstr" value="<?php echo (!empty($_POST))?$_POST["pubidstr"]:""; ?>" required><br><br>
   Associated project(s):<br>
   <select class="selectpicker" name="projects[]" multiple required>
@@ -121,9 +121,6 @@ else
   <br><br>
   <input type="submit" name="insertForm" value="Submit"> &nbsp; <input type="button" name="abort" value="Abort" onClick="window.location='index.php?sec=show';" />
 </form>
-
-<br><br>
-<p class="small">Please note that publications from the publication system of the <b> Institute of Physics II</b> are added automatically.</p>
 
 <br><br>
 

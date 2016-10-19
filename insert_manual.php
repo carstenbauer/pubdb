@@ -79,8 +79,8 @@ if (isset($_POST["insertForm"])||isset($_POST["confirm"])) {
 
 <h2>Insert publication (manual)</h2>
 
-<p class="small">
-Please use the manual insertion <b>only for unsupported journals</b>. If you think that your publication is no exception and the corresponding journal should be admitted to the automatic insertion system, please write an email to <a href="javascript:linkTo_UnCryptMailto('nbjmup;cbvfsAuiq/voj.lpfmo/ef');">bauer [at] thp.uni-koeln.de</a>.</p>
+<p>
+Please use the manual insertion <b>only for unsupported journals</b>. If you think that your publication is no exception and the corresponding journal should be admitted to the automatic insertion system, please write an email to <a href="javascript:linkTo_UnCryptMailto('nbjmup;cbvfsAuiq/voj.lpfmo/ef');">bauer [at] thp.uni-koeln.de</a>.</p><br>
 
 <form action="index.php?sec=insert_manual" method="post">
   Authors <small class="small">(Given name first, comma-separated, e.g. 'Max Mustermann, John Doe')</small><br>
@@ -122,7 +122,7 @@ Please use the manual insertion <b>only for unsupported journals</b>. If you thi
 	?>
   </select>
   <br><br>
-  <input type="submit" name="insertForm" value="Submit"> &nbsp; <input type="button" name="abort" value="Abort" onClick="window.location='index.php?sec=show';" /><span class="small" style='margin-left: 10px;'>(You will be able to verify your publication entry before final submission.)</span>
+  <input type="submit" name="insertForm" value="Submit"> &nbsp; <input type="button" name="abort" value="Abort" onClick="window.location='index.php?sec=show';" /><span class="small" style='margin-left: 10px;'>(You will be asked to verify your publication entry before final submission.)</span>
 </form>
 
 
@@ -160,7 +160,7 @@ if (isset($_POST["insertForm"])) {
             }
 ?>
 
-    <label> <small>Please confirm that this publication should be added to project(s) <?php echo join(', ', $_POST["projects"]); ?>.</small></label><br>
+    <label>Please confirm that this publication should be added to project(s) <?php echo join(', ', $_POST["projects"]); ?>.</label><br>
     Password: <input type="password" name="pw" >
 
             <input type="submit" name="confirm" value="Confirm">&nbsp; <input type="button" name="abort" value="Abort" onClick="window.location='index.php?sec=show';" />

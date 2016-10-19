@@ -147,7 +147,7 @@ Please specify a newer version of the publication:
 <p class="small"><b>Automatic lookup</b> supported for arXiv, APS journals, Nature journals. Elsewise, perform a <b><a href='index.php?sec=update_manual&id=<?php echo $oldpaper["id"]; ?>'>manual update</a></b>.</p>
 
 <form action="index.php?sec=update&id=<?php echo $oldpaper["id"]; ?>" method="post">
-  Publication Identifier:<br>
+  Publication identifier:<br>
   <input type="text" name="pubidstr" value="<?php echo (!empty($_POST))?$_POST["pubidstr"]:$oldpaper["identifier"]; ?>" required><br><br>
   Associated project(s):<br>
   <select class="selectpicker" name="projects[]" multiple required>
