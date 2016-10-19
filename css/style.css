@@ -113,7 +113,7 @@ div.panel.show {
 
 /* Project links */
 
-a.A, a.A:active, a.A:focus {
+a.A, a.A:active, a.A:focus, a.A:visited {
 	/*color: #13265D;*/
 	color: #1B1464;
 	font-family: source-sans-pro, sans-serif;
@@ -127,7 +127,7 @@ a.A:hover {
 	font-weight: 400;
 }
 
-a.B, a.B:active, a.B:focus {
+a.B, a.B:active, a.B:focus, a.B:visited {
 	/*color: #13265D;*/
 	color: #178A7D;
 	font-family: source-sans-pro, sans-serif;
@@ -141,7 +141,7 @@ a.B:hover {
 	font-weight: 400;
 }
 
-a.C, a.C:active, a.C:focus {
+a.C, a.C:active, a.C:focus, a.C:visited {
 	/*color: #13265D;*/
 	color: #D20C0C;
 	font-family: source-sans-pro, sans-serif;
@@ -207,8 +207,12 @@ p {
     line-height: 1.2;
 }
 
-#deletespan a {
+#deletespan a, #deletespan a:visited, #deletespan a:active, #deletespan a:focus {
 	color: #B22222;
+}
+
+#deletespan a:hover {
+	color: #ed2a2a;
 }
 
 input { font-size: 14px; width: 300px; }
