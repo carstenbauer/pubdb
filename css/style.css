@@ -22,9 +22,6 @@
 	margin-left: 10px;
 	color: black;
 }
-#deletespan a {
-	color: #B22222;
-}
 
 #navigation {
 	/*margin-right: 100px;*/
@@ -52,7 +49,7 @@
 /* Accordion */
 /* Style the buttons that are used to open and close the accordion panel */
 button.accordion {
-    background-color: #eee;
+    background-color: #A4A2B1;
     color: #444;
     cursor: pointer;
     padding: 10px;
@@ -62,6 +59,7 @@ button.accordion {
     outline: none;
 /*    transition: 0.4s;*/
     margin-bottom: 10px;
+    /*-webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;*/
 }
 
 button.accordion:after {
@@ -90,7 +88,7 @@ div.panel.show {
 
 /* Publication links */
 
-#pubp a {
+#pubp a, #updatepubp a {
 	/*color: #13265D;*/
 	color: black;
 	font-family: source-sans-pro, sans-serif;
@@ -98,7 +96,7 @@ div.panel.show {
 	font-weight: bold;
 }
 
-#pubp a:hover {
+#pubp a:hover, #updatepubp a:hover {
 	/*color: #13265D;*/
 	color: black;
 	font-family: source-sans-pro, sans-serif;
@@ -110,7 +108,7 @@ div.panel.show {
 
 a.A, a.A:active, a.A:focus {
 	/*color: #13265D;*/
-	color: #13265D;
+	color: #1B1464;
 	font-family: source-sans-pro, sans-serif;
 	font-weight: 400;
 }
@@ -197,4 +195,8 @@ p {
     font-weight: 400;
     font-size: 18px;
     line-height: 1.2;
+}
+
+#deletespan a {
+	color: #B22222;
 }
