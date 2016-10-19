@@ -226,7 +226,7 @@ if (isset($_POST["insertForm"])) {
     if ($paper === false || $paper["title"]==""){
         echo "<b>No paper is matching the given identifier.</b><br><br>";
     } else {
-        echo "<div><b>We found the following paper:</b><br><br>";
+        echo "<div><b>We found the following paper for replacement:</b><br><br>";
         ?>
 
         <p id="pubp"></p>
