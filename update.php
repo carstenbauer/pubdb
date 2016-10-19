@@ -148,7 +148,7 @@ Please specify a newer version of the publication:
 
 <form action="index.php?sec=update&id=<?php echo $oldpaper["id"]; ?>" method="post">
   Publication Identifier:<br>
-  <input type="text" name="pubidstr" value="<?php echo (!empty($_POST))?$_POST["pubidstr"]:""; ?>" required><br><br>
+  <input type="text" name="pubidstr" value="<?php echo (!empty($_POST))?$_POST["pubidstr"]:$oldpaper["identifier"]; ?>" required><br><br>
   Associated project(s):<br>
   <select class="selectpicker" name="projects[]" multiple required>
     <?php
