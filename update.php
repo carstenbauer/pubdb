@@ -126,7 +126,7 @@ foreach ($publications as $p) {
 
 <body onload='printPublication();'>
 
-<h2>Update publication</h2>
+<h2><?php echo $deleteMode?"Delete publication":"Update publication"; ?></h2>
 
 <b>Selected publication:</b> <br><br>
 
