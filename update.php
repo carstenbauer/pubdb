@@ -189,7 +189,7 @@ if ($deleteMode && !isset($_POST["confirmdelete"])) {
         <form action="index.php?sec=update&id=<?php echo $oldpaper["id"]; ?>" method="post">
     Password: <input type="password" name="pw" >
 
-            <input type="submit" name="confirmdelete" value="Confirm">&nbsp; <input type="button" name="abort" value="Abort" onClick="window.location='index.php?sec=show';" />
+            &nbsp;<input type="submit" name="confirmdelete" value="Confirm">&nbsp; <input type="button" name="abort" value="Abort" onClick="window.location='index.php?sec=show';" />
         </form>
         </div>
         <?php
