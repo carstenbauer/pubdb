@@ -97,7 +97,7 @@ else
 
 <h2>Insert publication</h2>
 
-<p><b>Automatic lookup</b> supported for arXiv, APS journals, Nature journals. Elsewise, perform a <b><a href='index.php?sec=insert_manual'>manual entry</a></b>.</p>
+<p>Use <b>automatic lookup</b> for arXiv, APS journals, Nature journals or insert <b><a href='index.php?sec=insert_manual'>manual entry</a></b>.</p>
 
 <form action="index.php?sec=insert" method="post">
   Publication Identifier:<br>
