@@ -130,7 +130,7 @@ foreach ($publications as $p) {
 
 <h2>Update publication</h2>
 
-Selected publication: <br>
+<b>Selected publication:</b> <br><br>
 
 <?php 
 
@@ -142,8 +142,8 @@ if (!$validID){
 ?>
 
 <div id="insertformdiv" <?php echo $deleteMode?"hidden":""; ?>>
-<br>
-Please specify a newer version of the publication:
+<br><br>
+<b>Replace by:</b><br><br>
 
 <p>Use <b>automatic lookup</b> for arXiv, APS journals, Nature journals or perform <b><a href='index.php?sec=update_manual&id=<?php echo $oldpaper["id"]; ?>'>manual update</a></b>.</p>
 
@@ -191,7 +191,7 @@ if ($deleteMode && !isset($_POST["confirmdelete"])) {
         <br>
         <form action="index.php?sec=update&id=<?php echo $oldpaper["id"]; ?>" method="post">
         <br>
-    <label>Please confirm that this entry should be deleted.</label><br><br>
+    Please confirm that this entry should be deleted.<br><br>
     Password: <input type="password" name="pw" >
 
             <input type="submit" name="confirmdelete" value="Confirm">&nbsp; <input type="button" name="abort" value="Abort" onClick="window.location='index.php?sec=show';" />
@@ -239,7 +239,7 @@ if (isset($_POST["insertForm"])) {
             }
 ?>
     <br>
-    <label>Please confirm that this paper should replace the selected one with assignment to project(s) <?php echo join(', ', $_POST["projects"]); ?>.</label><br><br>
+    Please confirm that this paper should replace the selected one with assignment to project(s) <?php echo join(', ', $_POST["projects"]); ?>.<br><br>
     Password: <input type="password" name="pw" >
 
             <input type="submit" name="confirm" value="Confirm"> &nbsp; <input type="button" name="abort" value="Abort" onClick="window.location='index.php?sec=show';" />

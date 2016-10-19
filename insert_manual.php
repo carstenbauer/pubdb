@@ -160,7 +160,7 @@ if (isset($_POST["insertForm"])) {
             }
 ?>
     <br><br>
-    <label>Please confirm that this publication should be added to project(s) <?php echo join(', ', $_POST["projects"]); ?>.</label><br><br>
+    Please confirm that this publication should be added to project(s) <?php echo join(', ', $_POST["projects"]); ?>.<br><br>
     Password: <input type="password" name="pw" >
 
             &nbsp;<input type="submit" name="confirm" value="Confirm">&nbsp; <input type="button" name="abort" value="Abort" onClick="window.location='index.php?sec=show';" />

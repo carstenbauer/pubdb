@@ -175,7 +175,7 @@ Please enter the details of the publication that should replace the selected pub
 </div>
 
 
-<br><br>
+<br><br><br>
 
 <?php
 
@@ -210,8 +210,8 @@ if (isset($_POST["insertForm"])) {
                 echo "<input type=hidden name='projects[]' value='".$project."' >";
             }
 ?>
-
-    <label> <small>Please confirm that this paper should replace the selected one with assignment to project(s) <?php echo join(', ', $_POST["projects"]); ?>.</small></label><br>
+    <br>
+    Please confirm that this paper should replace the selected one with assignment to project(s) <?php echo join(', ', $_POST["projects"]); ?>.<br><br>
     Password: <input type="password" name="pw" >
 
             <input type="submit" name="confirm" value="Confirm">&nbsp; <input type="button" name="abort" value="Abort" onClick="window.location='index.php?sec=show';" />
