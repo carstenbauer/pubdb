@@ -195,16 +195,16 @@ if (isset($_POST["insertForm"])) {
         <p id="pubp"></p>
         <br>
         <form action="index.php?sec=update_manual&id=<?php echo $oldpaper["id"]; ?>" method="post">
-            <input type=hidden name="pubtitle" value='<?php echo $_POST["pubtitle"]; ?>' >
-            <input type=hidden name="pubauthors" value='<?php echo $_POST["pubauthors"]; ?>' >
-            <input type=hidden name="pubjournal" value='<?php echo $_POST["pubjournal"]; ?>' >
-            <input type=hidden name="pubidentifier" value='<?php echo $_POST["pubidentifier"]; ?>' >
-            <input type=hidden name="puburl" value='<?php echo $_POST["puburl"]; ?>' >
-            <input type=hidden name="pubmonth" value='<?php echo $_POST["pubmonth"]; ?>' >
-            <input type=hidden name="pubyear" value='<?php echo $_POST["pubyear"]; ?>' >
-            <input type=hidden name="pubbibtex" value='<?php echo $_POST["pubbibtex"]; ?>' >
-            <input type=hidden name="pubvolume" value='<?php echo $_POST["pubvolume"]; ?>' >
-            <input type=hidden name="pubnumber" value='<?php echo $_POST["pubnumber"]; ?>' >
+            <input type=hidden name="pubtitle" value="<?php echo $_POST["pubtitle"]; ?>" >
+            <input type=hidden name="pubauthors" value="<?php echo $_POST["pubauthors"]; ?>" >
+            <input type=hidden name="pubjournal" value="<?php echo $_POST["pubjournal"]; ?>" >
+            <input type=hidden name="pubidentifier" value="<?php echo $_POST["pubidentifier"]; ?>" >
+            <input type=hidden name="puburl" value="<?php echo $_POST["puburl"]; ?>" >
+            <input type=hidden name="pubmonth" value="<?php echo $_POST["pubmonth"]; ?>" >
+            <input type=hidden name="pubyear" value="<?php echo $_POST["pubyear"]; ?>" >
+            <input type=hidden name="pubbibtex" value="<?php echo htmlentities($_POST["pubbibtex"]); ?>" >
+            <input type=hidden name="pubvolume" value="<?php echo $_POST["pubvolume"]; ?>" >
+            <input type=hidden name="pubnumber" value="<?php echo $_POST["pubnumber"]; ?>" >
             <?php
             foreach($_POST["projects"] as $project){
                 echo "<input type=hidden name='projects[]' value='".$project."' >";
@@ -238,24 +238,28 @@ if (isset($_POST["confirm"])){
     } else {
         $paper["projects"] = $_POST["projects"];
 
-        $succ = $db->removePaper($oldpaper);
-        if ($succ) {
-            echo "The old paper has been successfully removed from our database.<br><br>";
-        } else {
-            echo "There was a problem with our database during removal process. Please try again.";
-            echo "<br><br>";
-            echo "<input type=\"button\" name=\"back\" value=\"Back to publications\" onClick=\"window.location='index.php?sec=show';\" />";
-            exit();
-        }
-        $succ = $db->insertPaper($paper);
-        if ($succ) {
-            echo "The new paper has been successfully added to our database. <br><br><b>Thank you for taking the time!</b>";
+        if ($db->paperExistsApartFromOldPaper($paper,$oldpaper)) {
+            echo "This paper is already in our database.";
             echo "<br><br>";
             echo "<input type=\"button\" name=\"back\" value=\"Back to publications\" onClick=\"window.location='index.php?sec=show';\" />";
         } else {
-            echo "There was a problem with our database during insertion process. Please try again.";
-            echo "<br><br>";
-            echo "<input type=\"button\" name=\"back\" value=\"Back to publications\" onClick=\"window.location='index.php?sec=show';\" />";
+            $succ = $db->removePaper($oldpaper);
+            if (!$succ) {
+                echo "There was a problem with our database during removal process. Please try again.";
+                echo "<br><br>";
+                echo "<input type=\"button\" name=\"back\" value=\"Back to publications\" onClick=\"window.location='index.php?sec=show';\" />";
+                exit();
+            }
+            $succ = $db->insertPaper($paper);
+            if ($succ) {
+                echo "The paper has been successfully updated. Thank you for taking the time!";
+                echo "<br><br>";
+                echo "<input type=\"button\" name=\"back\" value=\"Back to publications\" onClick=\"window.location='index.php?sec=show';\" />";
+            } else {
+                echo "There was a problem with our database during insertion process. Please try again.";
+                echo "<br><br>";
+                echo "<input type=\"button\" name=\"back\" value=\"Back to publications\" onClick=\"window.location='index.php?sec=show';\" />";
+            }
         }
     }
 }

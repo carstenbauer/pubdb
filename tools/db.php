@@ -161,7 +161,23 @@ function getProjectsOfPublication($pub){
     return $projects;
 }
 
+function paperExists($paper){
+    $sql = "SELECT * FROM Publications WHERE identifier='".$paper["identifier"]."'";
+    $result = $this->conn->query($sql);
+    if(mysqli_num_rows($result)!=0)
+        return true;
+    else
+        return false;
+}
 
+function paperExistsApartFromOldPaper($paper,$oldpaper){
+    $sql = "SELECT * FROM Publications WHERE identifier='".$paper["identifier"]."' AND id<>'".$oldpaper["id"]."'";
+    $result = $this->conn->query($sql);
+    if(mysqli_num_rows($result)!=0)
+        return true;
+    else
+        return false;
+}
 
 function insertPaper($paper){
     # Insert publication into db
@@ -176,6 +192,8 @@ function insertPaper($paper){
         $paper["number"] = "";
     if (!isset($paper["month"]))
         $paper["month"] = "0";
+
+    if ($this->paperExists($paper)) return false;
 
     $sql = "INSERT INTO Publications (authors, title, year, month, url, journal, volume, number, identifier, bibtex) VALUES ('".$authors_str."', '".$this->escape($paper["title"])."', '".$paper["year"]."', '".$paper["month"]."', '".$paper["url"]."', '".$paper["journal"]."', '".$paper["volume"]."', '".$paper["number"]."', '".$paper["identifier"]."', '".$this->escape($paper["bibtex"])."')";
     $result = $this->conn->query($sql);

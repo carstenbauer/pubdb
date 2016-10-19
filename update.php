@@ -260,26 +260,32 @@ if (isset($_POST["confirm"])){
     } elseif ($_POST["pw"]!==INSERTPASSWORD) {
         echo "<b>Oops, the password is not correct!</b>";
     } else {
-        $succ = $db->removePaper($oldpaper);
-        if (!$succ) {
-            echo "There was a problem with our database during removal process. Please try again.";
-            echo "<br><br>";
-            echo "<input type=\"button\" name=\"back\" value=\"Back to publications\" onClick=\"window.location='index.php?sec=show';\" />";
-            exit();
-        }
-
-        if($paper["journal"]=="arxiv"){
-            $paper["bibtex"] = generateArXivBibTeX($paper);
-        }
-        $succ = $db->insertPaper($paper);
-        if ($succ) {
-            echo "The paper has been successfully updated. Thank you for taking the time!";
+        if ($db->paperExistsApartFromOldPaper($paper,$oldpaper)) {
+            echo "This paper is already in our database.";
             echo "<br><br>";
             echo "<input type=\"button\" name=\"back\" value=\"Back to publications\" onClick=\"window.location='index.php?sec=show';\" />";
         } else {
-            echo "There was a problem with our database during insertion process. Please try again.";
-            echo "<br><br>";
-            echo "<input type=\"button\" name=\"back\" value=\"Back to publications\" onClick=\"window.location='index.php?sec=show';\" />";
+            $succ = $db->removePaper($oldpaper);
+            if (!$succ) {
+                echo "There was a problem with our database during removal process. Please try again.";
+                echo "<br><br>";
+                echo "<input type=\"button\" name=\"back\" value=\"Back to publications\" onClick=\"window.location='index.php?sec=show';\" />";
+                exit();
+            }
+
+            if($paper["journal"]=="arxiv"){
+                $paper["bibtex"] = generateArXivBibTeX($paper);
+            }
+            $succ = $db->insertPaper($paper);
+            if ($succ) {
+                echo "The paper has been successfully updated. Thank you for taking the time!";
+                echo "<br><br>";
+                echo "<input type=\"button\" name=\"back\" value=\"Back to publications\" onClick=\"window.location='index.php?sec=show';\" />";
+            } else {
+                echo "There was a problem with our database during insertion process. Please try again.";
+                echo "<br><br>";
+                echo "<input type=\"button\" name=\"back\" value=\"Back to publications\" onClick=\"window.location='index.php?sec=show';\" />";
+            }
         }
     }
 }

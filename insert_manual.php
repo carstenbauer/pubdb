@@ -145,16 +145,16 @@ if (isset($_POST["insertForm"])) {
         <p id="pubp"></p>
         <br>
         <form action="index.php?sec=insert_manual" method="post">
-            <input type=hidden name="pubtitle" value='<?php echo $_POST["pubtitle"]; ?>' >
-            <input type=hidden name="pubauthors" value='<?php echo $_POST["pubauthors"]; ?>' >
-            <input type=hidden name="pubjournal" value='<?php echo $_POST["pubjournal"]; ?>' >
-            <input type=hidden name="pubidentifier" value='<?php echo $_POST["pubidentifier"]; ?>' >
-            <input type=hidden name="puburl" value='<?php echo $_POST["puburl"]; ?>' >
-            <input type=hidden name="pubyear" value='<?php echo $_POST["pubyear"]; ?>' >
-            <input type=hidden name="pubmonth" value='<?php echo $_POST["pubmonth"]; ?>' >
-            <input type=hidden name="pubbibtex" value='<?php echo $_POST["pubbibtex"]; ?>' >
-            <input type=hidden name="pubvolume" value='<?php echo $_POST["pubvolume"]; ?>' >
-            <input type=hidden name="pubnumber" value='<?php echo $_POST["pubnumber"]; ?>' >
+            <input type=hidden name="pubtitle" value="<?php echo $_POST["pubtitle"]; ?>" >
+            <input type=hidden name="pubauthors" value="<?php echo $_POST["pubauthors"]; ?>" >
+            <input type=hidden name="pubjournal" value="<?php echo $_POST["pubjournal"]; ?>" >
+            <input type=hidden name="pubidentifier" value="<?php echo $_POST["pubidentifier"]; ?>" >
+            <input type=hidden name="puburl" value="<?php echo $_POST["puburl"]; ?>" >
+            <input type=hidden name="pubyear" value="<?php echo $_POST["pubyear"]; ?>" >
+            <input type=hidden name="pubmonth" value="<?php echo $_POST["pubmonth"]; ?>" >
+            <input type=hidden name="pubbibtex" value="<?php echo htmlentities($_POST["pubbibtex"]); ?>" >
+            <input type=hidden name="pubvolume" value="<?php echo $_POST["pubvolume"]; ?>" >
+            <input type=hidden name="pubnumber" value="<?php echo $_POST["pubnumber"]; ?>" >
             <?php
             foreach($_POST["projects"] as $project){
                 echo "<input type=hidden name='projects[]' value='".$project."' >";
@@ -187,15 +187,22 @@ if (isset($_POST["confirm"])){
         echo "<b>Oops, the password is not correct!</b>";
     } else {
         $paper["projects"] = $_POST["projects"];
-        $succ = $db->insertPaper($paper);
-        if ($succ) {
-            echo "The paper has been successfully added to our database. Thank you for taking the time!";
+
+        if ($db->paperExists($paper)) {
+            echo "This paper is already in our database.";
             echo "<br><br>";
             echo "<input type=\"button\" name=\"back\" value=\"Back to publications\" onClick=\"window.location='index.php?sec=show';\" />";
         } else {
-            echo "There was a problem with our database. Please try again.";
-            echo "<br><br>";
-            echo "<input type=\"button\" name=\"back\" value=\"Back to publications\" onClick=\"window.location='index.php?sec=show';\" />";
+            $succ = $db->insertPaper($paper);
+            if ($succ) {
+                echo "The paper has been successfully added to our database. Thank you for taking the time!";
+                echo "<br><br>";
+                echo "<input type=\"button\" name=\"back\" value=\"Back to publications\" onClick=\"window.location='index.php?sec=show';\" />";
+            } else {
+                echo "There was a problem with our database. Please try again.";
+                echo "<br><br>";
+                echo "<input type=\"button\" name=\"back\" value=\"Back to publications\" onClick=\"window.location='index.php?sec=show';\" />";
+            }
         }
     }
 }
