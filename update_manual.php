@@ -127,6 +127,8 @@ if (!$validID){
 <br><br>
 <b>Replace by:</b><br><br>
 
+<?php if (!isset($_POST['confirm'])) { ?>
+
 <form action="index.php?sec=update_manual&id=<?php echo $oldpaper["id"]; ?>" method="post">
   Authors <small class="small">(Given name first, comma-separated, e.g. 'Max Mustermann, John Doe')</small><br>
   <input type="text" name="pubauthors" value="<?php echo (!empty($_POST))?$_POST["pubauthors"]:join(", ",$oldpaper["authors"]); ?>" required><br>
@@ -176,6 +178,8 @@ if (!$validID){
 
 
 <br><br><br>
+
+<?php } ?>
 
 <?php
 
