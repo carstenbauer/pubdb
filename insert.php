@@ -123,7 +123,7 @@ else
 </form>
 
 <br><br>
-<p class="small"><b> Please note that if you register your publication in the publication system of the Institute of Physics II, it is soon going to be added to the CRC database automatically.</b></p>
+<p class="small">Please note that publications from the publication system of the <b> Institute of Physics II</b> are added automatically.</p>
 
 <br><br>
 
@@ -152,7 +152,7 @@ if (isset($_POST["insertForm"])) {
             }
 ?>
 
-    <label> <small>Please confirm that this paper should be added to project(s) <?php echo join(', ', $_POST["projects"]); ?>.</small></label><br>
+    <label>Please confirm that this paper should be added to project(s) <?php echo join(', ', $_POST["projects"]); ?>.</label><br>
     Password: <input type="password" name="pw" >
 
             <input type="submit" name="confirm" value="Confirm"> &nbsp; <input type="button" name="abort" value="Abort" onClick="window.location='index.php?sec=show';" />
