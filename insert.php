@@ -151,8 +151,8 @@ if (isset($_POST["insertForm"])) {
                 echo "<input type=hidden name='projects[]' value='".$project."' >";
             }
 ?>
-
-    <label>Please confirm that this paper should be added to project(s) <?php echo join(', ', $_POST["projects"]); ?>.</label><br>
+    <br><br>
+    <label>Please confirm that this paper should be added to project(s) <?php echo join(', ', $_POST["projects"]); ?>.</label><br><br>
     Password: <input type="password" name="pw" >
 
             <input type="submit" name="confirm" value="Confirm"> &nbsp; <input type="button" name="abort" value="Abort" onClick="window.location='index.php?sec=show';" />
