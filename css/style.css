@@ -214,3 +214,6 @@ p {
 input { font-size: 14px; width: 300px; }
 textarea { font-size: 14px; width: 300px; }
 input[type="button"], input[type="submit"] { font-size: 14px; width: 100px; height: 35px; }
+input[name="back"] {
+	width: 200px;
+}
