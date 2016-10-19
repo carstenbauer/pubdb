@@ -98,7 +98,7 @@ div.panel.show {
 #pubp a, #updatepubp a {
 	/*color: #13265D;*/
 	color: black;
-	font-family: source-sans-pro, sans-serif;
+	font-family: 'Source Sans Pro', sans-serif;
 	text-decoration: inherit;
 	font-weight: bold;
 }
@@ -106,7 +106,7 @@ div.panel.show {
 #pubp a:hover, #updatepubp a:hover {
 	/*color: #13265D;*/
 	color: black;
-	font-family: source-sans-pro, sans-serif;
+	font-family: 'Source Sans Pro', sans-serif;
 	text-decoration: none;
 	font-weight: bold;
 }
@@ -116,42 +116,42 @@ div.panel.show {
 a.A, a.A:active, a.A:focus, a.A:visited {
 	/*color: #13265D;*/
 	color: #1B1464;
-	font-family: source-sans-pro, sans-serif;
+	font-family: 'Source Sans Pro', sans-serif;
 	font-weight: 400;
 }
 
 a.A:hover {
 	/*color: #13265D;*/
 	color: #344B8E;
-	font-family: source-sans-pro, sans-serif;
+	font-family: 'Source Sans Pro', sans-serif;
 	font-weight: 400;
 }
 
 a.B, a.B:active, a.B:focus, a.B:visited {
 	/*color: #13265D;*/
 	color: #178A7D;
-	font-family: source-sans-pro, sans-serif;
+	font-family: 'Source Sans Pro', sans-serif;
 	font-weight: 400;
 }
 
 a.B:hover {
 	/*color: #13265D;*/
 	color: #17C2A9;
-	font-family: source-sans-pro, sans-serif;
+	font-family: 'Source Sans Pro', sans-serif;
 	font-weight: 400;
 }
 
 a.C, a.C:active, a.C:focus, a.C:visited {
 	/*color: #13265D;*/
 	color: #D20C0C;
-	font-family: source-sans-pro, sans-serif;
+	font-family: 'Source Sans Pro', sans-serif;
 	font-weight: 400;
 }
 
 a.C:hover {
 	/*color: #13265D;*/
 	color: #D74680;
-	font-family: source-sans-pro, sans-serif;
+	font-family: 'Source Sans Pro', sans-serif;
 	font-weight: 400;
 }
 
@@ -168,7 +168,7 @@ a#showall:hover {
 a {
 	/*color: #13265D;*/
 	color: #3C5499;
-	font-family: source-sans-pro, sans-serif;
+	font-family: 'Source Sans Pro', sans-serif;
 	text-decoration: inherit;
 }
 
@@ -184,7 +184,7 @@ a:active, a:focus {
 }
 
 body {
-    font-family: source-sans-pro, sans-serif;
+    font-family: 'Source Sans Pro', sans-serif;
     font-weight: 400;
     font-size: 18px;
     line-height: 1.2;
@@ -195,13 +195,13 @@ body {
 h2 {
 	text-align: center;
 	font-weight: 600;
-	font-family: source-sans-pro, sans-serif;
+	font-family: 'Source Sans Pro', sans-serif;
 	font-size: 24px;
 	margin-bottom: 30px;
 }
 
 p {
-	font-family: source-sans-pro, sans-serif;
+	font-family: 'Source Sans Pro', sans-serif;
     font-weight: 400;
     font-size: 18px;
     line-height: 1.2;
