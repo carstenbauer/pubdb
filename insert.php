@@ -185,14 +185,15 @@ if (isset($_POST["confirm"])){
             $paper["bibtex"] = generateArXivBibTeX($paper);
         }
         
-        // $succ = $db->insertPaper($paper);
-        $succ = true;
+        $succ = $db->insertPaper($paper);
         if ($succ) {
             echo "The paper has been successfully added to our database. Thank you for taking the time!";
             echo "<br><br>";
-            echo "<div style=\"text-align:center;\"><input class=centeredbtn type=\"button\" name=\"back\" value=\"Back to publications\" onClick=\"window.location='index.php?sec=show';\" /></div>";
+            echo "<input type=\"button\" name=\"back\" value=\"Back to publications\" onClick=\"window.location='index.php?sec=show';\" />";
         } else {
             echo "There was a problem with our database. Please try again.";
+            echo "<br><br>";
+            echo "<input type=\"button\" name=\"back\" value=\"Back to publications\" onClick=\"window.location='index.php?sec=show';\" />";
         }
     }
 }
