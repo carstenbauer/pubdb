@@ -58,7 +58,6 @@ if (isset($_POST["insertForm"])||isset($_POST["confirm"])) {
         $paper["year"] = $_POST['pubyear'];
         $paper["month"] = monthStrToInt($_POST['pubmonth']);
         $paper["bibtex"] = $_POST['pubbibtex'];
-        echo $paper['bibtex'];
         $paper["identifier"] = $_POST['pubidentifier'];
         $paper["volume"] = $_POST['pubvolume'];
         $paper["number"] = $_POST['pubnumber'];
@@ -109,10 +108,10 @@ if (isset($_POST["insertForm"])||isset($_POST["confirm"])) {
 
 <h2>Update publication (manual)</h2>
 
-<p class="small">
-Please use the manual update <b>only for unsupported journals</b>. If you think that your publication is no exception and the corresponding journal should be admitted to the automatic insertion system, please write an email to <a href="javascript:linkTo_UnCryptMailto('nbjmup;cbvfsAuiq/voj.lpfmo/ef');">bauer [at] thp.uni-koeln.de</a>.</p> 
+<p>
+Please use the manual update <b>only for unsupported journals</b>. If you think that your publication is no exception and the corresponding journal should be admitted to the automatic insertion system, please write an email to <a href="javascript:linkTo_UnCryptMailto('nbjmup;cbvfsAuiq/voj.lpfmo/ef');">bauer [at] thp.uni-koeln.de</a>.</p> <br>
 
-Selected publication: <br>
+<b>Selected publication:</b> <br><br>
 
 <?php 
 
@@ -124,8 +123,8 @@ if (!$validID){
 ?>
 
 <div id="insertformdiv">
-<br>
-Please enter the details of the publication that should replace the selected publication:
+<br><br>
+<b>Replace by:</b><br><br>
 
 <form action="index.php?sec=update_manual&id=<?php echo $oldpaper["id"]; ?>" method="post">
   Authors <small class="small">(Given name first, comma-separated, e.g. 'Max Mustermann, John Doe')</small><br>
@@ -189,7 +188,7 @@ if (isset($_POST["insertForm"])) {
     } elseif(!isset($_POST["projects"])||empty($_POST["projects"])) {
         echo "<b>You have to specify at least one project.</b><br><br>";
     } else {
-        echo "<div><b>Your publication list entry will look as follows:</b><br><br>";
+        echo "<div><b>Your updated publication list entry will look as follows:</b><br><br>";
         ?>
 
         <p id="pubp"></p>

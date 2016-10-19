@@ -115,9 +115,7 @@ foreach ($publications as $p) {
                 updatepubp.innerHTML = updatepubp.innerHTML + "<span id=deletespan><a href='javascript:document.forms[\"deleteform\"].submit();'>[Delete]</a></span>";
             }
             var pub = <?php echo ($publ===False)?"\"none\"":json_encode($publ); ?>;
-            if (<?php echo $deleteMode?"true":"false"; ?>) {
-                pubp.innerHTML = PublicationToHTMLString(pubselected);
-            } else if (pub != "none") {
+            if (pub != "none") {
                 var pubstr = PublicationToHTMLString(pub);
                 pubp.innerHTML = pubstr;
                 // foundbox.style.display = 'inline';
@@ -184,14 +182,10 @@ if (!$validID){
 # Delete paper has been requested
 if ($deleteMode && !isset($_POST["confirmdelete"])) {
 
-    echo "<div><b>Do you really want to <span style='color: red;'>delete</span> the following publication entry:</b><br><br>";
+    echo "<div><b>Do you really want to <span style='color: red;'>delete</span> the publication entry above?</b><br><br>";
 ?>
 
-        <p id="pubp"></p>
-        <br>
         <form action="index.php?sec=update&id=<?php echo $oldpaper["id"]; ?>" method="post">
-        <br>
-    Please confirm that this entry should be deleted.<br><br>
     Password: <input type="password" name="pw" >
 
             <input type="submit" name="confirmdelete" value="Confirm">&nbsp; <input type="button" name="abort" value="Abort" onClick="window.location='index.php?sec=show';" />
@@ -266,10 +260,10 @@ if (isset($_POST["confirm"])){
         echo "<b>Oops, the password is not correct!</b>";
     } else {
         $succ = $db->removePaper($oldpaper);
-        if ($succ) {
-            echo "The old paper has been successfully removed from our database.<br><br>";
-        } else {
+        if (!$succ) {
             echo "There was a problem with our database during removal process. Please try again.";
+            echo "<br><br>";
+            echo "<input type=\"button\" name=\"back\" value=\"Back to publications\" onClick=\"window.location='index.php?sec=show';\" />";
             exit();
         }
 
@@ -278,7 +272,7 @@ if (isset($_POST["confirm"])){
         }
         $succ = $db->insertPaper($paper);
         if ($succ) {
-            echo "The paper has been successfully added to our database. <br><br><b>Thank you for taking the time!</b>";
+            echo "The paper has been successfully updated. Thank you for taking the time!";
             echo "<br><br>";
             echo "<input type=\"button\" name=\"back\" value=\"Back to publications\" onClick=\"window.location='index.php?sec=show';\" />";
         } else {
