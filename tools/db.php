@@ -8,6 +8,7 @@ public $conn = false;
 
 function connect() {
     $this->conn = new mysqli(SERVERNAME, USERNAME, PASSWORD, DBNAME);
+    mysqli_set_charset($this->conn,"utf8");
     return !$this->conn->connect_error;
 }
 
