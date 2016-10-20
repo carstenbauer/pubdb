@@ -64,6 +64,10 @@ class apsParser {
 
     private static function handleBibTeXSpecialSymbols($bibtexstr){
         $str = str_replace("\\\"a", "ä", $bibtexstr);
+        $str = str_replace("\\ifmmode \\check{c}\\else \\v{c}\\fi{}", "\\v{c}", $str);
+        $str = str_replace("\\ifmmode \\check{C}\\else \\v{C}\\fi{}", "\\v{C}", $str);
+        $str = str_replace("\\ifmmode \\check{s}\\else \\v{s}\\fi{}", "\\v{s}", $str);
+        $str = str_replace("\\ifmmode \\check{S}\\else \\v{S}\\fi{}", "\\v{S}", $str);
         $str = str_replace("\\\"A", "Ä", $str);
         $str = str_replace("\\\"o", "ö", $str);
         $str = str_replace("\\\"u", "ü", $str);
@@ -81,6 +85,8 @@ class apsParser {
         $str = str_replace("\\~n", "ñ", $str);
         $str = str_replace("\\v{c}", "č", $str);
         $str = str_replace("\\v{C}", "Č", $str);
+        $str = str_replace("\\v{s}", "š", $str);
+        $str = str_replace("\\v{S}", "Š", $str);
 
         return $str;
     }
