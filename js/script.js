@@ -81,8 +81,14 @@ function isManualEntry(pub){
 }
 
 function PublicationToHTMLString(pub){
-	if (Array.isArray(pub.authors))
-	    var authors_str = pub.authors.join(", ");
+	if (Array.isArray(pub.authors)){
+		if (pub.authors.length > 2) 
+			var authors_str = pub.authors.slice(0, -1).join(', ')+', and '+pub.authors.slice(-1);
+		else if (pub.authors.length == 2)
+			var authors_str = pub.authors[0].toString()+" and "+pub.authors[1].toString();
+		else
+			var authors_str = pub.authors[0].toString();
+	}
 	else
 		var authors_str = pub.authors.toString();
 
