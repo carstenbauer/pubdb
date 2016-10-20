@@ -128,7 +128,8 @@ Please use the manual insertion <b>only for unsupported journals</b>. If you thi
   <input type="submit" name="insertForm" value="Submit"> &nbsp; <input type="button" name="abort" value="Abort" onClick="window.location='index.php?sec=show';" /><span class="small" style='margin-left: 10px;'>(You will be asked to verify your publication entry before final submission.)</span>
 </form>
 
-
+<br>
+<p class="medium"><b>Note</b>: Please only submit manuscripts to the CRC database that explicitly acknowledge funding through the CRC by including a sentence of the form "This work was partially supported by the DFG within the CRC 1238 (project C03).”</p>
 <br><br><br>
 
 <?php } ?>
