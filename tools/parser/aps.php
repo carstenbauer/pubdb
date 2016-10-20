@@ -79,6 +79,8 @@ class apsParser {
         $str = str_replace("\\aa", "å", $str);
         $str = str_replace("\\c", "ç", $str);
         $str = str_replace("\\~n", "ñ", $str);
+        $str = str_replace("\\v{c}", "č", $str);
+        $str = str_replace("\\v{C}", "Č", $str);
 
         return $str;
     }
