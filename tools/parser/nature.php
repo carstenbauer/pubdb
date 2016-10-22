@@ -121,6 +121,11 @@ class natureParser {
             unlink($ris);
         } else
             $bib = "";
+
+        # Get rid of strange "EP -" in pages tag
+        $pos = strpos($bib, 'EP ');
+        $bib = substr_replace($bib, "", $pos-1, 6);
+
         return $bib;
     }
 
