@@ -79,4 +79,13 @@ function monthStrToInt($monthstr){
     }
 }
 
+function isYear($nr){
+    if (!is_numeric($nr)) $nr = intval($nr);
+
+    if ($nr>1000 && $nr<2100)
+        return true;
+
+    return false;
+};
+
 ?>

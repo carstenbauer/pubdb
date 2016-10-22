@@ -2,6 +2,7 @@
 # Authors: Carsten Bauer
 include_once("config/config.php");
 include_once(SIMPLEPIE_AUTOLOADER_LOCATION.'/autoloader.php');
+include_once('tools/generic_functions.php');
 
 
 class natureParser {
@@ -26,6 +27,8 @@ class natureParser {
             return "nphys";
         } elseif(natureParser::contains($str,"ncomms") || natureParser::contains($str,"comm")){
             return "ncomms";
+        } elseif(natureParser::contains($str,"srep") || natureParser::contains($str,"rep")){
+            return "srep";
         } elseif(natureParser::contains($str,"nature")) {
             return "nature";
         } else {
@@ -56,8 +59,18 @@ class natureParser {
             case "ncomms":
                 if (count($numbers)==1)
                     return "ncomms".$numbers[0];
-                elseif (count($numbers)>=2)
+                elseif (count($numbers)>=2 && !isYear($numbers[1]))
                     return "ncomms".$numbers[1];
+                else
+                    return "ncomms".$numbers[0];
+                break;
+            case "srep":
+                if (count($numbers)==1)
+                    return "srep".$numbers[0];
+                elseif (count($numbers)>=2 && !isYear($numbers[1]))
+                    return "srep".$numbers[1];
+                else
+                    return "srep".$numbers[0];
                 break;
             case "nphys":
             case "nature":
@@ -84,7 +97,11 @@ class natureParser {
                 $number = $obj["prism:number"];
                 $url = "http://www.nature.com/nphys/journal/v".$volume."/n".$number."/ris/".$id.".ris";
                 break;
-            
+
+            case "srep":
+                $url = "http://www.nature.com/articles/".$id.".ris";
+                break;
+
             case "ncomms":
                 $url = "http://www.nature.com/articles/".$id.".ris";
                 break;
@@ -115,6 +132,8 @@ class natureParser {
 
         $paper = array();
         $paper["journal"] = natureParser::extractJournal($natureStr);
+        if ($paper['journal'] === false)
+            return False;
         $paper["identifier"] = $id;
 
         $url = "http://www.nature.com/opensearch/request?queryType=cql&query=".$id."&httpAccept=application/json";
@@ -132,6 +151,8 @@ class natureParser {
         if ($paper["journal"]=="nphys")
             $paper["number"] = $obj["prism:startingPage"];
         else if ($paper["journal"]=="ncomms")
+            $paper["number"] = natureParser::extractNumbers($id)[0];
+        else if ($paper["journal"]=="srep")
             $paper["number"] = natureParser::extractNumbers($id)[0];
         else // journal is nature
             $paper["number"] = $obj["prism:startingPage"];

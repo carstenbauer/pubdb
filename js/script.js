@@ -59,6 +59,11 @@ function journalToString(pub){
 	    		return "Nature Phys. ".concat("<b>"+volume+"</b>").concat(", ").concat(number);
 	    	else
 	    		return "Nature Phys. ".concat(natureIdToString(id));
+	    case "srep":
+	    	if (volume!="" && number !="")
+	    		return "Scientific Reports ".concat("<b>"+volume+"</b>").concat(", ").concat(number);
+	    	else
+	    		return "Scientific Reports ".concat(natureIdToString(id));
 	    case "nature":
 	    	if (volume!="" && number !="")
 	    		return "Nature ".concat("<b>"+volume+"</b>").concat(", ").concat(number);
@@ -73,7 +78,7 @@ function journalToString(pub){
 }
 
 function isManualEntry(pub){
-	var journals = ["pra", "prb", "prc", "prd", "pre", "prl", "rmp", "arxiv", "ncomms", "nphys", "nature"];
+	var journals = ["pra", "prb", "prc", "prd", "pre", "prl", "rmp", "arxiv", "ncomms", "nphys", "srep", "nature"];
 	if (journals.indexOf(pub.journal.toString()) > -1)
 		return false;
 	else
