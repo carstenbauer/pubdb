@@ -34,6 +34,48 @@ class arxivParser {
         return $numbers[0].".".$numbers[1];
     }
 
+    private static function handleBibTeXSpecialSymbols($bibtexstr){
+        $str = str_replace("ä", "\\\"a", $bibtexstr);
+        $str = str_replace("Ä", "\\\"A", $str);
+        $str = str_replace("ö", "\\\"o", $str);
+        $str = str_replace("ü", "\\\"u", $str);
+        $str = str_replace("Ö", "\\\"O", $str);
+        $str = str_replace("Ü", "\\\"U", $str);
+        $str = str_replace("ß", "\\ss", $str);
+        $str = str_replace("ê", "\\^e", $str);
+        $str = str_replace("é", "\\'e", $str);
+        $str = str_replace("è", "\\`e", $str);
+        $str = str_replace("ì", "\\`i", $str);
+        $str = str_replace("ø", "\\o", $str);
+        $str = str_replace("ú", "\\'u", $str);
+        $str = str_replace("å", "\\aa", $str);
+        $str = str_replace("ç", "\\c", $str);
+        $str = str_replace("ñ", "\\~n", $str);
+        $str = str_replace("č", "\\v{c}", $str);
+        $str = str_replace("Č", "\\v{C}", $str);
+        $str = str_replace("š", "\\v{s}", $str);
+        $str = str_replace("Š", "\\v{S}", $str);
+
+        return $str;
+    }
+
+    public static function generateArXivBibTeX($paper){
+        // $arr = explode("/", $paper["authors"], 2);
+        // $first = $arr[0];
+        $firstauthor = $paper["authors"][0];
+        $names = explode(' ', $firstauthor);
+        $lastname = end($names);
+        $authorstring = join(' and ',$paper["authors"]);
+
+        return arxivParser::handleBibTeXSpecialSymbols("@article{".$lastname.$paper["year"].",
+      title                    = {{".$paper["title"]."}},
+      author                = {".$authorstring."},
+      eprint                 = {arXiv:".$paper["identifier"]."},
+      year                 = {".$paper["year"]."}
+    }");
+        // archivePrefix = \"arXiv\"
+    }
+
     
     public static function parse($arxivStr){
         # Remove prefix "arxiv:" if it exists
@@ -100,6 +142,7 @@ class arxivParser {
         # } 
 
         $paper["journal"] = "arxiv";
+        $paper["bibtex"] = arxivParser::generateArXivBibTeX($paper);
 
         return $paper;
     }

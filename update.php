@@ -50,23 +50,6 @@ function identifierToPaper($pubidstr){
     return isset($paper)?$paper:False;
 }
 
-function generateArXivBibTeX($paper){
-    // $arr = explode("/", $paper["authors"], 2);
-    // $first = $arr[0];
-    $firstauthor = $paper["authors"][0];
-    $names = explode(' ', $firstauthor);
-    $lastname = end($names);
-    $authorstring = join(' and ',$paper["authors"]);
-
-    return "@article{".$lastname.$paper["year"].",
-  title                    = {{".$paper["title"]."}},
-  author                = {".$authorstring."},
-  eprint                 = {arXiv:".$paper["identifier"]."},
-  year                 = {".$paper["year"]."}
-}";
-// archivePrefix = \"arXiv\"
-}
-
 if (isset($_POST["delete"]) || isset($_POST["confirmdelete"]))
     $deleteMode = true;
 else
@@ -273,9 +256,6 @@ if (isset($_POST["confirm"])){
                 exit();
             }
 
-            if($paper["journal"]=="arxiv"){
-                $paper["bibtex"] = generateArXivBibTeX($paper);
-            }
             $succ = $db->insertPaper($paper);
             if ($succ) {
                 echo "The paper has been successfully updated. Thank you for taking the time!";
