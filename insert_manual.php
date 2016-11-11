@@ -129,7 +129,7 @@ Please use the manual insertion <b>only for unsupported journals</b>. If you thi
 </form>
 
 <br>
-<p class="medium"><b>Note</b>: Please only submit manuscripts to the CRC database that explicitly acknowledge funding through the CRC by including a sentence of the form "This work was partially supported by the DFG within the CRC 1238 (project C03).”</p>
+<p class="medium"><b>Note</b>: Please only submit manuscripts to the CRC database that explicitly acknowledge funding through the CRC by including a sentence of the form "This work was partially supported by the DFG within the CRC 183 (project C03).”</p>
 <br><br><br>
 
 <?php } ?>

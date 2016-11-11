@@ -120,52 +120,52 @@ div.panel.show {
 
 a.A, a.A:active, a.A:focus, a.A:visited {
 	/*color: #13265D;*/
-	color: #1B1464;
+	color: #00A99D;
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 400;
 }
 
 a.A:hover {
 	/*color: #13265D;*/
-	color: #344B8E;
+	color: #00c6b6;
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 400;
 }
 
 a.B, a.B:active, a.B:focus, a.B:visited {
 	/*color: #13265D;*/
-	color: #178A7D;
+	color: #9E005D;
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 400;
 }
 
 a.B:hover {
 	/*color: #13265D;*/
-	color: #17C2A9;
+	color: #c4006f;
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 400;
 }
 
 a.C, a.C:active, a.C:focus, a.C:visited {
 	/*color: #13265D;*/
-	color: #D20C0C;
+	color: #F15A24;
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 400;
 }
 
 a.C:hover {
 	/*color: #13265D;*/
-	color: #D74680;
+	color: #ed7a57;
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 400;
 }
 
 a#showall, a#showall:active, a#showall:focus {
-	color: #ce9e0c;
+	color: #C1272D;
 }
 
 a#showall:hover {
-	color: #dda90d;
+	color: #d32c32;
 }
 
 /* Usual links */
