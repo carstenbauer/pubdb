@@ -1,0 +1,228 @@
+.mycontainer {
+	margin-left: 130px;
+        margin-right: 130px;
+}
+
+#filter {
+	/*background: lightblue;*/
+	padding-left: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	margin-bottom: 5px;
+	margin-top: 20px;
+	/*border: thin solid #CCC;*/
+	-webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;
+	display: block;
+	/*width: 100%;*/
+	/*font-size: 15px;*/
+	text-align: center;
+	position: relative;
+}
+
+#deletespan {
+	margin-left: 10px;
+	color: black;
+}
+
+#navigation {
+        display: block;
+	margin-bottom: 20px;
+        font-size: 16px ;
+        text-align: center;
+	padding-left: 15px;
+}
+
+#navigation a {
+        color: black;
+}
+
+.publication {
+	display: block;
+}
+
+.publication-options {
+	font-size: 13px;
+	margin-left: 10px;
+}
+
+.small {
+	font-size: 14px;
+}
+
+.medium {
+	font-size: 16px;
+}
+
+.navbar-static-top {
+    margin-bottom: 19px;
+}
+
+/* Accordion */
+/* Style the buttons that are used to open and close the accordion panel */
+button.accordion {
+    background-color: #dedede;
+    color: black;
+    cursor: pointer;
+    padding: 5px;
+    width: 100%;
+    text-align: center;
+    border: none;
+    outline: none;
+/*    transition: 0.4s;*/
+    margin-bottom: 10px;
+    /*-webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;*/
+}
+
+button.accordion:after {
+    /* content: '\02795'; */
+    font-size: 13px;
+    color: #777;
+    float: right;
+    margin-left: 5px;
+}
+
+button.accordion.active:after {
+    /* content: "\2796"; */
+}
+
+/* Style the accordion panel. Note: hidden by default */
+div.panel {
+    padding: 0 18px;
+    /*background-color: white;*/
+    display: none;
+}
+
+/* The "show" class is added to the accordion panel when the user clicks on one of the buttons. This will show the panel content */
+div.panel.show {
+    display: block;
+}
+
+/* Publication links */
+
+#pubp a, #updatepubp a {
+	/*color: #13265D;*/
+	color: black;
+	font-family: 'Source Sans Pro', sans-serif;
+	text-decoration: inherit;
+	font-weight: bold;
+}
+
+#pubp a:hover, #updatepubp a:hover {
+	/*color: #13265D;*/
+	color: black;
+	font-family: 'Source Sans Pro', sans-serif;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+/* Project links */
+
+a.A, a.A:active, a.A:focus, a.A:visited {
+	/*color: #13265D;*/
+	color: #1B1464;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: 400;
+}
+
+a.A:hover {
+	/*color: #13265D;*/
+	color: #344B8E;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: 400;
+}
+
+a.B, a.B:active, a.B:focus, a.B:visited {
+	/*color: #13265D;*/
+	color: #178A7D;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: 400;
+}
+
+a.B:hover {
+	/*color: #13265D;*/
+	color: #17C2A9;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: 400;
+}
+
+a.C, a.C:active, a.C:focus, a.C:visited {
+	/*color: #13265D;*/
+	color: #D20C0C;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: 400;
+}
+
+a.C:hover {
+	/*color: #13265D;*/
+	color: #D74680;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: 400;
+}
+
+a#showall, a#showall:active, a#showall:focus {
+	color: #ce9e0c;
+}
+
+a#showall:hover {
+	color: #dda90d;
+}
+
+/* Usual links */
+
+a {
+	/*color: #13265D;*/
+	color: #3C5499;
+	font-family: 'Source Sans Pro', sans-serif;
+	text-decoration: inherit;
+}
+
+a:hover {
+    /*color: #344B8E;*/
+    color: #13265D;
+    text-decoration: inherit;
+}
+
+a:active, a:focus {
+    color: #3C5499;
+    text-decoration: none;
+}
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.2;
+    font-feature-settings: 'liga';
+    color: black;
+}
+
+h2 {
+	text-align: center;
+	font-weight: 600;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 24px;
+	margin-bottom: 30px;
+        color: #1B1464;
+}
+
+p {
+	font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.2;
+}
+
+#deletespan a, #deletespan a:visited, #deletespan a:active, #deletespan a:focus {
+	color: #B22222;
+}
+
+#deletespan a:hover {
+	color: #ed2a2a;
+}
+
+input { font-size: 16px; width: 300px; }
+textarea { font-size: 16px; width: 300px; }
+input[type="button"], input[type="submit"] { font-size: 16px; width: 100px; height: 35px; }
+input[name="back"] {
+	width: 200px;
+}
