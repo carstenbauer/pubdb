@@ -1,7 +1,7 @@
 /* crc183 */
 .mycontainer {
-	margin-left: 130px;
-        margin-right: 130px;
+	margin-left: 150px;
+        margin-right: 150px;
 }
 
 #filter {
@@ -28,7 +28,7 @@
 #navigation {
         display: block;
 	margin-bottom: 20px;
-        font-size: 16px ;
+        // font-size: 16px ;
         text-align: center;
 	padding-left: 15px;
 }
@@ -39,19 +39,21 @@
 
 .publication {
 	display: block;
+        line-height: 1.5;
+        font-family: 'Open Sans', sans-serif;
 }
 
 .publication-options {
-	font-size: 13px;
+	font-size: 11px;
 	margin-left: 10px;
 }
 
 .small {
-	font-size: 14px;
+	font-size: 12px;
 }
 
 .medium {
-	font-size: 16px;
+	font-size: 14px;
 }
 
 .navbar-static-top {
@@ -61,8 +63,8 @@
 /* Accordion */
 /* Style the buttons that are used to open and close the accordion panel */
 button.accordion {
-    background-color: #dedede;
-    color: black;
+    background-color: #E4E3DD;
+    color: #C1272D;
     cursor: pointer;
     padding: 5px;
     width: 100%;
@@ -91,6 +93,7 @@ div.panel {
     padding: 0 18px;
     /*background-color: white;*/
     display: none;
+    line-height:1.2;
 }
 
 /* The "show" class is added to the accordion panel when the user clicks on one of the buttons. This will show the panel content */
@@ -135,8 +138,8 @@ a.A:hover {
 a.B, a.B:active, a.B:focus, a.B:visited {
 	/*color: #13265D;*/
 	color: #9E005D;
-	font-family: 'Open Sans', sans-serif;
 	font-weight: 400;
+        font-family: 'Open Sans', sans-serif;
 }
 
 a.B:hover {
@@ -172,26 +175,27 @@ a#showall:hover {
 
 a {
 	/*color: #13265D;*/
-	color: #3C5499;
+	// color: #3C5499;
+        color: #C1272D;
 	font-family: 'Open Sans', sans-serif;
 	text-decoration: inherit;
 }
 
 a:hover {
     /*color: #344B8E;*/
-    color: #13265D;
+    color: #ce2b30;
     text-decoration: inherit;
 }
 
 a:active, a:focus {
-    color: #3C5499;
+    color: #C1272D;
     text-decoration: none;
 }
 
 body {
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
-    font-size: 18px;
+    font-size: 15px;
     line-height: 1.2;
     font-feature-settings: 'liga';
     color: black;
@@ -201,29 +205,29 @@ h2 {
 	text-align: center;
 	font-weight: 600;
 	font-family: 'Open Sans', sans-serif;
-	font-size: 24px;
+	font-size: 20px;
 	margin-bottom: 30px;
-        color: #1B1464;
+        color: #464646;
 }
 
 p {
-	font-family: 'Open Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-weight: 400;
-    font-size: 18px;
-    line-height: 1.2;
+    font-size: 14px;
+    line-height: 1.5;
 }
 
 #deletespan a, #deletespan a:visited, #deletespan a:active, #deletespan a:focus {
-	color: #B22222;
+        color: #C1272D;
 }
 
 #deletespan a:hover {
-	color: #ed2a2a;
+    color: #ce2b30;
 }
 
-input { font-size: 16px; width: 300px; }
-textarea { font-size: 16px; width: 300px; }
-input[type="button"], input[type="submit"] { font-size: 16px; width: 100px; height: 35px; }
+input { font-size: 14px; width: 300px; padding: 5px; }
+textarea { font-size: 14px; width: 300px; padding: 5px; }
+input[type="button"], input[type="submit"] { font-size: 14px; width: 100px; height: 30px; }
 input[name="back"] {
 	width: 200px;
 }
