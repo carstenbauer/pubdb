@@ -44,16 +44,16 @@
 }
 
 .publication-options {
-	font-size: 11px;
+	font-size: 12px;
 	margin-left: 10px;
 }
 
 .small {
-	font-size: 12px;
+	font-size: 13px;
 }
 
 .medium {
-	font-size: 14px;
+	font-size: 15px;
 }
 
 .navbar-static-top {
@@ -93,7 +93,7 @@ div.panel {
     padding: 0 18px;
     /*background-color: white;*/
     display: none;
-    line-height:1.2;
+    line-height:1;
 }
 
 /* The "show" class is added to the accordion panel when the user clicks on one of the buttons. This will show the panel content */
@@ -213,7 +213,7 @@ h2 {
 p {
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
-    font-size: 14px;
+    font-size: 15px;
     line-height: 1.5;
 }
 
