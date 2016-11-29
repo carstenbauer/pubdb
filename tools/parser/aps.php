@@ -87,6 +87,8 @@ class apsParser {
         $str = str_replace("\\v{C}", "Č", $str);
         $str = str_replace("\\v{s}", "š", $str);
         $str = str_replace("\\v{S}", "Š", $str);
+        $str = str_replace("\\'{\\i}", "í", $str);
+        $str = str_replace("\\'y", "ý", $str);
 
         return $str;
     }
