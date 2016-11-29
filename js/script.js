@@ -98,7 +98,8 @@ function PublicationToHTMLString(pub){
 		var authors_str = pub.authors.toString();
 
     if ("projects" in pub)
-    	var project_str = "(".concat(pub.projects.join(", ")).concat(")");
+    	if (pub.projects[0].toString() != "Other")
+    		var project_str = "(".concat(pub.projects.join(", ")).concat(")");
     else
     	var project_str = "";
 
