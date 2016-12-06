@@ -97,10 +97,10 @@ function PublicationToHTMLString(pub){
 	else
 		var authors_str = pub.authors.toString();
 
+    var project_str = "";
     if ("projects" in pub)
-    	var project_str = "(".concat(pub.projects.join(", ")).concat(")");
-    else
-    	var project_str = "";
+    	if (pub.projects[0].toString() != "Z")
+    		var project_str = "(".concat(pub.projects.join(", ")).concat(")");
 
     var paper_str = project_str.concat(" ").concat(authors_str).concat(", <a href=").concat(pub.url.toString()).concat(" target=_blank>").concat(LaTeX2MathJax(pub.title.toString())).concat("</a>, ").concat(journalToString(pub)).concat(" (").concat(pub.year.toString()).concat(")");
     return paper_str;

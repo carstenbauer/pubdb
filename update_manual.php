@@ -95,7 +95,7 @@ if (isset($_POST["insertForm"])||isset($_POST["confirm"])) {
                 updatepubp.innerHTML = PublicationToHTMLString(pubselected);
             }
 
-            var pub = <?php echo (!$validInput)?"none":json_encode($paper); ?>;
+            var pub = <?php echo (!$validInput)?"\"none\"":json_encode($paper); ?>;
             if (pub != "none") {
                 var pubstr = PublicationToHTMLString(pub);
                 pubp.innerHTML = pubstr;

@@ -28,7 +28,8 @@
 					<?php
 					$projects = $db->getProjects();
 					foreach($projects as $project){
-					    echo "<a id=".$project["abbrev"]." class='projectfilter ".substr($project["abbrev"], 0, 1)."' href='javascript:DoFilter(\"".$project["abbrev"]."\");'>".$project["abbrev"]. "</a> ";
+						if($project["abbrev"] != "Z")
+					    	echo "<a id=".$project["abbrev"]." class='projectfilter ".substr($project["abbrev"], 0, 1)."' href='javascript:DoFilter(\"".$project["abbrev"]."\");'>".$project["abbrev"]. "</a> ";
 					}
 
 
