@@ -65,7 +65,7 @@ else
     <script type="text/javascript" src="js/script.js"></script>
     <script type="text/javascript">
         function printPublication(){
-            var pub = <?php echo ($publ===False)?"none":json_encode($publ); ?>;
+            var pub = <?php echo ($publ===False)?"\"none\"":json_encode($publ); ?>;
             if (pub != "none") {
                 var pubstr = PublicationToHTMLString(pub);
                 pubp.innerHTML = pubstr;
