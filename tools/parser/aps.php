@@ -169,8 +169,16 @@ class apsParser {
         
         # Get url to bibtex
         $bibtex_url = "http://journals.aps.org/".$journal."/export/10.1103/".$id;
+        $abstract_url = "http://journals.aps.org/".$journal."/abstract/10.1103/".$id;
 
         $bibtex = file_get_contents($bibtex_url);
+        $abstractpage = file_get_contents($abstract_url);
+
+        if (strpos($abstractpage, 'Rapid Communication') !== false) {
+            $id = $id."(R)";
+        }elseif (strpos($abstractpage, 'Editors&#39; Suggestion') !== false) {
+            $id = $id."(E)";
+        }
         
         $listener = new RenanBr\BibTexParser\Listener;
         $parser = new RenanBr\BibTexParser\Parser;
@@ -196,8 +204,6 @@ class apsParser {
         $paper["url"] = str_replace("export","abstract",$bibtex_url);
         $paper["bibtex"] = $bibtex;
         $paper["identifier"] = $id;
-        // TODO: add time information to "timestamp".
-        // construct from month and year field of bibtex
 
         return $paper;
     }

@@ -17,7 +17,12 @@ function LaTeX2MathJax(str){
 
 function apsIdToString(id){
 	var numbers = extractNumbers(id);
-	return "<b>"+numbers[0].toString().concat("</b>, ").concat(numbers[1].toString());
+	var s = "<b>"+numbers[0].toString().concat("</b>, ").concat(numbers[1].toString());
+	if (id.includes("(R)"))
+		s = s.concat("(R)");
+	if (id.includes("(E)"))
+		s = s.concat(" (Editor's Suggestion)");
+	return s;
 }
 function arxivIdToString(id){
 	var numbers = extractNumbers(id);
