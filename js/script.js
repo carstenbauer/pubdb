@@ -108,7 +108,7 @@ function PublicationToHTMLString(pub){
     var paper_str = project_str.concat(" ").concat(authors_str).concat(", <a href=").concat(pub.url.toString()).concat(" target=_blank>").concat(LaTeX2MathJax(pub.title.toString())).concat("</a>, ").concat(journalToString(pub)).concat(" (").concat(pub.year.toString()).concat(")");
     var id = pub.identifier.toString();
     if (id.includes("(E)"))
-		paper_str = paper_str.concat(", Editor's Suggestion");
+		paper_str = paper_str.concat(", Editors' Suggestion");
     return paper_str;
 }
 
