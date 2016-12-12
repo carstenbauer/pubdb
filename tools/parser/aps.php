@@ -176,7 +176,8 @@ class apsParser {
 
         if (strpos($abstractpage, 'Rapid Communication') !== false) {
             $id = $id."(R)";
-        }elseif (strpos($abstractpage, 'Editors&#39; Suggestion') !== false) {
+        }
+        if (strpos($abstractpage, 'Editors&#39; Suggestion') !== false) {
             $id = $id."(E)";
         }
         
