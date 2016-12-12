@@ -20,8 +20,6 @@ function apsIdToString(id){
 	var s = "<b>"+numbers[0].toString().concat("</b>, ").concat(numbers[1].toString());
 	if (id.includes("(R)"))
 		s = s.concat("(R)");
-	if (id.includes("(E)"))
-		s = s.concat(" (Editor's Suggestion)");
 	return s;
 }
 function arxivIdToString(id){
@@ -108,6 +106,9 @@ function PublicationToHTMLString(pub){
     		var project_str = "(".concat(pub.projects.join(", ")).concat(")");
 
     var paper_str = project_str.concat(" ").concat(authors_str).concat(", <a href=").concat(pub.url.toString()).concat(" target=_blank>").concat(LaTeX2MathJax(pub.title.toString())).concat("</a>, ").concat(journalToString(pub)).concat(" (").concat(pub.year.toString()).concat(")");
+    var id = pub.identifier.toString();
+    if (id.includes("(E)"))
+		paper_str = paper_str.concat(", Editor's Suggestion");
     return paper_str;
 }
 
