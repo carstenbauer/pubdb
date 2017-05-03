@@ -89,6 +89,7 @@ class apsParser {
         $str = str_replace("\\v{S}", "Š", $str);
         $str = str_replace("\\'{\\i}", "í", $str);
         $str = str_replace("\\'y", "ý", $str);
+        $str = str_replace("\\ensuremath{-}", "-", $str);
 
         return $str;
     }
@@ -188,7 +189,7 @@ class apsParser {
         $parser->parseString($bibtex);
         $entries = $listener->export();
 
-        $paper["title"] = $entries[0]["title"];
+        $paper["title"] = apsParser::handleBibTeXSpecialSymbols($entries[0]["title"]);
         $paper["journal"] = $journal;
         $paper["volume"] = $entries[0]["volume"];
         $paper["number"] = $entries[0]["pages"];
