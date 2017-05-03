@@ -1,6 +1,5 @@
 config/dbconfig.php
 config/config.php
-css/**/*
 debug.php
 tools/parser/bibutilsbinaries/ris2xml
 tools/parser/bibutilsbinaries/xml2bib
