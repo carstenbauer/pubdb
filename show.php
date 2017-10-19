@@ -2,7 +2,7 @@
 <head>
 	<!-- <base target="_parent" /> -->
 	<link href="css/style.css" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
 
 	<?php
 
@@ -20,11 +20,11 @@
 </head>
 <body onload='DoFilter("all");'>
 
-	<div id="container">	
+	<div id="container">
 			<span id="filter">
-				<a id=showall class=projectfilter href='javascript:DoFilter("all")'>Show all</a> or 
-				
-					filter by project: 
+				<a id=showall class=projectfilter href='javascript:DoFilter("all")'>Show all</a> or
+
+					filter by project:
 					<?php
 					$projects = $db->getProjects();
 					foreach($projects as $project){
@@ -36,7 +36,7 @@
 					?>
 			</span>
 
-                        <span id="navigation"><a href="?sec=insert">&#43 Insert publication</a></span>
+                        <span id="navigation"><a href="?sec=insert">&#43 Insert publication</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='javascript:DoFilter("update");'>&#43 Update reference</a></span>
 
 			<p id="pubp">
 			</p>
@@ -75,23 +75,45 @@
 				return false;
 		}
 
+		function isArxiv(pub_obj){
+			if (pub_obj.journal.toString().includes(this.toString()))
+				return true;
+			else
+				return false;
+		}
+
 		function printPublication(pub) {
 			var panel = document.getElementById(pub.year.toString());
 			if (pub.bibtex.toString()!="")
 				panel.innerHTML = panel.innerHTML + "<span id='pub" + pub.id.toString() + "' class=publication onmouseover='showOptions(".concat(pub.id.toString()).concat(")' onmouseout='hideOptions(").concat(pub.id.toString()).concat(")'>") + PublicationToHTMLString(pub) + "<span id='pub" + pub.id.toString() + "options' class=publication-options style=\"visibility: hidden;\">[<a href=?sec=update&id=".concat(pub.id.toString()) + ">Update</a>, <a href='javascript:openBibTexModal(".concat(pub.id.toString()) + ")'>BibTeX</a>]</span></span>" + "<br>";
-			else 
+			else
 				panel.innerHTML = panel.innerHTML + "<span id='pub" + pub.id.toString() + "' class=publication onmouseover='showOptions(".concat(pub.id.toString()).concat(")' onmouseout='hideOptions(").concat(pub.id.toString()).concat(")'>") + PublicationToHTMLString(pub) + "<span id='pub" + pub.id.toString() + "options' class=publication-options style=\"visibility: hidden;\">[<a href=?sec=update&id=".concat(pub.id.toString()) + ">Update</a>]</span></span>" + "<br>";
+		}
+
+		function printPublicationWithOptions(pub) {
+			var panel = document.getElementById(pub.year.toString());
+			panel.innerHTML = panel.innerHTML + "<span id='pub" + pub.id.toString() + "' class=publication >" + PublicationToHTMLString(pub) + "<span id='pub" + pub.id.toString() + "options' class=publication-options style=\"visibility: hidden;\">[<a href=?sec=update&id=".concat(pub.id.toString()) + ">Update</a>]</span></span>" + "<br>";
+
+			showOptions(pub.id);
 		}
 
 		function DoFilter(project) {
 			var pubsf = pubs;
 			if (project != "all"){
-				pubsf = pubs.filter(byProject, project);
-				var elements = document.getElementsByClassName("projectfilter");
-			    for (var i = 0; i < elements.length; i++) {
- 			   		elements[i].style.fontWeight = "400";
-   				}
-				document.getElementById(project).style.fontWeight = "bold";
+				if (project != "update"){
+					pubsf = pubs.filter(byProject, project);
+					var elements = document.getElementsByClassName("projectfilter");
+					for (var i = 0; i < elements.length; i++) {
+						elements[i].style.fontWeight = "400";
+					}
+					document.getElementById(project).style.fontWeight = "bold";
+				} else {
+					pubsf = pubs.filter(isArxiv, "arxiv");
+					var elements = document.getElementsByClassName("projectfilter");
+					for (var i = 0; i < elements.length; i++) {
+						elements[i].style.fontWeight = "400";
+					}
+				}
 			} else {
 				var elements = document.getElementsByClassName("projectfilter");
 			    for (var i = 0; i < elements.length; i++) {
@@ -114,7 +136,11 @@
 						lastyear = year;
 					}
 
-				    printPublication(pubsf[index]);
+					if (project == "update"){
+						printPublicationWithOptions(pubsf[index]);
+					} else {
+						printPublication(pubsf[index]);
+					}
 				}
 				pubp.innerHTML = pubp.innerHTML + "</p></div>";
 				MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
