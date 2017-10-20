@@ -18,11 +18,11 @@
 
 
 </head>
-<body onload='DoFilter("all");'>
+<body onload='DoFilter("showall");'>
 
 	<div id="container">
 			<span id="filter">
-				<a id=showall class=projectfilter href='javascript:DoFilter("all")'>Show all</a> or
+				<a id=showall class=projectfilter href='javascript:DoFilter("showall")'>Show all</a> or
 
 					filter by project:
 					<?php
@@ -36,7 +36,7 @@
 					?>
 			</span>
 
-                        <span id="navigation"><a href="?sec=insert">&#43 Insert publication</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='javascript:DoFilter("update");'>&#43 Update reference</a></span>
+                        <span id="navigation"><a href="?sec=insert">&#43 Insert publication</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='javascript:DoFilter("update");' id="update">&#43 Update reference</a></span>
 
 			<p id="pubp">
 			</p>
@@ -97,32 +97,35 @@
 			showOptions(pub.id);
 		}
 
-
-		var curproject = ""
+		var isupdate = false
+		var curproject = "showall"
+		document.getElementById("showall").style.fontWeight = "bold";
 		function DoFilter(project) {
 			var pubsf = pubs;
-			if (project != "all"){
-				if (project != "update"){
-					pubsf = pubs.filter(byProject, project);
-					var elements = document.getElementsByClassName("projectfilter");
-					for (var i = 0; i < elements.length; i++) {
-						elements[i].style.fontWeight = "400";
-					}
-					document.getElementById(project).style.fontWeight = "bold";
-					curproject = project
-				} else {
-					pubsf = pubs.filter(isArxiv, "arxiv");
-					if (curproject != "all")
-						pubsf = pubsf.filter(byProject, curproject)
-				}
-			} else {
-				var elements = document.getElementsByClassName("projectfilter");
-			    for (var i = 0; i < elements.length; i++) {
- 			   		elements[i].style.fontWeight = "400";
-   				}
-   				document.getElementById("showall").style.fontWeight = "bold";
-				curproject = project
+
+			// Update toggle
+			if (project == "update"){
+				isupdate = !isupdate;
+				if (isupdate)
+					document.getElementById("update").style.fontWeight = "bold";
+				else
+					document.getElementById("update").style.fontWeight = "400";
 			}
+
+			//  Highlight active project
+			if ((project != curproject) && (project != "update")){
+				document.getElementById(curproject).style.fontWeight = "400";
+				document.getElementById(project).style.fontWeight = "bold";
+				curproject = project;
+			}
+
+			if (curproject != "showall")
+				pubsf = pubs.filter(byProject, curproject);
+			else
+				pubsf = pubs;
+
+			if (isupdate)
+				pubsf = pubsf.filter(isArxiv, "arxiv");
 
 			if (Object.keys(pubsf).length > 0) {
 				pubp.innerHTML = "";
@@ -138,7 +141,7 @@
 						lastyear = year;
 					}
 
-					if (project == "update"){
+					if (isupdate){
 						printPublicationWithOptions(pubsf[index]);
 					} else {
 						printPublication(pubsf[index]);
