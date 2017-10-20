@@ -60,8 +60,7 @@ else
 <head>
 
     <link href="css/style.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
     <script type="text/javascript" src="js/script.js"></script>
     <script type="text/javascript">
         function printPublication(){
@@ -104,7 +103,7 @@ else
   <input type="submit" name="insertForm" value="Submit"> &nbsp; <input type="button" name="abort" value="Abort" onClick="window.location='index.php?sec=show';" />
 </form>
 <br>
-<p class="medium"><b>Note</b>: Please only submit manuscripts to the CRC database that explicitly acknowledge funding through the CRC by including a sentence of the form "This work was partially supported by the DFG within the CRC 1238 (project C03).”</p>
+<p class="medium"><b>Note</b>: Please only submit manuscripts to the CRC database that explicitly acknowledge funding through the CRC by including a sentence of the form "This work was partially supported by the DFG within the CRC 183 (project C03).”</p>
 <br><br><br>
 
 <?php
