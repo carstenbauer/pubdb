@@ -97,6 +97,8 @@
 			showOptions(pub.id);
 		}
 
+
+		var curproject = ""
 		function DoFilter(project) {
 			var pubsf = pubs;
 			if (project != "all"){
@@ -107,12 +109,11 @@
 						elements[i].style.fontWeight = "400";
 					}
 					document.getElementById(project).style.fontWeight = "bold";
+					curproject = project
 				} else {
 					pubsf = pubs.filter(isArxiv, "arxiv");
-					var elements = document.getElementsByClassName("projectfilter");
-					for (var i = 0; i < elements.length; i++) {
-						elements[i].style.fontWeight = "400";
-					}
+					if (curproject != "all")
+						pubsf = pubsf.filter(byProject, curproject)
 				}
 			} else {
 				var elements = document.getElementsByClassName("projectfilter");
@@ -120,6 +121,7 @@
  			   		elements[i].style.fontWeight = "400";
    				}
    				document.getElementById("showall").style.fontWeight = "bold";
+				curproject = project
 			}
 
 			if (Object.keys(pubsf).length > 0) {
