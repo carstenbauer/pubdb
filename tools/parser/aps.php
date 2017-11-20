@@ -34,6 +34,7 @@ class apsParser {
             case "prc": $journal_str = "PhysRevC"; break;
             case "prd": $journal_str = "PhysRevD"; break;
             case "pre": $journal_str = "PhysRevE"; break;
+            case "prx": $journal_str = "PhysRevX"; break;
             case "prl": $journal_str = "PhysRevLett"; break;
             case "rmp": $journal_str = "RevModPhys"; break;
         } 
@@ -54,7 +55,9 @@ class apsParser {
         } elseif (strpos($apsStr, 'E') !== False || strpos($apsStr, 'pre') !== False){
             return "pre";
         } elseif (strpos($apsStr, 'C') !== False || strpos($apsStr, 'prc') !== False){
-            return "pre";
+            return "prc";
+        } elseif (strpos($apsStr, 'X') !== False || strpos($apsStr, 'prx') !== False){
+            return "prx";
         } elseif (strpos($apsStr, 'Mod') !== False || strpos($apsStr, 'M') !== False || strpos($apsStr, 'rmp') !== False){
             return "rmp";
         } else {
