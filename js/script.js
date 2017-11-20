@@ -49,6 +49,7 @@ function journalToString(pub){
 	    case "prc": return "Phys. Rev. C. ".concat(apsIdToString(id));
 	    case "prd": return "Phys. Rev. D. ".concat(apsIdToString(id));
 	    case "pre": return "Phys. Rev. E. ".concat(apsIdToString(id));
+	    case "prx": return "Phys. Rev. X. ".concat(apsIdToString(id));
 	    case "prl": return "Phys. Rev. Lett. ".concat(apsIdToString(id));
 	    case "rmp": return "Rev. Mod. Phys. ".concat(apsIdToString(id));
 	    case "arxiv": return "arXiv:".concat(arxivIdToString(id));
