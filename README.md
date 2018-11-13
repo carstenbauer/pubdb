@@ -6,6 +6,7 @@ You need to create two files, "config/config.php" and "config/dbconfig.php".
 
 Dummy config/config.php file:
 -----------------------------
+```
 <?php
 
 const SIMPLEPIE_CACHE_LOCATION = "C:/xampp/htdocs/simplepie-1.5/cache";
@@ -18,10 +19,12 @@ const BIBUTILS_BIN_FOLDER = "C:/xampp/htdocs/publications/tools/parser/bibutilsb
 const PROJECT_ROOT = "C:/xampp/htdocs/publications/";
 
 ?>
+```
 
 Dummy config/dbconfig.php file:
 -------------------------------
 
+```
 <?php
 
 // Database credentials
@@ -32,6 +35,7 @@ const DBNAME = "crc183";
 
 
 ?>
+```
 
 
 # External dependencies
