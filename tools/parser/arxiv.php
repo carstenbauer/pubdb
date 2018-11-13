@@ -45,6 +45,7 @@ class arxivParser {
         $str = str_replace("ê", "\\^e", $str);
         $str = str_replace("é", "\\'e", $str);
         $str = str_replace("è", "\\`e", $str);
+        $str = str_replace("ë", "\\\"e", $str);
         $str = str_replace("ì", "\\`i", $str);
         $str = str_replace("ø", "\\o", $str);
         $str = str_replace("ú", "\\'u", $str);
