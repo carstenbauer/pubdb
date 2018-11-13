@@ -80,6 +80,7 @@ class apsParser {
         $str = str_replace("\\^e", "ê", $str);
         $str = str_replace("\\'e", "é", $str);
         $str = str_replace("\\`e", "è", $str);
+        $str = str_replace("\\\"e", "ë", $str);
         $str = str_replace("\\`i", "ì", $str);
         $str = str_replace("\\o{}", "ø", $str);
         $str = str_replace("\\o", "ø", $str);
