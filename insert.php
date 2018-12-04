@@ -103,7 +103,7 @@ else
   <input type="submit" name="insertForm" value="Submit"> &nbsp; <input type="button" name="abort" value="Abort" onClick="window.location='index.php?sec=show';" />
 </form>
 <br>
-<p class="medium"><b>Note</b>: Please only submit manuscripts to the CRC database that explicitly acknowledge funding through the CRC by including a sentence of the form "This work was partially supported by the DFG within the CRC 183 (project C03).”</p>
+<p class="medium"><b>Note</b>: Please only submit manuscripts to the CRC database that explicitly acknowledge funding through the CRC by including a sentence of the form "Funded by the Deutsche Forschungsgemeinschaft (DFG, German Research Foundation) – Projektnummer 277101999 – TRR 183 (project C01)"</p>
 <br><br><br>
 
 <?php
