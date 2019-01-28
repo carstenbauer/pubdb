@@ -36,6 +36,7 @@ class apsParser {
             case "pre": $journal_str = "PhysRevE"; break;
             case "prx": $journal_str = "PhysRevX"; break;
             case "prl": $journal_str = "PhysRevLett"; break;
+            case "prmaterials": $journal_str = "PhysRevMaterials"; break;
             case "rmp": $journal_str = "RevModPhys"; break;
         } 
 
@@ -58,6 +59,8 @@ class apsParser {
             return "prc";
         } elseif (strpos($apsStr, 'X') !== False || strpos($apsStr, 'prx') !== False){
             return "prx";
+        } elseif (strpos($apsStr, 'Materials') !== False || strpos($apsStr, 'prmaterials') !== False){
+            return "prmaterials";
         } elseif (strpos($apsStr, 'Mod') !== False || strpos($apsStr, 'M') !== False || strpos($apsStr, 'rmp') !== False){
             return "rmp";
         } else {

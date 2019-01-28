@@ -49,7 +49,8 @@ function journalToString(pub){
 	    case "prc": return "Phys. Rev. C ".concat(apsIdToString(id));
 	    case "prd": return "Phys. Rev. D ".concat(apsIdToString(id));
 	    case "pre": return "Phys. Rev. E ".concat(apsIdToString(id));
-	    case "prx": return "Phys. Rev. X ".concat(apsIdToString(id));
+        case "prx": return "Phys. Rev. X ".concat(apsIdToString(id));
+	    case "prmaterials": return "Phys. Rev. Materials ".concat(apsIdToString(id));
 	    case "prl": return "Phys. Rev. Lett. ".concat(apsIdToString(id));
 	    case "rmp": return "Rev. Mod. Phys. ".concat(apsIdToString(id));
 	    case "arxiv": return "arXiv:".concat(arxivIdToString(id));
@@ -82,7 +83,7 @@ function journalToString(pub){
 }
 
 function isManualEntry(pub){
-	var journals = ["pra", "prb", "prc", "prd", "pre", "prl", "rmp", "arxiv", "ncomms", "nphys", "srep", "nature"];
+	var journals = ["pra", "prb", "prc", "prd", "pre", "prl", "prmaterials", "rmp", "arxiv", "ncomms", "nphys", "srep", "nature"];
 	if (journals.indexOf(pub.journal.toString()) > -1)
 		return false;
 	else
