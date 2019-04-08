@@ -56,6 +56,10 @@ class arxivParser {
         $str = str_replace("Č", "\\v{C}", $str);
         $str = str_replace("š", "\\v{s}", $str);
         $str = str_replace("Š", "\\v{S}", $str);
+        $str = str_replace("Š", "\\v{S}", $str);
+        $str = str_replace("Š", "\\v{S}", $str);
+        $str = str_replace("ó", "\\'o", $str);
+        $str = str_replace("á", "\\'a", $str);
 
         return $str;
     }
@@ -87,6 +91,8 @@ class arxivParser {
         # Construct the query
         $base_url = 'http://export.arxiv.org/api/query?';
         $query = "search_query=".$arxivID."&start=0&max_results=1";
+
+        echo($base_url.$query);
 
         # SimplePie will automatically sort the entries by date
         # unless we explicitly turn this off
