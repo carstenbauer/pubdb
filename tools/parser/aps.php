@@ -97,6 +97,8 @@ class apsParser {
         $str = str_replace("\\v{S}", "Š", $str);
         $str = str_replace("\\'{\\i}", "í", $str);
         $str = str_replace("\\'y", "ý", $str);
+        $str = str_replace("\\'o", "ó", $str);
+        $str = str_replace("\\'a", "á", $str);
         $str = str_replace("\\ensuremath{-}", "-", $str);
 
         return $str;
