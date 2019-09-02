@@ -18,7 +18,7 @@ function contains($string, $array, $caseSensitive = false)
 
 
 function checkAPS($pubidstr){
-    $apsarray = array("PRL","PRB","PRE", "PRMATERIALS", "PRA", "PRC", "PRD", "RMP", "Rev", "Physical", "10.1103/");
+    $apsarray = array("PRL","PRB","PRE", "PRMATERIALS", "PRRESEARCH", "PRA", "PRC", "PRD", "RMP", "Rev", "Physical", "10.1103/");
     if (contains($pubidstr,$apsarray))
         return True;
     
