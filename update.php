@@ -127,7 +127,7 @@ if (!$validID){
 <br><br>
 <b>Replace by:</b><br><br>
 
-<p>Use <b>automatic lookup</b> for arXiv, APS journals, Nature journals or perform <b><a href='index.php?sec=update_manual&id=<?php echo $oldpaper["id"]; ?>'>manual update</a></b>.</p>
+<p>Use <b>automatic lookup</b> for arXiv, APS journals, Nature journals, the Quantum journal or perform <b><a href='index.php?sec=update_manual&id=<?php echo $oldpaper["id"]; ?>'>manual update</a></b>.</p>
 
 <form action="index.php?sec=update&id=<?php echo $oldpaper["id"]; ?>" method="post">
   Publication identifier:<br>
