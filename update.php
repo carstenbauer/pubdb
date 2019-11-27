@@ -5,6 +5,7 @@ include_once('tools/db.php');
 include_once('tools/parser/arxiv.php');
 include_once('tools/parser/aps.php');
 include_once('tools/parser/nature.php');
+include_once('tools/parser/quantum.php');
 
 $db = new db();
 $db->connect();
@@ -34,6 +35,14 @@ function checkNature($pubidstr){
 
 }
 
+function checkQuantum($pubidstr){
+    $quantumarray = array("quantum-journal", "10.22331/");
+    if (contains($pubidstr,$quantumarray))
+        return True;
+    
+    return False;
+}
+
 function identifierToPaper($pubidstr){
     # Check if we have arxiv or aps identifier
     # TODO Make "waterproof"!
@@ -42,6 +51,8 @@ function identifierToPaper($pubidstr){
         $paper = apsParser::parse($pubidstr);
     } elseif (checkNature($pubidstr)) {
         $paper = natureParser::parse($pubidstr);
+    } elseif (checkQuantum($pubidstr)) {
+        $paper = quantumParser::parse($pubidstr);
     } else {
         // Assume arxiv
         $paper = arxivParser::parse($pubidstr);
