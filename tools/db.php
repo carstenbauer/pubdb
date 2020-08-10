@@ -49,7 +49,7 @@ private function addProjectsToPublication($pub){
 }
 
 function getProjects() {
-    $sql = "SELECT * FROM Projects";
+    $sql = "SELECT * FROM Projects ORDER BY abbrev ASC";
     $result = $this->conn->query($sql);
     $projects = array();
     if ($result->num_rows > 0) {
