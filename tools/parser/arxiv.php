@@ -92,7 +92,7 @@ class arxivParser {
         $base_url = 'http://export.arxiv.org/api/query?';
         $query = "search_query=".$arxivID."&start=0&max_results=1";
 
-        echo($base_url.$query);
+        // echo($base_url.$query);
 
         # SimplePie will automatically sort the entries by date
         # unless we explicitly turn this off

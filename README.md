@@ -37,6 +37,10 @@ const DBNAME = "crc183";
 ?>
 ```
 
+Dummy database:
+-------------------------------
+
+See [example_db.sql](https://github.com/crstnbr/pubdb/blob/master/example_db.sql).
 
 # External dependencies
 
