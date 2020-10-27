@@ -102,7 +102,7 @@ else
 
 <h2>Insert publication</h2>
 
-<p>Use <b>automatic lookup</b> for arXiv, APS journals, Nature journals, the Quantum journal or insert <b><a href='index.php?sec=insert_manual'>manual entry</a></b>.</p>
+<p>Use <b>automatic lookup</b> for arXiv, APS journals, Nature journals, SciPost Physics, the Quantum journal or insert <b><a href='index.php?sec=insert_manual'>manual entry</a></b>.</p>
 
 <form action="index.php?sec=insert" method="post">
   Publication identifier:<br>
