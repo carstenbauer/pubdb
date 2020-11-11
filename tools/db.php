@@ -39,6 +39,30 @@ function getPublications() {
     return $pubs; 
 }
 
+
+function getLatestPublications() {
+    $sql = "SELECT * FROM Publications ORDER BY year DESC, month DESC, id DESC LIMIT 3";
+    $result = $this->conn->query($sql);
+    if ($result->num_rows <= 0) {
+        return false;
+    }
+    $publications = array();
+    while($row = $result->fetch_assoc()){
+        $pub = $row;
+        $pub["authors"] = explode(", ",$row["authors"]);
+        array_push($publications,$pub);
+    }
+
+    # Till now, every publication is missing the "projects" key
+    $pubs = array();
+    foreach($publications as $pub){
+        array_push($pubs,$this->addProjectsToPublication($pub));   
+    }
+
+
+    return $pubs; 
+}
+
 private function addProjectsToPublication($pub){
     $projects = $this->getProjectsOfPublication($pub);
     $newpub = $pub;
