@@ -1,13 +1,30 @@
 <html>
 <head>
 	<!-- <base target="_parent" /> -->
-	<link href="css/style.css" rel="stylesheet">
+	<!-- <link href="css/style.css" rel="stylesheet"> -->
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
 
 	<style>
 		body {
 			background-color: #3c4252;
 			font-family: 'Roboto',Helvetica,Arial,Lucida,sans-serif;
+			font-weight: 300;
+			padding: 0 0 0 0;
+			margin: 0 0 0 0;
+		}
+
+		#pubplatest a, #pubplatest a:hover {
+			/*color: #13265D;*/
+			color: white;
+			font-family: 'Open Sans', sans-serif;
+			text-decoration: inherit;
+			font-weight: bold;
+		}
+
+		.publication {
+			display: block;
+		        line-height: 1.5;
+		        /*font-family: 'Open Sans', sans-serif;*/
 		}
 	</style>
 
