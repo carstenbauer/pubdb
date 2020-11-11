@@ -119,6 +119,17 @@ div.panel.show {
 	font-weight: bold;
 }
 
+
+
+#pubplatest a, #pubplatest a:hover {
+	/*color: #13265D;*/
+	color: white;
+	font-family: 'Open Sans', sans-serif;
+	text-decoration: inherit;
+	font-weight: bold;
+}
+
+
 /* Project links */
 
 a.A, a.A:active, a.A:focus, a.A:visited {
