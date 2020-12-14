@@ -1,6 +1,7 @@
 <?php
 # Authors: Carsten Bauer
 include_once("config/config.php");
+include_once('tools/generic_functions.php');
 include_once(SIMPLEPIE_AUTOLOADER_LOCATION.'/autoloader.php');
 
 
@@ -34,35 +35,6 @@ class arxivParser {
         return $numbers[0].".".$numbers[1];
     }
 
-    private static function handleBibTeXSpecialSymbols($bibtexstr){
-        $str = str_replace("ä", "\\\"a", $bibtexstr);
-        $str = str_replace("Ä", "\\\"A", $str);
-        $str = str_replace("ö", "\\\"o", $str);
-        $str = str_replace("ü", "\\\"u", $str);
-        $str = str_replace("Ö", "\\\"O", $str);
-        $str = str_replace("Ü", "\\\"U", $str);
-        $str = str_replace("ß", "\\ss", $str);
-        $str = str_replace("ê", "\\^e", $str);
-        $str = str_replace("é", "\\'e", $str);
-        $str = str_replace("è", "\\`e", $str);
-        $str = str_replace("ë", "\\\"e", $str);
-        $str = str_replace("ì", "\\`i", $str);
-        $str = str_replace("ø", "\\o", $str);
-        $str = str_replace("ú", "\\'u", $str);
-        $str = str_replace("å", "\\aa", $str);
-        $str = str_replace("ç", "\\c", $str);
-        $str = str_replace("ñ", "\\~n", $str);
-        $str = str_replace("č", "\\v{c}", $str);
-        $str = str_replace("Č", "\\v{C}", $str);
-        $str = str_replace("š", "\\v{s}", $str);
-        $str = str_replace("Š", "\\v{S}", $str);
-        $str = str_replace("Š", "\\v{S}", $str);
-        $str = str_replace("Š", "\\v{S}", $str);
-        $str = str_replace("ó", "\\'o", $str);
-        $str = str_replace("á", "\\'a", $str);
-
-        return $str;
-    }
 
     public static function generateArXivBibTeX($paper){
         // $arr = explode("/", $paper["authors"], 2);
@@ -72,7 +44,7 @@ class arxivParser {
         $lastname = end($names);
         $authorstring = join(' and ',$paper["authors"]);
 
-        return arxivParser::handleBibTeXSpecialSymbols("@article{".$lastname.$paper["year"].",
+        return handleBibTeXSpecialSymbols("@article{".$lastname.$paper["year"].",
       title                    = {{".$paper["title"]."}},
       author                = {".$authorstring."},
       eprint                 = {arXiv:".$paper["identifier"]."},

@@ -77,7 +77,45 @@ function monthStrToInt($monthstr){
         default:
             return 13;
     }
-}
+};
+
+
+function handleBibTeXSpecialSymbols($bibtexstr){
+    $str = str_replace("\\\"a", "ä", $bibtexstr);
+    $str = str_replace("\\ifmmode \\check{c}\\else \\v{c}\\fi{}", "\\v{c}", $str);
+    $str = str_replace("\\ifmmode \\check{C}\\else \\v{C}\\fi{}", "\\v{C}", $str);
+    $str = str_replace("\\ifmmode \\check{s}\\else \\v{s}\\fi{}", "\\v{s}", $str);
+    $str = str_replace("\\ifmmode \\check{S}\\else \\v{S}\\fi{}", "\\v{S}", $str);
+    $str = str_replace("\\\"A", "Ä", $str);
+    $str = str_replace("\\\"o", "ö", $str);
+    $str = str_replace("\\\"u", "ü", $str);
+    $str = str_replace("\\\"O", "Ö", $str);
+    $str = str_replace("\\\"U", "Ü", $str);
+    $str = str_replace("\\ss", "ß", $str);
+    $str = str_replace("\\^e", "ê", $str);
+    $str = str_replace("\\'e", "é", $str);
+    $str = str_replace("\\`e", "è", $str);
+    $str = str_replace("\\\"e", "ë", $str);
+    $str = str_replace("\\`i", "ì", $str);
+    $str = str_replace("\\o{}", "ø", $str);
+    $str = str_replace("\\o", "ø", $str);
+    $str = str_replace("\\'u", "ú", $str);
+    $str = str_replace("\\aa", "å", $str);
+    $str = str_replace("\\c", "ç", $str);
+    $str = str_replace("\\~n", "ñ", $str);
+    $str = str_replace("\\v{c}", "č", $str);
+    $str = str_replace("\\v{C}", "Č", $str);
+    $str = str_replace("\\v{s}", "š", $str);
+    $str = str_replace("\\v{S}", "Š", $str);
+    $str = str_replace("\\'{\\i}", "í", $str);
+    $str = str_replace("\\'y", "ý", $str);
+    $str = str_replace("\\'o", "ó", $str);
+    $str = str_replace("\\'a", "á", $str);
+    $str = str_replace("\\ensuremath{-}", "-", $str);
+
+    return $str;
+};
+
 
 function isYear($nr){
     if (!is_numeric($nr)) $nr = intval($nr);
@@ -87,5 +125,23 @@ function isYear($nr){
 
     return false;
 };
+
+
+
+function file_get_contents_curl($url) {
+    $ch = curl_init();
+
+    curl_setopt($ch, CURLOPT_AUTOREFERER, TRUE);
+    curl_setopt($ch, CURLOPT_HEADER, 0);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);       
+
+    $data = curl_exec($ch);
+    curl_close($ch);
+
+    return $data;
+};
+
 
 ?>
