@@ -1,5 +1,6 @@
 <?php
 # Authors: Carsten Bauer
+include_once('tools/generic_functions.php');
 include_once("tools/parser/BibTexParser/ListenerInterface.php");
 include_once("tools/parser/BibTexParser/Listener.php");
 include_once("tools/parser/BibTexParser/Parser.php");
@@ -71,109 +72,6 @@ class apsParser {
         }
     }
 
-    private static function handleBibTeXSpecialSymbols($bibtexstr){
-        $str = str_replace("\\\"a", "ä", $bibtexstr);
-        $str = str_replace("\\ifmmode \\check{c}\\else \\v{c}\\fi{}", "\\v{c}", $str);
-        $str = str_replace("\\ifmmode \\check{C}\\else \\v{C}\\fi{}", "\\v{C}", $str);
-        $str = str_replace("\\ifmmode \\check{s}\\else \\v{s}\\fi{}", "\\v{s}", $str);
-        $str = str_replace("\\ifmmode \\check{S}\\else \\v{S}\\fi{}", "\\v{S}", $str);
-        $str = str_replace("\\\"A", "Ä", $str);
-        $str = str_replace("\\\"o", "ö", $str);
-        $str = str_replace("\\\"u", "ü", $str);
-        $str = str_replace("\\\"O", "Ö", $str);
-        $str = str_replace("\\\"U", "Ü", $str);
-        $str = str_replace("\\ss", "ß", $str);
-        $str = str_replace("\\^e", "ê", $str);
-        $str = str_replace("\\'e", "é", $str);
-        $str = str_replace("\\`e", "è", $str);
-        $str = str_replace("\\\"e", "ë", $str);
-        $str = str_replace("\\`i", "ì", $str);
-        $str = str_replace("\\o{}", "ø", $str);
-        $str = str_replace("\\o", "ø", $str);
-        $str = str_replace("\\'u", "ú", $str);
-        $str = str_replace("\\aa", "å", $str);
-        $str = str_replace("\\c", "ç", $str);
-        $str = str_replace("\\~n", "ñ", $str);
-        $str = str_replace("\\v{c}", "č", $str);
-        $str = str_replace("\\v{C}", "Č", $str);
-        $str = str_replace("\\v{s}", "š", $str);
-        $str = str_replace("\\v{S}", "Š", $str);
-        $str = str_replace("\\'{\\i}", "í", $str);
-        $str = str_replace("\\'y", "ý", $str);
-        $str = str_replace("\\'o", "ó", $str);
-        $str = str_replace("\\'a", "á", $str);
-        $str = str_replace("\\ensuremath{-}", "-", $str);
-
-        return $str;
-    }
-
-    private static function monthStrToInt($monthstr){
-        switch ($monthstr) {
-            case 'January':
-            case 'Januar':
-            case 'Jan':
-                return 1;
-
-            case 'February':
-            case 'Februar':
-            case 'Feb':
-                return 2;
-
-            case 'March':
-            case 'März':
-            case 'Mar':
-                return 3;
-
-            case 'April':
-            case 'April':
-            case 'Apr':
-                return 4;
-
-            case 'May':
-            case 'Mai':
-            case 'May':
-                return 5;
-
-            case 'June':
-            case 'Juni':
-            case 'Jun':
-                return 6;
-
-            case 'July':
-            case 'Juli':
-            case 'Jul':
-                return 7;
-
-            case 'August':
-            case 'August':
-            case 'Aug':
-                return 8;
-
-            case 'September':
-            case 'September':
-            case 'Sep':
-                return 9;
-
-            case 'October':
-            case 'Oktober':
-            case 'Oct':
-                return 10;
-
-            case 'November':
-            case 'November':
-            case 'Nov':
-                return 11;
-
-            case 'Dezember':
-            case 'Dezember':
-            case 'Dez':
-                return 12;
-            
-            default:
-                return 13;
-        }
-    }
-
 
     public static function parse($apsStr){
         // TODO catch ParseException
@@ -202,20 +100,20 @@ class apsParser {
         $parser->parseString($bibtex);
         $entries = $listener->export();
 
-        $paper["title"] = apsParser::handleBibTeXSpecialSymbols($entries[0]["title"]);
+        $paper["title"] = handleBibTeXSpecialSymbols($entries[0]["title"]);
         $paper["journal"] = $journal;
         $paper["volume"] = $entries[0]["volume"];
         $paper["number"] = $entries[0]["pages"];
         // Change "Name, Prename" to "Prename Name"
         $bibtexauthorstring = $entries[0]["author"];
-        $authors = explode(" and ",apsParser::handleBibTeXSpecialSymbols($bibtexauthorstring));
+        $authors = explode(" and ",handleBibTeXSpecialSymbols($bibtexauthorstring));
         $paper["authors"] = array();
         foreach($authors as $author){
             $name = explode(", ",$author);
             array_push($paper["authors"],$name[1]." ".$name[0]);
         }
         $paper["year"] = $entries[0]["year"];
-        $paper["month"] = apsParser::monthStrToInt($entries[0]["month"]);
+        $paper["month"] = monthStrToInt($entries[0]["month"]);
         $paper["url"] = str_replace("export","abstract",$bibtex_url);
         $paper["bibtex"] = $bibtex;
         $paper["identifier"] = $id;

@@ -6,7 +6,7 @@
 
 	<style>
 		body {
-			background-color: #3c4252;
+			/*background-color: rgba(16,23,45,0.85);*/
 			font-family: 'Roboto',Helvetica,Arial,Lucida,sans-serif;
 			font-weight: 300;
 			padding: 0 0 0 0;
