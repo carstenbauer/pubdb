@@ -74,7 +74,7 @@ class arxivParser {
         $feed->enable_order_by_date(false);
         $feed->init();
         $feed->handle_content_type();
-        
+
         # Use these namespaces to retrieve tags
         $atom_ns = 'http://www.w3.org/2005/Atom';
         $opensearch_ns = 'http://a9.com/-/spec/opensearch/1.1/';

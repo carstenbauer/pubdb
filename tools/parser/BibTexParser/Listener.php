@@ -77,7 +77,9 @@ class Listener implements ListenerInterface
             // the second key MAY be actually a "citation-key" value, but only if its value is null
             if (count($entry) > 1) {
                 $second = array_slice($entry, 1, 1, true);
-                list($key, $value) = each($second);
+
+                // Not entirely sure what this line did...
+                #list($key, $value) = each($second);
                 if (null === $value) {
                     // once the second key value is empty, it flips the key name
                     // as value of "citation-key"

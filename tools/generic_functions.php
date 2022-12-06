@@ -96,6 +96,7 @@ function handleBibTeXSpecialSymbols($bibtexstr){
     $str = str_replace("\\'e", "é", $str);
     $str = str_replace("\\`e", "è", $str);
     $str = str_replace("\\\"e", "ë", $str);
+    $str = str_replace("\\.e", "ė", $str);  #
     $str = str_replace("\\`i", "ì", $str);
     $str = str_replace("\\o{}", "ø", $str);
     $str = str_replace("\\o", "ø", $str);
@@ -112,6 +113,15 @@ function handleBibTeXSpecialSymbols($bibtexstr){
     $str = str_replace("\\'o", "ó", $str);
     $str = str_replace("\\'a", "á", $str);
     $str = str_replace("\\ensuremath{-}", "-", $str);
+
+    # not entirely sure yet why this is necessary for some bibtex files
+    $str = str_replace("\"a", "ä", $str);
+    $str = str_replace("\"A", "Ä", $str);
+    $str = str_replace("\"o", "ö", $str);
+    $str = str_replace("\"u", "ü", $str);
+    $str = str_replace("\"O", "Ö", $str);
+    $str = str_replace("\"U", "Ü", $str);
+    $str = str_replace("\"e", "ë", $str);
 
     return $str;
 };
