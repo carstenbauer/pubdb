@@ -40,6 +40,7 @@ class apsParser {
             case "prl": $journal_str = "PhysRevLett"; break;
             case "prmaterials": $journal_str = "PhysRevMaterials"; break;
             case "rmp": $journal_str = "RevModPhys"; break;
+            case "prxquantum": $journal_str = "PRXQuantum"; break;
         } 
 
         return $journal_str.".".$numbers[0].".".$numbers[1];
@@ -60,7 +61,12 @@ class apsParser {
         } elseif (strpos($apsStr, 'C') !== False || strpos($apsStr, 'prc') !== False){
             return "prc";
         } elseif (strpos($apsStr, 'X') !== False || strpos($apsStr, 'prx') !== False){
-            return "prx";
+            # distinguish between prx and prx quantum
+            if (strpos($apsStr, 'Q') !== False){
+                return "prxquantum";
+            } else {
+                return "prx";
+            }
         } elseif (strpos($apsStr, 'Research') !== False || strpos($apsStr, 'prresearch') !== False){
             return "prresearch";
         } elseif (strpos($apsStr, 'Materials') !== False || strpos($apsStr, 'prmaterials') !== False){
@@ -83,19 +89,27 @@ class apsParser {
         $bibtex_url = "http://journals.aps.org/".$journal."/export/10.1103/".$id;
         $abstract_url = "http://journals.aps.org/".$journal."/abstract/10.1103/".$id;
 
-        $bibtex = file_get_contents($bibtex_url);
-        $abstractpage = file_get_contents($abstract_url);
 
+        // set the User-Agent in the HTTP request
+        $context_chrome = stream_context_create(
+            array(
+                "http" => array(
+                    "header" => "User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36"
+                )
+            )
+        );
+        $bibtex = file_get_contents($bibtex_url, false, $context_chrome);
+        $abstractpage = file_get_contents($abstract_url, false, $context_chrome);
         if (strpos($abstractpage, 'Rapid Communication') !== false) {
             $id = $id."(R)";
         }
         if (strpos($abstractpage, 'Editors&#39; Suggestion') !== false) {
             $id = $id."(E)";
         }
-        
         $listener = new RenanBr\BibTexParser\Listener;
-        $parser = new RenanBr\BibTexParser\Parser;
+        $parser = new RenanBr\BibTexParser\Parser;        
         $parser->addListener($listener);
+
         // $parser->parseFile('physrev.bib');
         $parser->parseString($bibtex);
         $entries = $listener->export();
@@ -104,14 +118,17 @@ class apsParser {
         $paper["journal"] = $journal;
         $paper["volume"] = $entries[0]["volume"];
         $paper["number"] = $entries[0]["pages"];
+
         // Change "Name, Prename" to "Prename Name"
         $bibtexauthorstring = $entries[0]["author"];
         $authors = explode(" and ",handleBibTeXSpecialSymbols($bibtexauthorstring));
         $paper["authors"] = array();
+
         foreach($authors as $author){
             $name = explode(", ",$author);
             array_push($paper["authors"],$name[1]." ".$name[0]);
         }
+        
         $paper["year"] = $entries[0]["year"];
         $paper["month"] = monthStrToInt($entries[0]["month"]);
         $paper["url"] = str_replace("export","abstract",$bibtex_url);
