@@ -1,7 +1,5 @@
 config/dbconfig.php
 config/config.php
 debug.php
-tools/parser/bibutilsbinaries/ris2xml
-tools/parser/bibutilsbinaries/xml2bib
 .DS_Store
 simplepie-1.5/*
