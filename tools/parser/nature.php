@@ -1,6 +1,5 @@
 <?php
 # Authors: Carsten Bauer
-include_once("config/config.php");
 include_once('tools/generic_functions.php');
 include_once("tools/parser/BibTexParser/ListenerInterface.php");
 include_once("tools/parser/BibTexParser/Listener.php");
@@ -23,20 +22,76 @@ class natureParser {
         return $m[0];
     }
 
+
+    # this function returns the id of the first result of nature.com advanced search
+    private static function getIdFromAdvancedSearch($volumeNum, $pageNum, $journalStr){
+
+        # get the advanced search URL
+        $url = "https://www.nature.com/search?volume=".$volumeNum."&spage=".$pageNum."&order=relevance&journal=".$journalStr;
+
+        # get the html code of the advanced search page
+        $html = file_get_contents($url);
+        $dom = new DOMDocument;
+        $dom->loadHTML($html);
+        $xpath = new DOMXPath($dom);
+
+        # extract the id of the first result
+        $id = $xpath->evaluate('//a[@class="c-card__link u-link-inherit"][1]/@href')[0]->textContent.PHP_EOL;
+        $id = substr(strrchr($id,'/'),1); 
+        $id = trim($id);
+
+        return $id;
+    }
+
+    # this function extracts the journal from a reference string
+    private static function extractJournal($str){
+        if (stripos($str, "Mat") !== False) {      # assume Nature Reviews Materials
+            return "natrevmats";
+        }
+        if (stripos($str, "Rev") !== False) {      # assume Nature Reviews Physics
+            return "natrevphys";
+        }
+        if ((stripos($str, "Phy") !== False) && (stripos($str, "Com") !== False)) {     # assume (Nature) Communications Physics
+            return "commsphys";
+        }
+        if (stripos($str, "Com") !== False) {      # assume Nature Communications
+            return "ncomms";
+        }
+        if (stripos($str, "Phy") !== False) {      # assume Nature Physics
+            return "nphys";
+        }
+
+        # assume Nature
+        return "nature";
+    }
+
+
     private static function extractPureID($str){
         
+        ### Allow for whole nature.com URL
         if (strpos($str, "nature.com") !== False) {
             $str = substr(strrchr($str,'/'),1); 
             return str_replace(".html","",$str);
         }
 
-        # Allow for DOI
+        ### Allow for DOI
         if (strpos($str, "10.1038/") !== False) {
             $str = substr(strrchr($str,'/'),1);
             return $str;
-        }        
-     
-        return False;
+        }
+
+        ### Allow for reference string
+
+        # extract journal
+        $journalStr = natureParser::extractJournal($str);
+
+        # extract volume and page
+        $numbers = natureParser::extractNumbers($str);
+
+        # get id from advanced search
+        $id = natureParser::getIdFromAdvancedSearch($numbers[0], $numbers[1], $journalStr);
+
+        return $id;
     }
 
 
@@ -158,7 +213,6 @@ class natureParser {
 
         # Check if valid ID (journalNUMBER format) with regexp
         if ($id==False) return False;
-
         
         $paper = array();
         $bibtex = natureParser::RIStoBibTeX($id);
@@ -166,14 +220,14 @@ class natureParser {
         $listener = new RenanBr\BibTexParser\Listener;
         $parser = new RenanBr\BibTexParser\Parser;
         $parser->addListener($listener);
-        
+
         try {
             $parser->parseString($bibtex);
         } catch(Exception $e) {
             echo 'Caught exception: ',  $e->getMessage(), "\n";
             return False;
         }
-        
+
         $entries = $listener->export();
         
         $paper["title"] = handleBibTeXSpecialSymbols($entries[0]["title"]);
