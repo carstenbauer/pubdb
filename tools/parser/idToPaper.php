@@ -14,14 +14,20 @@ function contains($string, $array, $caseSensitive = false)
 
 function checkAPS($pubidstr){
     $apsarray = array("PRL","PRB","PRE", "PRMATERIALS", "PRRESEARCH", "PRA", "PRC", "PRD", "RMP", "Rev", "Physical", "10.1103/", "PRX");
-    if (contains($pubidstr,$apsarray))      
+    if (contains($pubidstr,$apsarray)) {
+        # check for mix-up with nature
+        if (stripos($pubidstr, "Nat") !== False){
+            return False;
+        }        
         return True;
+    }
+
     
     return False;
 }
 
 function checkNature($pubidstr){
-    $naturearray = array("Nature", "10.1038/", "ncomms", "nphys", "Nat", "Report", "srep", "Scientific");
+    $naturearray = array("Nature", "10.1038/", "ncomms", "nphys", "Nat", "Report", "srep", "Scientific", "Com");
     if (contains($pubidstr,$naturearray))
         return True;
     
