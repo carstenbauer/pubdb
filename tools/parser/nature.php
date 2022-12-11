@@ -60,6 +60,9 @@ class natureParser {
         if (stripos($str, "Phy") !== False) {      # assume Nature Physics
             return "nphys";
         }
+        if ((stripos($str, "Sci") !== False) && (stripos($str, "Rep") !== False)) {     # assume (Nature) Scientific Reports
+            return "srep";
+        }
 
         # assume Nature
         return "nature";
