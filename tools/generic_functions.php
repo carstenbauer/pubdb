@@ -113,6 +113,7 @@ function handleBibTeXSpecialSymbols($bibtexstr){
     $str = str_replace("\\'o", "ó", $str);
     $str = str_replace("\\'a", "á", $str);
     $str = str_replace("\\ensuremath{-}", "-", $str);
+    $str = str_replace("\&\#x3b1;", "α", $str);
 
     # not entirely sure yet why this is necessary for some bibtex files
     $str = str_replace("\"a", "ä", $str);
@@ -199,6 +200,7 @@ function handleSpecialChars($bibtex){
     $bibtex = str_replace("ï", "SpecialChar036", $bibtex);
     $bibtex = str_replace("Á", "SpecialChar037", $bibtex);
     $bibtex = str_replace("ę", "SpecialChar038", $bibtex);
+    $bibtex = str_replace("/", "SpecialChar039", $bibtex);
 
     return $bibtex;
 }
@@ -243,6 +245,7 @@ function inverseHandleSpecialChars($bibtex){
     $bibtex = str_replace("SpecialChar036", "ï", $bibtex);
     $bibtex = str_replace("SpecialChar037", "Á", $bibtex);
     $bibtex = str_replace("SpecialChar038", "ę", $bibtex);
+    $bibtex = str_replace("SpecialChar039", "/", $bibtex);
 
     return $bibtex;
 
