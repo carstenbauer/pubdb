@@ -4,6 +4,7 @@ include_once('tools/parser/aps.php');
 include_once('tools/parser/nature.php');
 include_once('tools/parser/quantum.php');
 include_once('tools/parser/scipost.php');
+include_once('tools/parser/science.php');
 
 function contains($string, $array, $caseSensitive = false)
 {
@@ -21,7 +22,6 @@ function checkAPS($pubidstr){
         }        
         return True;
     }
-
     
     return False;
 }
@@ -52,6 +52,14 @@ function checkSciPost($pubidstr){
     return False;
 }
 
+function checkScience($pubidstr){
+    $sciencearray = array("Sci", "10.1126/", "Adv");
+    if (contains($pubidstr,$sciencearray))
+        return True;
+    
+    return False;
+}
+
 
 function identifierToPaper($pubidstr){
     # Check if we have arxiv or aps identifier
@@ -65,6 +73,8 @@ function identifierToPaper($pubidstr){
         $paper = quantumParser::parse($pubidstr);
     } elseif (checkSciPost($pubidstr)) {
         $paper = scipostParser::parse($pubidstr);
+    } elseif (checkScience($pubidstr)) {
+        $paper = scienceParser::parse($pubidstr);
     } else {
         // Assume arxiv
         $paper = arxivParser::parse($pubidstr);
