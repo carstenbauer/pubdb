@@ -143,13 +143,13 @@ class natureParser {
 
         $entries = $listener->export();
         
-        $paper["title"] = handleBibTeXSpecialSymbols($entries[0]["title"]);
+        $paper["title"] = inverseHandleSpecialChars(handleBibTeXSpecialSymbols($entries[0]["title"]));
         $paper["journal"] = $entries[0]["journal"];
         $paper["volume"] = $entries[0]["volume"];
         $paper["number"] = $entries[0]["pages"];
 
         // Change "Name, Prename" to "Prename Name"
-        $bibtexauthorstring = $entries[0]["author"];
+        $bibtexauthorstring = inverseHandleSpecialChars($entries[0]["author"]);
         $bibtexauthorstring = str_replace('{', '', $bibtexauthorstring);
         $bibtexauthorstring = str_replace('}', '', $bibtexauthorstring);
         $authors = explode("and ",handleBibTeXSpecialSymbols($bibtexauthorstring));
