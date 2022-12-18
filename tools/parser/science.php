@@ -179,7 +179,7 @@ class scienceParser {
         $bibtexauthorstring = inverseHandleSpecialChars($entries[0]["author"]);
         $bibtexauthorstring = str_replace('{', '', $bibtexauthorstring);
         $bibtexauthorstring = str_replace('}', '', $bibtexauthorstring);
-        $authors = explode("and ",handleBibTeXSpecialSymbols($bibtexauthorstring));
+        $authors = explode(" and ",handleBibTeXSpecialSymbols($bibtexauthorstring));
         $paper["authors"] = array();
         foreach($authors as $author){
             $name = explode(", ", trim($author));
