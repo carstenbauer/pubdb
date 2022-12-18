@@ -82,6 +82,17 @@ class scienceParser {
         return $data;
     }
 
+    # this function returns the doi for a given reference string of a Science Advances article
+    private static function extractDoiSciAdv($str){
+        # cut the journal name
+        $str = str_ireplace("Science", "", $str);
+        $str = str_ireplace("Advances", "", $str);
+
+        # extract the doi part
+        $doi_part = substr($str, strpos($str, "e") + 1, 7);
+        return "10.1126/sciadv." . $doi_part;
+    }
+
 
     # this function returns the doi for a given input string (doi, url or reference string)
     private static function extractDoi($str){
@@ -103,7 +114,7 @@ class scienceParser {
         $journal = scienceParser::extractJournal($str);
 
         if ($journal == "sciadv") {
-            return False;                            // ! not implemented yet
+            return scienceParser::extractDoiSciAdv($str);
         }
 
         # extract volume and page
