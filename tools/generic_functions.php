@@ -114,8 +114,38 @@ function handleBibTeXSpecialSymbols($bibtexstr){
     $str = str_replace("\\'a", "á", $str);
     $str = str_replace("\\ensuremath{-}", "-", $str);
     $str = str_replace("\&\#x3b1;", "α", $str);
+    $str = str_replace("{\'{e}}", "é", $str);
 
-    # not entirely sure yet why this is necessary for some bibtex files
+
+    # from quantum.php
+    $str = str_replace("{Quantum}", "Quantum", $str);
+    $str = str_replace("{A}", "A", $str);
+    $str = str_replace("{B}", "B", $str);
+    $str = str_replace("{C}", "C", $str);
+    $str = str_replace("{D}", "D", $str);
+    $str = str_replace("{E}", "E", $str);
+    $str = str_replace("{F}", "F", $str);
+    $str = str_replace("{G}", "G", $str);
+    $str = str_replace("{H}", "H", $str);
+    $str = str_replace("{I}", "I", $str);
+    $str = str_replace("{J}", "J", $str);
+    $str = str_replace("{K}", "K", $str);
+    $str = str_replace("{L}", "L", $str);
+    $str = str_replace("{M}", "M", $str);
+    $str = str_replace("{N}", "N", $str);
+    $str = str_replace("{O}", "O", $str);
+    $str = str_replace("{P}", "P", $str);
+    $str = str_replace("{Q}", "Q", $str);
+    $str = str_replace("{R}", "R", $str);
+    $str = str_replace("{S}", "S", $str);
+    $str = str_replace("{T}", "T", $str);
+    $str = str_replace("{U}", "U", $str);
+    $str = str_replace("{V}", "V", $str);
+    $str = str_replace("{W}", "W", $str);
+    $str = str_replace("{X}", "X", $str);
+    $str = str_replace("{Y}", "Y", $str);
+    $str = str_replace("{Z}", "Z", $str);
+
     $str = str_replace("\"a", "ä", $str);
     $str = str_replace("\"A", "Ä", $str);
     $str = str_replace("\"o", "ö", $str);
