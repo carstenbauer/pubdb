@@ -36,7 +36,7 @@ function checkNature($pubidstr){
 }
 
 function checkQuantum($pubidstr){
-    $quantumarray = array("quantum-journal", "10.22331/");
+    $quantumarray = array("quantum-journal", "10.22331/", "Quantum");
     if (contains($pubidstr,$quantumarray))
         return True;
     
