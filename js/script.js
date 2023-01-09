@@ -17,7 +17,11 @@ function LaTeX2MathJax(str){
 
 function apsIdToString(id){
 	var numbers = extractNumbers(id);
-	var s = "<b>"+numbers[0].toString().concat("</b>, ").concat(numbers[1].toString());
+	var s = "<b>"+numbers[0].toString().concat("</b>, ")
+	// check if paper contains an L for Letter
+	if (id.includes("L".concat(numbers[1].toString())))
+		s = s.concat("L");
+	s = s.concat(numbers[1].toString());
 	if (id.includes("(R)"))
 		s = s.concat("(R)");
 	return s;

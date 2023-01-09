@@ -115,6 +115,7 @@ function handleBibTeXSpecialSymbols($bibtexstr){
     $str = str_replace("\\ensuremath{-}", "-", $str);
     $str = str_replace("\&\#x3b1;", "α", $str);
     $str = str_replace("{\'{e}}", "é", $str);
+    $str = str_replace("{\mathbb{Z}}", "Z", $str);
 
 
     # from quantum.php
