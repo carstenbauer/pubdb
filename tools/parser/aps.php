@@ -41,7 +41,12 @@ class apsParser {
             case "prmaterials": $journal_str = "PhysRevMaterials"; break;
             case "rmp": $journal_str = "RevModPhys"; break;
             case "prxquantum": $journal_str = "PRXQuantum"; break;
-        } 
+        }
+
+        # catch Letter case
+        if (strpos($apsStr, 'L'.$numbers[1] !== False)){
+            return $journal_str.".".$numbers[0].".L".$numbers[1];
+        }
 
         return $journal_str.".".$numbers[0].".".$numbers[1];
     }
@@ -50,7 +55,7 @@ class apsParser {
     private static function extractJournal($apsStr){
         if (strpos($apsStr, 'B') !== False || strpos($apsStr, 'prb') !== False){
             return "prb";
-        } elseif (strpos($apsStr, 'Lett') !== False || strpos($apsStr, 'L') !== False || strpos($apsStr, 'prl') !== False) {
+        } elseif (strpos($apsStr, 'Lett') !== False || strpos($apsStr, 'prl') !== False) {
             return "prl";
         } elseif (strpos($apsStr, 'A') !== False || strpos($apsStr, 'pra') !== False){
             return "pra";
