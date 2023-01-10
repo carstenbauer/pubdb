@@ -44,7 +44,7 @@ class apsParser {
         }
 
         # catch Letter case
-        if (strpos($apsStr, 'L'.$numbers[1] !== False)){
+        if (strpos($apsStr, "L".$numbers[1]) !== False){
             return $journal_str.".".$numbers[0].".L".$numbers[1];
         }
 
@@ -93,7 +93,6 @@ class apsParser {
         # Get url to bibtex
         $bibtex_url = "http://journals.aps.org/".$journal."/export/10.1103/".$id;
         $abstract_url = "http://journals.aps.org/".$journal."/abstract/10.1103/".$id;
-
 
         // set the User-Agent in the HTTP request
         $context_chrome = stream_context_create(
