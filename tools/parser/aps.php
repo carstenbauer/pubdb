@@ -41,6 +41,7 @@ class apsParser {
             case "prmaterials": $journal_str = "PhysRevMaterials"; break;
             case "rmp": $journal_str = "RevModPhys"; break;
             case "prxquantum": $journal_str = "PRXQuantum"; break;
+            case "prapplied": $journal_str = "PhysRevApplied"; break;
         }
 
         # catch Letter case
@@ -57,6 +58,8 @@ class apsParser {
             return "prb";
         } elseif (strpos($apsStr, 'Lett') !== False || strpos($apsStr, 'prl') !== False) {
             return "prl";
+        } elseif (stripos($apsStr, 'App') !== False) {
+            return "prapplied";
         } elseif (strpos($apsStr, 'A') !== False || strpos($apsStr, 'pra') !== False){
             return "pra";
         } elseif (strpos($apsStr, 'D') !== False || strpos($apsStr, 'prd') !== False){
