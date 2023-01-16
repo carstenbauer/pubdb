@@ -54,6 +54,7 @@ function journalToString(pub){
 	    case "prd": return "Phys. Rev. D ".concat(apsIdToString(id));
 	    case "pre": return "Phys. Rev. E ".concat(apsIdToString(id));
         case "prx": return "Phys. Rev. X ".concat(apsIdToString(id));
+		case "prapplied": return "Phys. Rev. Applied ".concat(apsIdToString(id));
 		case "prxquantum": return "PRX Quantum ".concat(apsIdToString(id));
         case "prresearch": return "Phys. Rev. Research ".concat(apsIdToString(id));
 	    case "prmaterials": return "Phys. Rev. Materials ".concat(apsIdToString(id));
