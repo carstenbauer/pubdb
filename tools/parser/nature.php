@@ -45,6 +45,11 @@ class natureParser {
 
     # this function extracts the journal from a reference string
     private static function extractJournal($str){
+        if ((stripos($str, "Comp") !== False) && (stripos($str, "Mat") !== False)) {     # assume Nature Computational Materials
+            return "npjcompumats";
+        }
+
+
         if (stripos($str, "Mat") !== False) {      # assume Nature Reviews Materials
             return "natrevmats";
         }
