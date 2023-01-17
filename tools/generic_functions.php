@@ -86,6 +86,12 @@ function handleBibTeXSpecialSymbols($bibtexstr){
     $str = str_replace("\\ifmmode \\check{C}\\else \\v{C}\\fi{}", "\\v{C}", $str);
     $str = str_replace("\\ifmmode \\check{s}\\else \\v{s}\\fi{}", "\\v{s}", $str);
     $str = str_replace("\\ifmmode \\check{S}\\else \\v{S}\\fi{}", "\\v{S}", $str);
+    $str = str_replace("\\ifmmode \\check{Z}\\else \\v{Z}\\fi{}", "\\v{Z}", $str);
+    $str = str_replace("\\ifmmode \\check{z}\\else \\v{z}\\fi{}", "\\v{z}", $str);
+
+    $str = str_replace("\\ifmmode \\acute{c}\\else \\'{c}\\fi{}", "\\'{c}", $str);
+
+
     $str = str_replace("\\\"A", "Ä", $str);
     $str = str_replace("\\\"o", "ö", $str);
     $str = str_replace("\\\"u", "ü", $str);
@@ -108,6 +114,9 @@ function handleBibTeXSpecialSymbols($bibtexstr){
     $str = str_replace("\\v{C}", "Č", $str);
     $str = str_replace("\\v{s}", "š", $str);
     $str = str_replace("\\v{S}", "Š", $str);
+    $str = str_replace("\\v{z}", "ž", $str);
+    $str = str_replace("\\v{Z}", "Ž", $str);
+    $str = str_replace("\\'{c}", "ć", $str);
     $str = str_replace("\\'{\\i}", "í", $str);
     $str = str_replace("\\'y", "ý", $str);
     $str = str_replace("\\'o", "ó", $str);
@@ -120,32 +129,32 @@ function handleBibTeXSpecialSymbols($bibtexstr){
 
     # from quantum.php
     $str = str_replace("{Quantum}", "Quantum", $str);
-    $str = str_replace("{A}", "A", $str);
-    $str = str_replace("{B}", "B", $str);
-    $str = str_replace("{C}", "C", $str);
-    $str = str_replace("{D}", "D", $str);
-    $str = str_replace("{E}", "E", $str);
-    $str = str_replace("{F}", "F", $str);
-    $str = str_replace("{G}", "G", $str);
-    $str = str_replace("{H}", "H", $str);
-    $str = str_replace("{I}", "I", $str);
-    $str = str_replace("{J}", "J", $str);
-    $str = str_replace("{K}", "K", $str);
-    $str = str_replace("{L}", "L", $str);
-    $str = str_replace("{M}", "M", $str);
-    $str = str_replace("{N}", "N", $str);
-    $str = str_replace("{O}", "O", $str);
-    $str = str_replace("{P}", "P", $str);
-    $str = str_replace("{Q}", "Q", $str);
-    $str = str_replace("{R}", "R", $str);
-    $str = str_replace("{S}", "S", $str);
-    $str = str_replace("{T}", "T", $str);
-    $str = str_replace("{U}", "U", $str);
-    $str = str_replace("{V}", "V", $str);
-    $str = str_replace("{W}", "W", $str);
-    $str = str_replace("{X}", "X", $str);
-    $str = str_replace("{Y}", "Y", $str);
-    $str = str_replace("{Z}", "Z", $str);
+    $str = str_replace(" {A}", " A", $str);
+    $str = str_replace(" {B}", " B", $str);
+    $str = str_replace(" {C}", " C", $str);
+    $str = str_replace(" {D}", " D", $str);
+    $str = str_replace(" {E}", " E", $str);
+    $str = str_replace(" {F}", " F", $str);
+    $str = str_replace(" {G}", " G", $str);
+    $str = str_replace(" {H}", " H", $str);
+    $str = str_replace(" {I}", " I", $str);
+    $str = str_replace(" {J}", " J", $str);
+    $str = str_replace(" {K}", " K", $str);
+    $str = str_replace(" {L}", " L", $str);
+    $str = str_replace(" {M}", " M", $str);
+    $str = str_replace(" {N}", " N", $str);
+    $str = str_replace(" {O}", " O", $str);
+    $str = str_replace(" {P}", " P", $str);
+    $str = str_replace(" {Q}", " Q", $str);
+    $str = str_replace(" {R}", " R", $str);
+    $str = str_replace(" {S}", " S", $str);
+    $str = str_replace(" {T}", " T", $str);
+    $str = str_replace(" {U}", " U", $str);
+    $str = str_replace(" {V}", " V", $str);
+    $str = str_replace(" {W}", " W", $str);
+    $str = str_replace(" {X}", " X", $str);
+    $str = str_replace(" {Y}", " Y", $str);
+    $str = str_replace(" {Z}", " Z", $str);
 
     $str = str_replace("\"a", "ä", $str);
     $str = str_replace("\"A", "Ä", $str);
