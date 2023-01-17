@@ -43,13 +43,20 @@ class natureParser {
         return $id;
     }
 
+
+    # TODO: add more journals: npj quant inf npjqi, npf quant materials npjquantmats
+
     # this function extracts the journal from a reference string
     private static function extractJournal($str){
-        if ((stripos($str, "Comp") !== False) && (stripos($str, "Mat") !== False)) {     # assume Nature Computational Materials
+        if ((stripos($str, "Comp") !== False) && (stripos($str, "Mat") !== False)) {     # assume npj Computational Materials
             return "npjcompumats";
         }
-
-
+        if ((stripos($str, "npj") !== False) && (stripos($str, "Inf") !== False)) {     # assume npj Quantum Information
+            return "npjqi";
+        }
+        if ((stripos($str, "npj") !== False) && (stripos($str, "Mat") !== False)) {     # assume npj Quantum Materials
+            return "npjquantmats";
+        }
         if (stripos($str, "Mat") !== False) {      # assume Nature Reviews Materials
             return "natrevmats";
         }
