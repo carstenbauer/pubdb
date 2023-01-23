@@ -5,6 +5,7 @@ include_once('tools/parser/nature.php');
 include_once('tools/parser/quantum.php');
 include_once('tools/parser/scipost.php');
 include_once('tools/parser/science.php');
+include_once('tools/parser/iop.php');
 
 function contains($string, $array, $caseSensitive = false)
 {
@@ -37,10 +38,15 @@ function checkNature($pubidstr){
 
 function checkQuantum($pubidstr){
     $quantumarray = array("quantum-journal", "10.22331/", "Quantum");
-    if (contains($pubidstr,$quantumarray))
+    if (contains($pubidstr,$quantumarray)) {
+        # check for mix-up with iop
+        if (stripos($pubidstr, "Tec") !== False){
+            return False;
+        }
         return True;
-    
+    }
     return False;
+
 }
 
 
@@ -54,7 +60,20 @@ function checkSciPost($pubidstr){
 
 function checkScience($pubidstr){
     $sciencearray = array("Sci", "10.1126/", "Adv");
-    if (contains($pubidstr,$sciencearray))
+    if (contains($pubidstr,$sciencearray)) {
+        # check for mix-up with iop
+        if (stripos($pubidstr, "Tec") !== False){
+            return False;
+        }
+        return True;
+    }
+    
+    return False;
+}
+
+function checkIOP($pubidstr){
+    $ioparray = array("iopscience", "10.1088/", "New", "Phys", "Tec");
+    if (contains($pubidstr,$ioparray))
         return True;
     
     return False;
@@ -75,6 +94,8 @@ function identifierToPaper($pubidstr){
         $paper = scipostParser::parse($pubidstr);
     } elseif (checkScience($pubidstr)) {
         $paper = scienceParser::parse($pubidstr);
+    } elseif (checkIOP($pubidstr)) {
+        $paper = iopParser::parse($pubidstr);
     } else {
         // Assume arxiv
         $paper = arxivParser::parse($pubidstr);
