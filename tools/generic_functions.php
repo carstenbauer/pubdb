@@ -245,6 +245,8 @@ function handleSpecialChars($bibtex){
     $bibtex = str_replace("Á", "SpecialChar037", $bibtex);
     $bibtex = str_replace("ę", "SpecialChar038", $bibtex);
     $bibtex = str_replace("/", "SpecialChar039", $bibtex);
+    $bibtex = str_replace("_", "SpecialChar040", $bibtex);
+    $bibtex = str_replace("ß", "SpecialChar041", $bibtex);
 
     return $bibtex;
 }
@@ -290,6 +292,8 @@ function inverseHandleSpecialChars($bibtex){
     $bibtex = str_replace("SpecialChar037", "Á", $bibtex);
     $bibtex = str_replace("SpecialChar038", "ę", $bibtex);
     $bibtex = str_replace("SpecialChar039", "/", $bibtex);
+    $bibtex = str_replace("SpecialChar040", "_", $bibtex);
+    $bibtex = str_replace("SpecialChar041", "ß", $bibtex);
 
     return $bibtex;
 
