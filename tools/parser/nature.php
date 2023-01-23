@@ -57,6 +57,9 @@ class natureParser {
         if ((stripos($str, "npj") !== False) && (stripos($str, "Mat") !== False)) {     # assume npj Quantum Materials
             return "npjquantmats";
         }
+        if ((stripos($str, "Com") !== False) && (stripos($str, "Mat") !== False)) {     # assume (Nature) Communications Materials
+            return "commsmat";
+        }
         if (stripos($str, "Mat") !== False) {      # assume Nature Reviews Materials
             return "natrevmats";
         }
