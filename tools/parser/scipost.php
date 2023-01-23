@@ -22,6 +22,9 @@ class scipostParser {
             $journal = scipostParser::extractJournal($scipostStr);
             $numbers = scipostParser::extractNumbers($scipostStr);
             if (count($numbers)<3 || $journal===False){
+                if ($journal === "SciPostPhysCodeb") {
+                    return "SciPostPhysCodeb.".$numbers[0];
+                }
                 return False;
             }
             return $journal.".".$numbers[0].".".$numbers[1].".".$numbers[2];
@@ -44,6 +47,9 @@ class scipostParser {
 
     private static function extractJournal($scipostStr){
 
+        if (stripos($scipostStr,"Code") !== False) {
+            return "SciPostPhysCodeb";
+        } else
         if (stripos($scipostStr,"core") !== False) {
             return "SciPostPhysCore";
         } else {
