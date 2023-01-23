@@ -36,7 +36,11 @@ class scipostParser {
         $numbers = scipostParser::extractNumbers($scipostStr);
 
         # get ID from api
-        $apiURL = "https://scipost.org/api/search/publications/?search=".$journal.".".$numbers[0].".+.".$numbers[1];
+        if ($journal === "SciPostPhysCodeb") {
+            $apiURL = "https://scipost.org/api/search/publications/?search=".$journal.".".$numbers[0];
+        } else {
+            $apiURL = "https://scipost.org/api/search/publications/?search=".$journal.".".$numbers[0].".".$numbers[1];
+        }
         $str = file_get_contents($apiURL);
         $pos = strpos($str, "doi_label");
         $str = substr($str, $pos + 12);
