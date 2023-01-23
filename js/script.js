@@ -84,7 +84,9 @@ function journalToString(pub){
 	    default:
 	    	if (volume!="" && number !="")
 	    		return journal.concat(" <b>"+volume+"</b>").concat(", ").concat(number);
-	    	else
+	    	else if (number!="")
+				return journal.concat(" ").concat(number);
+			else
 	    		return journal.concat(" ").concat(id.toString());
 	}
 }
