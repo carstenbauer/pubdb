@@ -2,7 +2,7 @@
 <head>
 	<!-- <base target="_parent" /> -->
 	<link href="css/style.css" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+	<link href="Fonts/sourcesanspro.css" rel="stylesheet">
 
 	<?php
 
