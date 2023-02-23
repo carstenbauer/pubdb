@@ -2,7 +2,7 @@
 <head>
 	<!-- <base target="_parent" /> -->
 	<!-- <link href="css/style.css" rel="stylesheet"> -->
-	<link href="/Fonts/opensans.css" rel="stylesheet">
+	<link href="Fonts/opensans.css" rel="stylesheet">
 
 	<style>
 		body {

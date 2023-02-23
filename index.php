@@ -17,7 +17,7 @@
 <link href="/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="/bootstrap-select/1.11.2/css/bootstrap-select.min.css">
 
-<script src="/jquery/3/jquery.min.js"></script>
+<script src="js/jquery-3.0.0.min.js"></script>
 <script src="/tether/1.2.0/js/tether.min.js"></script>
 <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.4/js/bootstrap.min.js" integrity="sha384-VjEeINv9OSwtWFLAtmc4JCtEJXXBub00gtSnszmspDLCtC0I4z4nqz7rEFbIZLLU" crossorigin="anonymous"></script> --!>
 <script src="/bootstrap/3.3.7/js/bootstrap.min.js"></script>

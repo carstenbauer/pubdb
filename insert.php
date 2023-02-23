@@ -19,7 +19,7 @@ else
 <head>
 
     <link href="css/style.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
+    <link href="Fonts/opensans.css" rel="stylesheet">
     <script type="text/javascript" src="js/script.js"></script>
     <script type="text/javascript">
         function printPublication(){
