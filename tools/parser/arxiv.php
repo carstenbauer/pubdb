@@ -113,6 +113,11 @@ class arxivParser {
             } 
         }
 
+        # if second last character is "v", then the paper has a version (we dont want that)
+        if (substr($paper["url"], -2, -1) == "v") {
+            $paper["url"] = substr($paper["url"], 0, -2);
+        }
+
         # # Optional: Read journal reference if available 
         # $journal_ref_raw = $entry->get_item_tags($arxiv_ns,'journal_ref');
         # $journal_ref = "";
