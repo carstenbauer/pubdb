@@ -25,16 +25,8 @@ $validID = false;
 $oldpaper = false;
 $id = isset($_GET['id']) ? $_GET['id'] : -1;
 
-// print $id in the following line
-print $id;
-
-
-print __LINE__;
-
 foreach ($publications as $p) {
-    print __LINE__;
     if ($p["id"] == $id) {
-        print __LINE__;
         $validID = true;
         $oldpaper = $p;
     }
