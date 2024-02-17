@@ -133,42 +133,47 @@ if (isset($_POST["insertForm"]) || isset($_POST["confirm"])) {
 
         <?php if (!isset($_POST['confirm'])) { ?>
 
-            <form action="index.php?sec=update_manual&id=<?php echo $oldpaper["id"]; ?>" method="post">
+            <form action="index.php?sec=update_manual&id=<?php echo htmlspecialchars($oldpaper["id"]); ?>" method="post">
                 Authors <small class="small">(Given name first, comma-separated, e.g. 'Max Mustermann, John
                     Doe')</small><br>
                 <input type="text" name="pubauthors"
-                    value="<?php echo (!empty($_POST)) ? $_POST["pubauthors"] : join(", ", $oldpaper["authors"]); ?>"
+                    value="<?php echo (!empty($_POST)) ? htmlspecialchars($_POST["pubauthors"]) : htmlspecialchars(join(", ", $oldpaper["authors"])); ?>"
                     required><br>
                 Title<br>
                 <input type="text" name="pubtitle"
-                    value="<?php echo (!empty($_POST)) ? $_POST["pubtitle"] : $oldpaper["title"]; ?>" required><br>
+                    value="<?php echo (!empty($_POST)) ? htmlspecialchars($_POST["pubtitle"]) : htmlspecialchars($oldpaper["title"]); ?>"
+                    required><br>
                 Journal<br>
                 <input type="text" name="pubjournal"
-                    value="<?php echo (!empty($_POST)) ? $_POST["pubjournal"] : $oldpaper["journal"]; ?>" required><br><br>
+                    value="<?php echo (!empty($_POST)) ? htmlspecialchars($_POST["pubjournal"]) : htmlspecialchars($oldpaper["journal"]); ?>"
+                    required><br><br>
                 Volume <small class="small">(will be displayed in bold)</small><br>
                 <input type="text" name="pubvolume"
-                    value="<?php echo (!empty($_POST)) ? $_POST["pubvolume"] : $oldpaper["volume"]; ?>"><br>
+                    value="<?php echo (!empty($_POST)) ? htmlspecialchars($_POST["pubvolume"]) : htmlspecialchars($oldpaper["volume"]); ?>"><br>
                 Article or page number <small class="small"></small><br>
                 <input type="text" name="pubnumber"
-                    value="<?php echo (!empty($_POST)) ? $_POST["pubnumber"] : $oldpaper["number"]; ?>"><br>
+                    value="<?php echo (!empty($_POST)) ? htmlspecialchars($_POST["pubnumber"]) : htmlspecialchars($oldpaper["number"]); ?>"><br>
                 or
                 <br>
                 Identifier <small class="small">(In case the journal is not organized in a "volume, article/page number"
                     structure)</small><br>
                 <input type="text" name="pubidentifier"
-                    value="<?php echo (!empty($_POST)) ? $_POST["pubidentifier"] : $oldpaper["identifier"]; ?>"><br><br>
+                    value="<?php echo (!empty($_POST)) ? htmlspecialchars($_POST["pubidentifier"]) : htmlspecialchars($oldpaper["identifier"]); ?>"><br><br>
                 URL<br>
-                <input type="text" name="puburl" value="<?php echo (!empty($_POST)) ? $_POST["puburl"] : $oldpaper["url"]; ?>"
+                <input type="text" name="puburl"
+                    value="<?php echo (!empty($_POST)) ? htmlspecialchars($_POST["puburl"]) : htmlspecialchars($oldpaper["url"]); ?>"
                     required><br>
                 Year<br>
                 <input type="text" name="pubyear"
-                    value="<?php echo (!empty($_POST)) ? $_POST["pubyear"] : $oldpaper["year"]; ?>" required><br>
+                    value="<?php echo (!empty($_POST)) ? htmlspecialchars($_POST["pubyear"]) : htmlspecialchars($oldpaper["year"]); ?>"
+                    required><br>
                 Month<br>
                 <input type="text" name="pubmonth"
-                    value="<?php echo (!empty($_POST)) ? $_POST["pubmonth"] : $oldpaper["month"]; ?>" required><br>
+                    value="<?php echo (!empty($_POST)) ? htmlspecialchars($_POST["pubmonth"]) : htmlspecialchars($oldpaper["month"]); ?>"
+                    required><br>
                 BibTeX (optional)<br>
                 <textarea rows="7" cols="40"
-                    name="pubbibtex"><?php echo (!empty($_POST)) ? $_POST["pubbibtex"] : $oldpaper["bibtex"]; ?></textarea><br>
+                    name="pubbibtex"><?php echo (!empty($_POST)) ? htmlspecialchars($_POST["pubbibtex"]) : htmlspecialchars($oldpaper["bibtex"]); ?></textarea><br>
                 Associated project(s):<br>
                 <select class="selectpicker" name="projects[]" multiple required>
                     <?php
@@ -218,20 +223,20 @@ if (isset($_POST["insertForm"]) || isset($_POST["confirm"])) {
 
             <p id="pubp"></p>
             <br>
-            <form action="index.php?sec=update_manual&id=<?php echo $oldpaper["id"]; ?>" method="post">
-                <input type=hidden name="pubtitle" value="<?php echo $_POST["pubtitle"]; ?>">
-                <input type=hidden name="pubauthors" value="<?php echo $_POST["pubauthors"]; ?>">
-                <input type=hidden name="pubjournal" value="<?php echo $_POST["pubjournal"]; ?>">
-                <input type=hidden name="pubidentifier" value="<?php echo $_POST["pubidentifier"]; ?>">
-                <input type=hidden name="puburl" value="<?php echo $_POST["puburl"]; ?>">
-                <input type=hidden name="pubmonth" value="<?php echo $_POST["pubmonth"]; ?>">
-                <input type=hidden name="pubyear" value="<?php echo $_POST["pubyear"]; ?>">
+            <form action="index.php?sec=update_manual&id=<?php echo htmlspecialchars($oldpaper["id"]); ?>" method="post">
+                <input type=hidden name="pubtitle" value="<?php echo htmlspecialchars($_POST["pubtitle"]); ?>">
+                <input type=hidden name="pubauthors" value="<?php echo htmlspecialchars($_POST["pubauthors"]); ?>">
+                <input type=hidden name="pubjournal" value="<?php echo htmlspecialchars($_POST["pubjournal"]); ?>">
+                <input type=hidden name="pubidentifier" value="<?php echo htmlspecialchars($_POST["pubidentifier"]); ?>">
+                <input type=hidden name="puburl" value="<?php echo htmlspecialchars($_POST["puburl"]); ?>">
+                <input type=hidden name="pubmonth" value="<?php echo htmlspecialchars($_POST["pubmonth"]); ?>">
+                <input type=hidden name="pubyear" value="<?php echo htmlspecialchars($_POST["pubyear"]); ?>">
                 <input type=hidden name="pubbibtex" value="<?php echo htmlentities($_POST["pubbibtex"]); ?>">
-                <input type=hidden name="pubvolume" value="<?php echo $_POST["pubvolume"]; ?>">
-                <input type=hidden name="pubnumber" value="<?php echo $_POST["pubnumber"]; ?>">
+                <input type=hidden name="pubvolume" value="<?php echo htmlspecialchars($_POST["pubvolume"]); ?>">
+                <input type=hidden name="pubnumber" value="<?php echo htmlspecialchars($_POST["pubnumber"]); ?>">
                 <?php
                 foreach ($_POST["projects"] as $project) {
-                    echo "<input type=hidden name='projects[]' value='" . $project . "' >";
+                    echo "<input type=hidden name='projects[]' value='" . htmlspecialchars($project) . "' >";
                 }
                 ?>
                 <br>
